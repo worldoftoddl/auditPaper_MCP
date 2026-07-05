@@ -8,15 +8,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 디렉토리 구조
 
-- `auditstandard_md/` — 회계감사기준 전문(2025 개정). ISA-200~720, ISQM-1, FRMK-1, ASSR-3000 등 40개 파일. 파일명은 `ISA-<번호>.md` 형식이며 `00_전문.md`는 전체 목차(prelude_and_toc).
-- `ifrs_md/` — K-IFRS 기준서. 원 기준서 계열별 하위 폴더로 분류: `IAS_10XX/`(제1001~1041호), `IFRS_11XX/`(제1101~1117호), `IFRIC_21XX/`, `SIC_20XX/`.
-- `Conceptual_framework_md/` — 재무보고를 위한 개념체계, 경영진설명서 개념체계, 중요성 실무서 3개 파일.
-- `guidelines_md/` — 회계감사실무지침 9건(2014-1~2018-3), `guide_<번호>.md` 형식. `guidelines_raw/`의 원본에서 변환했으며, 유일하게 목표 규약(`guidelines_raw/벡터저장소_스키마_및_마크다운_작성규약.md` 4장)을 그대로 따른다: frontmatter 3필드(`source_type`/`standard_no`/`standard_title`) + 행 머리 `번호.` 문단 + `[각주: …]` 인라인. 변환 결정사항은 `guidelines_md/README.md` 참조.
-- `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서. 원본은 전부 변환 완료.
+**적재 파이프라인이 읽어야 할 폴더는 `corpus_md/` + `guidelines_md/` 두 개다.** 나머지는 원본/이전 단계 산출물이다.
 
-## 문서 스키마 — 두 가지가 서로 다름
+- `corpus_md/` — **규약 형식 통일 코퍼스** (감사기준 39 + 회계기준 63 = 102개 파일, 문단 9,376개). `scripts/normalize_corpus.py`가 아래 두 원본 폴더에서 생성하며 재실행으로 전체 재생성 가능. 파일명 `ksa_<번호>.md`/`kifrs_<번호>.md`. 수록 범위·원본 결함 보정 내역은 `corpus_md/README.md` 참조 (K-IFRS는 정본 authority 1만, BC/IE 제외).
+- `guidelines_md/` — 회계감사실무지침 9건(2014-1~2018-3), `guide_<번호>.md` 형식. `guidelines_raw/`의 원본에서 변환. 변환 결정사항은 `guidelines_md/README.md` 참조.
+- `auditstandard_md/` — (원본) 회계감사기준 전문(2025 개정). ISA-200~720, ISQM-1, FRMK-1, ASSR-3000 등 40개 파일. `00_전문.md`는 전체 목차.
+- `ifrs_md/` — (원본) K-IFRS 기준서. 계열별 하위 폴더: `IAS_10XX/`, `IFRS_11XX/`, `IFRIC_21XX/`, `SIC_20XX/`.
+- `Conceptual_framework_md/` — (원본) 재무보고를 위한 개념체계, 경영진설명서 개념체계, 중요성 실무서 3개 파일.
+- `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서(`벡터저장소_스키마_및_마크다운_작성규약.md` — 목표 규약).
+- `scripts/` — 변환 스크립트.
 
-두 코퍼스는 서로 다른 YAML frontmatter와 인라인 메타데이터 규약을 쓴다. 파싱/청킹 코드를 작성할 때 반드시 구분해야 한다.
+`corpus_md/`와 `guidelines_md/`는 모두 목표 규약 4장을 따른다: frontmatter 3필드(`source_type`/`standard_no`(따옴표 문자열)/`standard_title`) + `##` 절 제목(`상위 > 하위` 합성) + 행 머리 `번호.` 문단 절단. 청크 ID: `KSA::<번호>::<문단>` / `KIFRS::<번호>::<문단>` / `GUIDE::<번호>::<문단>`.
+
+## 원본 폴더의 옛 스키마 — 참고용
+
+아래 두 스키마는 **원본 폴더**(`auditstandard_md/`, `ifrs_md/`, `Conceptual_framework_md/`)에만 남아 있다. 적재 파이프라인은 이들을 직접 읽지 말고 통일된 `corpus_md/`를 읽을 것. 원본을 다시 변환할 일이 있을 때만 필요하다.
 
 ### 감사기준 (`auditstandard_md/`)
 
