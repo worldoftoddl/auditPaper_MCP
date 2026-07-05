@@ -11,6 +11,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `auditstandard_md/` — 회계감사기준 전문(2025 개정). ISA-200~720, ISQM-1, FRMK-1, ASSR-3000 등 40개 파일. 파일명은 `ISA-<번호>.md` 형식이며 `00_전문.md`는 전체 목차(prelude_and_toc).
 - `ifrs_md/` — K-IFRS 기준서. 원 기준서 계열별 하위 폴더로 분류: `IAS_10XX/`(제1001~1041호), `IFRS_11XX/`(제1101~1117호), `IFRIC_21XX/`, `SIC_20XX/`.
 - `Conceptual_framework_md/` — 재무보고를 위한 개념체계, 경영진설명서 개념체계, 중요성 실무서 3개 파일.
+- `guidelines_md/` — 회계감사실무지침 9건(2014-1~2018-3), `guide_<번호>.md` 형식. `guidelines_raw/`의 원본에서 변환했으며, 유일하게 목표 규약(`guidelines_raw/벡터저장소_스키마_및_마크다운_작성규약.md` 4장)을 그대로 따른다: frontmatter 3필드(`source_type`/`standard_no`/`standard_title`) + 행 머리 `번호.` 문단 + `[각주: …]` 인라인. 변환 결정사항은 `guidelines_md/README.md` 참조.
+- `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서. 원본은 전부 변환 완료.
 
 ## 문서 스키마 — 두 가지가 서로 다름
 
