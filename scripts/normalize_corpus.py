@@ -7,6 +7,7 @@ corpus_md/에 변환한다. 원본 파일은 수정하지 않는다.
 행 머리 `번호.` 문단 절단, 표는 문단에 통합, 목차 제거, 파일명 유형_번호.md
 """
 
+import json
 import re
 import sys
 import zipfile
@@ -19,9 +20,29 @@ OUT = ROOT / "corpus_md"
 ISQM_DOCX = Path(
     "/home/shin/Project/_AuditStandard_parsing/raw/3. 품질관리기준서1(2018년 제정)_국어전문.docx"
 )
+# DOCX가 없는 환경에서도 재생성이 가능하도록 파싱 결과를 저장소에 동봉한다
+ISQM_ROWS_JSON = Path(__file__).resolve().parent / "isqm1_rows.json"
 
 # 출력 문단 행머리 판정 (파서와 동일해야 함)
-HEAD_RE = re.compile(r"^(부록-?[0-9A-Za-z()]+|보론\d*-\d+|한?[A-Z]{0,4}\d[0-9A-Za-z.-]*)\.\s")
+# 부록-사례N: 감사기준 예시 보고서의 사례 단위 가상 번호 (규약 4.3)
+# 한?[A-Z]{0,4}\.?\d: BA.1(1109 부록 B 말미) 같은 '영문자+점+숫자' 계열 포함
+HEAD_RE = re.compile(
+    r"^(부록-사례\d+|부록-?[0-9A-Za-z()]+|보론\d*-\d+|한?[A-Z]{0,4}\.?\d[0-9A-Za-z.-]*)\.\s"
+)
+
+# 원본에 para 주석 없이 놓인 정본 문단의 무마침표 행머리 (예: 'A1<TAB>본문', 'D1 ', 'BA.1')
+NOPERIOD_HEAD = re.compile(r"^(?:\*\*)?(한?[A-Z]{1,4}\.?\d[0-9A-Za-z.]*)[ \t]+(\S.*)$")
+SERIES_START = re.compile(r"한?[A-Z]{1,4}\.?1")
+
+# 의결 문구(위원 명단·의결 사실 기재)는 정본 문단이 아니므로 제거
+BOILER_HEAD = re.compile(r"^회계기준위원회 위원\s*:")
+BOILER_VOTE = re.compile(r"회계기준위원회\S*\s*위원\s*\d+인.*의결하였다")
+
+
+def para_series(p):
+    """문단번호의 영문자 계열(한 접두 제외). 'A12'→'A', 'D8A'→'D', 'BA.2'→'BA', '한C1.1'→'C'"""
+    m = re.match(r"한?([A-Z]+)", p)
+    return m.group(1) if m else None
 
 # ── 감사기준 원본의 국소 번호 오류 보정 ─────────────────────────────
 # 원본 DOCX 자동번호 재시작으로 추출 번호가 실제 기준서 번호와 어긋난 곳.
@@ -127,6 +148,12 @@ def write_output(fname, fm_pairs, em, expected_registry):
 
 # ══════════════════════════════ 감사기준 (auditstandard_md/) ══════════════════════════════
 
+# 번호 없는 예시문 부록이 직전 실문단에 병합되는 5개 파일: 부록/사례 단위로 절단한다.
+# ID는 규약 4.3의 가상 번호 — 부록N(부록 서두·목록형 부록), 부록-사례N(예시 보고서 한 건)
+EX_SPLIT_FILES = {"700", "705", "720", "1200", "240"}
+CASE_HEAD = re.compile(r"사례\s*(\d+)([\s\-–—::].*)?$")
+
+
 def convert_isa_file(path, expected):
     name = path.name
     text = path.read_text(encoding="utf-8")
@@ -158,6 +185,12 @@ def convert_isa_file(path, expected):
     number_only = re.compile(r"^(한?\d+[A-Z]?|한?A\d+(-\d+)?)$")
     boron = None         # 보론 진입 후 문단번호 접두 ('보론2-' 등). 보론은 자체 번호가 1부터 재시작함
 
+    ex_split = std_no in EX_SPLIT_FILES
+    appendix_ord = 0     # 파일 내 부록(section: appendix) 순번
+    in_ex_app = False    # 예시문 부록 구역 진입 여부
+    pending_app = None   # 부록 서두 조각의 가상 번호 (첫 내용 행에서 방출, 사례가 먼저 오면 폐기)
+    case_next = 1        # 다음에 나와야 할 사례 번호 (본문 속 '사례 N' 언급 오인 방지)
+
     i = 0
     while i < len(lines):
         ln = lines[i]
@@ -181,8 +214,25 @@ def convert_isa_file(path, expected):
                 i += 1
                 continue  # 목차형 제목은 range_map으로 재배치
             seen_first_h2 = True
+            htext = hm.group(2).strip()
+            if ex_split:
+                # 부록 제목 감지: 제목행 (+ 제목 이어행) 뒤에 section: appendix 주석
+                nxt1 = lines[i + 1] if i + 1 < len(lines) else ""
+                nxt2 = lines[i + 2] if i + 2 < len(lines) else ""
+                c1, c2 = parse_comment(nxt1), parse_comment(nxt2)
+                is_app = False
+                if c1 and c1.get("section") == "appendix":
+                    is_app = True
+                elif c1 is None and nxt1.strip() and c2 and c2.get("section") == "appendix":
+                    htext += " — " + nxt1.strip()  # 제목 이어행을 절 제목에 흡수
+                    is_app = True
+                    i += 1
+                if is_app:
+                    appendix_ord += 1
+                    in_ex_app = True
+                    pending_app = f"부록{appendix_ord}"
             levels = {k: v for k, v in levels.items() if k < lvl}
-            levels[lvl] = hm.group(2).strip()
+            levels[lvl] = htext
             em.set_section(" > ".join(levels[k] for k in sorted(levels)))
             i += 1
             continue
@@ -256,6 +306,24 @@ def convert_isa_file(path, expected):
             i += 1
             continue
 
+        # 예시문 부록 구역: 사례 경계 절단 + 부록 서두 조각
+        if in_ex_app:
+            s2 = s.lstrip(">").strip() if s.startswith(">") else s
+            mc = CASE_HEAD.match(s2)
+            if mc and int(mc.group(1)) == case_next and (
+                not s.startswith(">") or re.match(r"사례\s*\d+\s*[-–—::]", s2)
+            ):
+                em.para(f"부록-사례{case_next}.", s2)
+                case_next += 1
+                pending_app = None
+                i += 1
+                continue
+            if pending_app is not None:
+                em.para(pending_app + ".", s)
+                pending_app = None
+                i += 1
+                continue
+
         # ASSR: 절 제목 후보 (짧은 독립 행)
         if std_id in ("ASSR-3000",) and kind == "paragraph_body" and len(s) <= 26 \
                 and not re.search(r"[.다함음됨임,)\]:;]$", s) \
@@ -289,8 +357,8 @@ def convert_isa_file(path, expected):
     )
 
 
-def convert_isqm(expected):
-    """ISQM-1: md에 문단번호가 소실되어 원본 DOCX의 2열 표(열0=번호, 열1=본문)에서 복원."""
+def isqm_rows_from_docx():
+    """원본 DOCX의 2열 표(열0=번호, 열1=본문)에서 방출 이벤트 목록을 만든다."""
     W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
     z = zipfile.ZipFile(ISQM_DOCX)
     root = ET.fromstring(z.read("word/document.xml"))
@@ -304,15 +372,13 @@ def convert_isqm(expected):
     # 본문 표는 바깥 표 안에 중첩되어 있음 — 직접 자식 행이 가장 많은 표 선택
     body_tbl = max(root.iter(W + "tbl"), key=lambda t: len(direct_rows(t)))
 
-    em = Emitter()
-    # 표 시작 전의 절 제목(서론 > 범위)은 바깥 표에 있어 직접 지정
-    em.set_section("이 품질관리기준서의 범위")
+    rows = []
     for tr in direct_rows(body_tbl):
         tcs = [tc for tc in tr if tc.tag == W + "tc"]
         if len(tcs) == 1:
             t = ptext(tcs[0])
             if t:
-                em.set_section(t)
+                rows.append(["section", t])
             continue
         if len(tcs) != 2:
             continue
@@ -324,14 +390,41 @@ def convert_isqm(expected):
         if not num:
             # 제목 행 (본문 열에 절 제목만 있음)
             if len(paras) == 1 and len(paras[0]) <= 40:
-                em.set_section(paras[0])
+                rows.append(["section", paras[0]])
             else:
                 for p in paras:
-                    em.cont(p)
+                    rows.append(["cont", p])
             continue
-        em.para(num + ".", paras[0])
+        rows.append(["para", num, paras[0]])
         for p in paras[1:]:
-            em.cont("\t" + p)
+            rows.append(["cont", "\t" + p])
+    return rows
+
+
+def convert_isqm(expected):
+    """ISQM-1: md에 문단번호가 소실되어 원본 DOCX에서 복원.
+    DOCX가 없는 환경에서는 저장소에 동봉한 isqm1_rows.json(직전 파싱 결과)을 쓴다."""
+    if ISQM_DOCX.exists():
+        rows = isqm_rows_from_docx()
+        ISQM_ROWS_JSON.write_text(
+            json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8"
+        )
+    elif ISQM_ROWS_JSON.exists():
+        print(f"  [알림] ISQM-1 원본 DOCX 없음 — {ISQM_ROWS_JSON.name}에서 복원")
+        rows = json.loads(ISQM_ROWS_JSON.read_text(encoding="utf-8"))
+    else:
+        sys.exit("ISQM-1 변환 불가: 원본 DOCX와 isqm1_rows.json 둘 다 없음")
+
+    em = Emitter()
+    # 표 시작 전의 절 제목(서론 > 범위)은 바깥 표에 있어 직접 지정
+    em.set_section("이 품질관리기준서의 범위")
+    for row in rows:
+        if row[0] == "section":
+            em.set_section(row[1])
+        elif row[0] == "para":
+            em.para(row[1] + ".", row[2])
+        else:
+            em.cont(row[1])
 
     write_output(
         "ksa_isqm-1.md",
@@ -376,15 +469,28 @@ def convert_ifrs_file(path, expected):
     em = Emitter()
     comp_include = True
     bc_seen = False    # '## 결론도출근거' 이후의 component 태그는 신뢰 불가(오태깅) — 전부 제외
+    ie_seen = False    # '## 적용사례' 이후도 동일 (1109에서 IE 구역 내 authority 1 오태깅 확인)
     h2_force = False   # 제목 규칙에 의한 강제 제외 (뒤따르는 component 주석보다 우선)
     body_started = False  # 첫 절 제목 이전의 표지 표 등은 제거
     in_toc_table = False
     h2 = h3 = None
     last_content_idx = None  # em.lines에서 마지막 본문 행 위치
     dropped_warn = []
+    promoted = []      # para 주석 없이 행머리 패턴으로 승격한 문단 (검수 보고용)
+    n_boiler = 0
 
-    for ln in lines:
-        include = comp_include and not bc_seen and not h2_force
+    # 각 행 뒤(빈 행 건너뜀)에 para 주석이 오는지 미리 계산 — 주석이 확정할 행은 승격하지 않는다
+    follows_para = [False] * len(lines)
+    for i, _ in enumerate(lines):
+        for j in range(i + 1, min(i + 4, len(lines))):
+            if not lines[j].strip():
+                continue
+            cc = parse_comment(lines[j])
+            follows_para[i] = bool(cc and "para" in cc)
+            break
+
+    for i, ln in enumerate(lines):
+        include = comp_include and not bc_seen and not ie_seen and not h2_force
         c = parse_comment(ln)
         if c is not None:
             if "component" in c:
@@ -395,7 +501,10 @@ def convert_ifrs_file(path, expected):
                     comp_include = comp != "bc"
                 else:
                     comp_include = auth == "1"
-            elif "para" in c and not include and bc_seen:
+            elif "authority_declaration" in c and not is_cf:
+                # 원본이 부록 서두에 스스로 선언한 정본 여부 — component 태그와 동급으로 반영
+                comp_include = c["authority_declaration"] == "authoritative"
+            elif "para" in c and not include and (bc_seen or ie_seen):
                 if not str(c["para"]).startswith(("BC", "IE", "CU")):
                     dropped_warn.append(c["para"])
             elif "para" in c and include and last_content_idx is not None:
@@ -428,6 +537,8 @@ def convert_ifrs_file(path, expected):
                 h2, h3 = t, None
                 if t.startswith("결론도출근거"):
                     bc_seen = True
+                if not is_cf and t.startswith("적용사례"):
+                    ie_seen = True
                 # 1007: 예시 성격의 부록 A/B/C가 authority 1로 잘못 태깅됨 → 제외
                 h2_force = std_no == "1007" and t.startswith("부록")
             else:
@@ -440,6 +551,10 @@ def convert_ifrs_file(path, expected):
         s = ln.rstrip()
         if not s.strip():
             in_toc_table = False
+            continue
+        # 의결 문구(위원 명단 등)는 정본 문단이 아님 — 제거
+        if BOILER_HEAD.match(s.strip()) or BOILER_VOTE.search(s):
+            n_boiler += 1
             continue
         # 목차 표 제거 (규약 4.2 제거 대상)
         if s.lstrip().startswith("|") and re.search(r"목\s*차", s):
@@ -454,12 +569,29 @@ def convert_ifrs_file(path, expected):
             em.para(spm.group(1) + ".", spm.group(2))
             last_content_idx = None
             continue
+        # 정본 문단 행머리 복원: 원본이 para 주석 없이 둔 부록 문단(D1, A1, BA.1, C20BA 등).
+        # 오탐 방지 — 직전 문단과 같은 영문자 계열이거나 계열 시작(X1)일 때만 승격.
+        if not s.startswith(("\t", " ", "|", ">")) and not follows_para[i]:
+            nm = NOPERIOD_HEAD.match(s)
+            if nm:
+                head = nm.group(1)
+                prev = em.paras[-1] if em.paras else None
+                if SERIES_START.fullmatch(head) or (
+                    prev and para_series(prev) and para_series(prev) == para_series(head)
+                ):
+                    bold = s.startswith("**")
+                    em.para(head + ".", ("**" if bold else "") + nm.group(2))
+                    promoted.append(head)
+                    last_content_idx = None
+                    continue
         # 이어지는 행 또는 문단 첫 행(뒤따르는 para 주석이 번호를 확정)
         em.cont(s if s.startswith(("\t", " ", "|", ">")) else s.strip())
         last_content_idx = len(em.lines) - 1
 
     if dropped_warn:
-        print(f"  [경고] {path.name[:40]}: 결론도출근거 이후 비BC 문단 제외됨 {dropped_warn[:8]}")
+        print(f"  [경고] {path.name[:40]}: 결론도출근거/적용사례 이후 비BC·IE 문단 제외됨 {dropped_warn[:8]}")
+    if promoted:
+        print(f"  [복원] kifrs_{token}: 무주석 문단 {len(promoted)}개 승격 — {promoted[:6]}{'…' if len(promoted) > 6 else ''}")
     write_output(
         f"kifrs_{token}.md",
         [("source_type", "회계기준"), ("standard_no", std_no),
@@ -471,8 +603,35 @@ def convert_ifrs_file(path, expected):
 
 # ══════════════════════════════ 검증 ══════════════════════════════
 
+# 정수 문단 건너뜀 허용목록 — 원문 삭제 문단으로 소명 완료된 구멍 (그 외 신규 구멍은 실패)
+INT_GAP_ALLOW = {
+    "kifrs_1012.md": {(51, 53)},
+    "kifrs_1032.md": {(4, 8), (50, 96)},
+    "kifrs_1034.md": {(16, 19)},
+    "kifrs_1036.md": {(90, 96)},
+    "kifrs_1039.md": {(2, 8), (9, 71), (102, 104)},
+    "kifrs_1041.md": {(16, 22), (46, 49)},
+    "kifrs_1107.md": {(11, 13), (26, 28)},
+    "kifrs_2114.md": {(24, 27)},
+    "ksa_assr-3000.md": {(45, 50)},  # 문단 46~49는 2열 대비표 — 문서화된 한계
+}
+
+# 감사기준 예시문 분리 결과의 기대 조각 (수정 1의 검수 고정값)
+KSA_SPLIT_EXPECT = {
+    "ksa_700.md": ["부록1"] + [f"부록-사례{n}" for n in range(1, 5)],
+    "ksa_705.md": ["부록1"] + [f"부록-사례{n}" for n in range(1, 6)],
+    "ksa_720.md": ["부록1", "부록2"] + [f"부록-사례{n}" for n in range(1, 8)],
+    "ksa_1200.md": ["부록1", "부록2"] + [f"부록-사례{n}" for n in range(1, 11)],
+    "ksa_240.md": ["부록1", "부록2", "부록3"],
+}
+
+# 출력에서 무마침표 문단머리로 의심되는 행 (잔존 시 실패)
+NOPD_OUT = re.compile(r"^(한?[A-Z]{1,4}\.?\d[0-9A-Za-z.]*)[ \t]+\S")
+
+
 def validate(expected):
     problems = []
+    warnings = []
     all_ids = Counter()
     for fname, exp in sorted(expected.items()):
         out = (OUT / fname).read_text(encoding="utf-8")
@@ -493,10 +652,46 @@ def validate(expected):
             all_ids[(std_no, p)] += 1
         if "<!--" in body:
             problems.append(f"{fname}: HTML 주석 잔존")
+
+        # 무마침표 문단머리 의심 행 잔존 검사
+        suspects = [
+            l[:40] for l in body.split("\n")
+            if not l.startswith("\t") and not HEAD_RE.match(l) and NOPD_OUT.match(l)
+        ]
+        if suspects:
+            problems.append(f"{fname}: 무마침표 문단머리 의심 행 {len(suspects)}건 {suspects[:3]}")
+
+        # 문단 크기 측정 (6,000자 초과는 경고 — 적재기 분할 정책 대상)
+        cur, size = None, 0
+        for l in body.split("\n"):
+            if HEAD_RE.match(l):
+                if cur and size > 6000:
+                    warnings.append(f"{fname}: {cur} = {size:,}자")
+                cur, size = HEAD_RE.match(l).group(1), len(l)
+            else:
+                size += len(l)
+        if cur and size > 6000:
+            warnings.append(f"{fname}: {cur} = {size:,}자")
+
+        # 정수 문단 건너뜀 검사 (허용목록 외 신규 구멍은 실패)
+        ints = sorted({int(p) for p in got if p.isdigit()})
+        gaps = [(a, b) for a, b in zip(ints, ints[1:]) if b > a + 1]
+        new_gaps = [g for g in gaps if g not in INT_GAP_ALLOW.get(fname, set())]
+        if new_gaps:
+            problems.append(f"{fname}: 허용목록 외 정수 문단 건너뜀 {new_gaps[:6]}")
+
+        # 예시문 분리 조각의 기대값 대조
+        if fname in KSA_SPLIT_EXPECT:
+            got_pseudo = [p for p in got if p.startswith("부록")]
+            if got_pseudo != KSA_SPLIT_EXPECT[fname]:
+                problems.append(
+                    f"{fname}: 예시문 분리 불일치 exp={KSA_SPLIT_EXPECT[fname]} got={got_pseudo}"
+                )
+
     gdup = [k for k, n in all_ids.items() if n > 1]
     if gdup:
         problems.append(f"전역 ID 중복: {gdup[:8]}")
-    return problems, len(all_ids)
+    return problems, warnings, len(all_ids)
 
 
 def main():
@@ -517,15 +712,19 @@ def main():
     for p in ifrs_files:
         convert_ifrs_file(p, expected)
 
-    problems, n_ids = validate(expected)
+    problems, warnings, n_ids = validate(expected)
     n_para = sum(len(v) for v in expected.values())
     print(f"변환 완료: {len(expected)}개 파일, 문단 {n_para}개, 고유 ID {n_ids}개")
+    if warnings:
+        print(f"\n[경고] 6,000자 초과 문단 {len(warnings)}건 (적재기 분할 정책 대상):")
+        for w in warnings:
+            print(" -", w)
     if problems:
         print(f"\n검증 실패 {len(problems)}건:")
         for pr in problems:
             print(" -", pr)
         sys.exit(1)
-    print("검증 통과: 문단 시퀀스 일치, ID 유일, 주석 제거 확인")
+    print("검증 통과: 시퀀스 일치, ID 유일, 주석 제거, 무마침표 잔존 0, 정수 건너뜀 허용목록 내")
 
 
 if __name__ == "__main__":
