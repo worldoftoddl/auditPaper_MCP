@@ -150,8 +150,16 @@ def write_output(fname, fm_pairs, em, expected_registry):
 # ══════════════════════════════ 감사기준 (auditstandard_md/) ══════════════════════════════
 
 # 번호 없는 예시문 부록이 직전 실문단에 병합되는 파일들: 부록/사례 단위로 절단한다.
-# ID는 규약 4.3의 가상 번호 — 부록N(부록 서두·목록형 부록), 부록-사례N(예시 보고서 한 건)
-EX_SPLIT_FILES = {"700", "705", "720", "1200", "240", "710", "570", "1100", "600"}
+# ID는 규약 4.3의 가상 번호 — 부록N(부록 서두·목록형 부록), 부록-사례N(예시 보고서 한 건),
+# 참조N(다른 기준서를 가리키는 목록형 보론 — para_type "참조", 검색 기본 포함)
+EX_SPLIT_FILES = {
+    "700", "705", "720", "1200", "240", "710", "570", "1100", "600",
+    "706", "580", "510", "300", "210", "230", "260", "315", "530", "540", "620",
+}
+# (파일, 보론 순번) → 참조N: 다른 기준서의 요구사항 위치를 나열하는 목록형 보론
+REF_APPS = {("706", 1), ("706", 2), ("580", 1), ("230", 1), ("260", 1)}
+CASE_APPS = {("580", 2)}                         # 단일 예시 보론 전체 = 부록-사례N
+SUBCUT_FILES = {"300"}                           # 보론 하위 절마다 부록N 절단 (고려사항 목록)
 CASE_HEAD = re.compile(r"사례\s*(\d+)([\s\-–—::].*)?$")
 
 
@@ -187,10 +195,12 @@ def convert_isa_file(path, expected):
     boron = None         # 보론 진입 후 문단번호 접두 ('보론2-' 등). 보론은 자체 번호가 1부터 재시작함
 
     ex_split = std_no in EX_SPLIT_FILES
-    appendix_ord = 0     # 파일 내 부록(section: appendix) 순번
+    appendix_ord = 0     # 파일 내 부록(section: appendix) 순번 (300은 하위 절도 순번 소비)
     in_ex_app = False    # 예시문 부록 구역 진입 여부
     pending_app = None   # 부록 서두 조각의 가상 번호 (첫 내용 행에서 방출, 사례가 먼저 오면 폐기)
     case_next = 1        # 다음에 나와야 할 사례 번호 (본문 속 '사례 N' 언급 오인 방지)
+    ref_ord = 0          # 목록형 보론(참조N) 순번
+    absorb_sect = None   # ASSR: 보론 표지 직후의 짧은 참조·제목 행을 절 제목에 흡수
 
     i = 0
     while i < len(lines):
@@ -239,6 +249,16 @@ def convert_isa_file(path, expected):
                 if is_app:
                     appendix_ord += 1
                     in_ex_app = True
+                    if (std_no, appendix_ord) in REF_APPS:
+                        ref_ord += 1
+                        pending_app = f"참조{ref_ord}"
+                    elif (std_no, appendix_ord) in CASE_APPS:
+                        pending_app = f"부록-사례{case_next}"
+                    else:
+                        pending_app = f"부록{appendix_ord}"
+                elif in_ex_app and std_no in SUBCUT_FILES:
+                    # 보론 내부의 하위 절 제목 → 새 부록 조각 (고려사항 목록의 절 단위 절단)
+                    appendix_ord += 1
                     pending_app = f"부록{appendix_ord}"
             levels = {k: v for k, v in levels.items() if k < lvl}
             levels[lvl] = htext
@@ -276,6 +296,12 @@ def convert_isa_file(path, expected):
             )
             em.set_section(title)
             pending_num = None
+            if std_id == "FRMK-1":
+                # FRMK 보론의 무번호 서두(보론 1은 전체가 도표)는 부록N 조각으로
+                in_ex_app = True
+                pending_app = f"부록{n or 1}"
+            else:
+                absorb_sect = title
             i += 1
             continue
 
@@ -298,6 +324,8 @@ def convert_isa_file(path, expected):
             ) else ln.strip()
             em.para(para, body_text)
             pending_num = None
+            pending_app = None   # 번호 문단이 있는 보론은 서두 조각 불필요
+            absorb_sect = None
             i += 1
             continue
 
@@ -312,15 +340,27 @@ def convert_isa_file(path, expected):
                 if pnum and int(pnum) in range_map:
                     em.set_section(range_map[int(pnum)])
             em.para(num + ".", s)
+            pending_app = None
+            absorb_sect = None
             i += 1
             continue
+
+        # ASSR: 보론 표지 직후의 짧은 참조·제목 행은 절 제목에 흡수
+        if absorb_sect is not None:
+            if len(s) <= 60 and not number_only.fullmatch(s) \
+                    and not s.startswith(("|", ">", "•")) and not ln.startswith("\t"):
+                absorb_sect = f"{absorb_sect} {s}" if s.startswith("(") else f"{absorb_sect} — {s}"
+                em.set_section(absorb_sect)
+                i += 1
+                continue
+            absorb_sect = None
 
         # 예시문 부록 구역: 사례 경계 절단 + 부록 서두 조각
         if in_ex_app:
             s2 = s.lstrip(">").strip() if s.startswith(">") else s
             mc = CASE_HEAD.match(s2)
             if mc and int(mc.group(1)) == case_next and (
-                not s.startswith(">") or re.match(r"사례\s*\d+\s*[-–—::]", s2)
+                not s.startswith(">") or re.match(r"사례\s*\d+\s*([-–—::]|$)", s2)
             ):
                 em.para(f"부록-사례{case_next}.", s2)
                 case_next += 1
@@ -329,6 +369,8 @@ def convert_isa_file(path, expected):
                 continue
             if pending_app is not None:
                 em.para(pending_app + ".", s)
+                if pending_app.startswith("부록-사례"):
+                    case_next += 1
                 pending_app = None
                 i += 1
                 continue
@@ -659,7 +701,19 @@ KSA_SPLIT_EXPECT = {
     "ksa_710.md": [f"부록-사례{n}" for n in range(1, 5)],
     "ksa_570.md": ["부록1"] + [f"부록-사례{n}" for n in range(1, 4)],
     "ksa_1100.md": ["부록1"] + [f"부록-사례{n}" for n in range(1, 4)],
-    # 600의 부록-51~ 번호 문단은 원본 유래라 기대 목록에서 제외 (부록N 서두 조각만 검사)
+    "ksa_600.md": [f"부록{n}" for n in range(1, 6)],     # 보론 1~5 서두 (부록-51~은 원본 유래)
+    "ksa_706.md": ["참조1", "참조2", "부록3", "부록4"],  # 보론1·2=목록형, 3·4=예시 보고서
+    "ksa_580.md": ["참조1", "부록-사례1"],               # 보론1=기준서 목록, 보론2=진술서 예시
+    "ksa_510.md": ["부록1", "부록-사례1", "부록-사례2"], # 부록1=예시 서두
+    "ksa_300.md": [f"부록{n}" for n in range(1, 6)],     # 보론 서두 + 하위 절 4개
+    "ksa_210.md": ["부록1", "부록2"],                    # 보론1=계약서 예시, 보론2 서두 (부록-1~5는 원본 유래)
+    "ksa_230.md": ["참조1"],                             # 문서화 요구사항 목록
+    "ksa_260.md": ["참조1", "부록2"],                    # 보론1=요구사항 목록, 보론2=질적측면 고려사항
+    "ksa_620.md": ["부록1"],                             # 합의 고려사항 목록
+    "ksa_315.md": ["부록1", "부록2", "부록4", "부록5", "부록6"],  # 보론3은 서두 없이 번호 문단 직행
+    "ksa_530.md": [f"부록{n}" for n in range(1, 5)],     # 보론 1~4 서두 (부록-N은 원본 유래)
+    "ksa_540.md": [],                                    # 보론 제목 이어행은 절 제목에 흡수, 조각 없음
+    "ksa_frmk-1.md": [f"부록{n}" for n in range(1, 5)],  # 보론1=도표 전체, 2~4=무번호 서두
 }
 
 # PS2(중요성 실무서) 분리 기대: 사례 상자 A~T 20개 + 부록 발췌 참조1~4
@@ -727,17 +781,28 @@ def validate(expected):
         if new_gaps:
             problems.append(f"{fname}: 허용목록 외 정수 문단 건너뜀 {new_gaps[:6]}")
 
-        # 예시문 분리 조각의 기대값 대조
+        # 예시문 분리 조각의 기대값 대조 (가상 번호만 — 부록-51 같은 원본 유래 번호는 제외)
         if fname in KSA_SPLIT_EXPECT:
-            got_pseudo = [p for p in got if p.startswith("부록")]
+            got_pseudo = [p for p in got if re.fullmatch(r"부록\d+|부록-사례\d+|참조\d+", p)]
             if got_pseudo != KSA_SPLIT_EXPECT[fname]:
                 problems.append(
                     f"{fname}: 예시문 분리 불일치 exp={KSA_SPLIT_EXPECT[fname]} got={got_pseudo}"
                 )
-        if fname == "ksa_600.md":
-            got_intro = [p for p in got if re.fullmatch(r"부록\d", p)]
-            if got_intro != [f"부록{n}" for n in range(1, 6)]:
-                problems.append(f"{fname}: 보론 서두 조각 불일치 got={got_intro}")
+
+        # 상설 구조 검사: 정규 번호 문단 블록이 '보론' 절 제목(##)을 가로지르면 병합 잔존
+        # (부록/보론/사례/참조 가상 번호 조각은 자기 하위 절을 품을 수 있으므로 제외)
+        cur_head, boron_pend = None, False
+        for l in body.split("\n"):
+            hm2 = HEAD_RE.match(l)
+            if hm2:
+                cur_head, boron_pend = hm2.group(1), False
+            elif l.startswith("## ") and "보론" in l:
+                boron_pend = cur_head is not None and not cur_head.startswith(
+                    ("부록", "보론", "사례", "참조")
+                )
+            elif boron_pend and l.strip() and not l.startswith("## "):
+                problems.append(f"{fname}: {cur_head} 문단이 보론 절 제목을 가로지름 (병합 잔존)")
+                boron_pend = False
         if fname == "kifrs_ps2.md":
             for kind, exp_ids in PS2_EXPECT.items():
                 got_k = [p for p in got if p.startswith(kind)]
