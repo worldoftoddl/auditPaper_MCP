@@ -1,0 +1,54 @@
+{
+  "corpus_commit": "ffb3875dfa91b17912911c2967dd9bb2471395bd",
+  "collection": "standards_20250829_bgem3",
+  "uuid5_namespace": "github.com/worldoftoddl/auditPaper_assist",
+  "embedding": {
+    "model": "BAAI/bge-m3",
+    "revision": "main",
+    "normalize_embeddings": true,
+    "dim": 1024,
+    "max_tokens": 8192,
+    "library": "sentence-transformers",
+    "embeddings_sha256": "177b5c4c07335ead9fdf9c9d634d705a3a49b053d46a41fda2bc0b612e977b96",
+    "embedding_device": "colab-NVIDIA L4-fp16",
+    "embedding_runtime": "FlagEmbedding 1.4.0, torch 2.11.0+cu128, transformers 5.12.1",
+    "rows": 10063,
+    "dtype": "float32",
+    "corpus_commit": "ffb3875dfa91b17912911c2967dd9bb2471395bd",
+    "input_sha256": "faa94632d99cf11e0d84dd34d1e65f853e42887158f105affdbd6ec185d8ce28",
+    "cids_sha256": "0c83f69a661aa6b1724b80da49ba6c99cd36261777659600a1911fda3e3f3a4c",
+    "generated_at": "2026-07-07T06:16:15.312423+00:00"
+  },
+  "sparse": {
+    "tokenizer": "kiwipiepy",
+    "kiwipiepy_version": "0.23.2",
+    "keep_tags": [
+      "NNG",
+      "NNP",
+      "SH",
+      "SL",
+      "SN",
+      "XR"
+    ],
+    "lowercase_SL": true,
+    "k1": 1.5,
+    "b": 0.75,
+    "avgdl": 69.5479,
+    "vocab_size": 4904,
+    "doc_count": 10063,
+    "query_side": "토큰당 1.0 (IDF는 Qdrant 서버가 적용)"
+  },
+  "paragraphs": 10062,
+  "points": 10063,
+  "para_type_expected": {
+    "정의": 280,
+    "참조": 14
+  },
+  "split": {
+    "KSA::240::부록1": {
+      "parts": 2,
+      "boundary": "자산의 횡령으로 인한 왜곡표시"
+    }
+  },
+  "generated_at": "2026-07-07T06:19:23.200198+00:00"
+}
