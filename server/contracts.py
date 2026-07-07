@@ -32,24 +32,45 @@ def _check(item, expected, actual, hint):
         raise ContractMismatch(item, expected, actual, hint)
 
 
-def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print):
-    """계약 6항목 검증. 통과 시 (manifest, vocab_tokens, glossary, client, encoder) 반환.
-
-    client/encoder를 주면 재사용(테스트·경량 기동), 없으면 여기서 생성한다.
-    """
-    index_dir = Path(index_dir)
-    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
-    emb, sp = manifest["embedding"], manifest["sparse"]
-
-    # ① 임베딩 모델 — manifest의 모델·revision으로 로드(로드 자체가 강제), 차원·normalize 대조
-    _check("embedding.normalize_embeddings", True, emb["normalize_embeddings"],
-           "manifest가 정규화 임베딩이 아님 — 2단계 적재기와 계약 확인")
+def _validate_encoder(manifest, encoder=None, log=print):
+    """검사 ①·⑥의 모델 의존부: 인코더 로드(로드 자체가 revision 강제) + 차원 + 프로브."""
+    emb = manifest["embedding"]
     if encoder is None:
         log(f"[contracts] 질의측 인코더 로드: {emb['model']} (rev {emb['revision']}, CPU-fp32)")
         from sentence_transformers import SentenceTransformer
         encoder = SentenceTransformer(emb["model"], revision=emb["revision"])
     _check("embedding.dim", emb["dim"], encoder.get_sentence_embedding_dimension(),
            "모델 차원 불일치 — manifest.embedding.model과 동일 모델을 로드하세요")
+    vec = encoder.encode([PROBE_TEXT], normalize_embeddings=True)[0]
+    norm = float((vec ** 2).sum() ** 0.5)
+    if abs(norm - 1.0) > PROBE_TOL:
+        raise ContractMismatch("embedding.probe_norm", f"1±{PROBE_TOL}", norm,
+                               "인코더가 정규화 벡터를 내지 않음 — normalize_embeddings 설정 확인")
+    log(f"[contracts] 임베딩 프로브 통과 (L2 노름 {norm:.6f})")
+    return encoder
+
+
+def validate_encoder(index_dir=INDEX_DIR, encoder=None, log=print):
+    """지연 로드 경로(mcp_server 백그라운드)용 단독 진입점."""
+    manifest = json.loads((Path(index_dir) / "manifest.json").read_text(encoding="utf-8"))
+    return _validate_encoder(manifest, encoder, log)
+
+
+def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print, defer_encoder=False):
+    """계약 6항목 검증. 통과 시 (manifest, vocab_tokens, glossary, client, encoder) 반환.
+
+    client/encoder를 주면 재사용(테스트·경량 기동), 없으면 여기서 생성한다.
+    defer_encoder=True면 모델 의존 검사(①차원·⑥프로브)를 뒤로 미루고 encoder=None을
+    반환한다 — 호출측은 반드시 validate_encoder()로 나머지 검사를 완결해야 하며,
+    실패 시 서빙을 중단해 기동 거부 의미를 보존해야 한다 (mcp_server 참조).
+    """
+    index_dir = Path(index_dir)
+    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    emb, sp = manifest["embedding"], manifest["sparse"]
+
+    # ① 임베딩 모델 — normalize 계약(모델 비의존부)
+    _check("embedding.normalize_embeddings", True, emb["normalize_embeddings"],
+           "manifest가 정규화 임베딩이 아님 — 2단계 적재기와 계약 확인")
 
     # ② sparse 계약 — vocab.json meta == manifest.sparse (k1·b·avgdl·vocab_size)
     vocab_doc = json.loads((index_dir / "vocab.json").read_text(encoding="utf-8"))
@@ -71,6 +92,10 @@ def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print):
 
     # ④ 컬렉션 — 존재 + 포인트 수
     if client is None:
+        # .mcp.json의 ${VAR} 확장이 빈 문자열을 넣을 수 있음 — 비우고 .env로 폴백
+        for k in ("QDRANT_URL", "QDRANT_API_KEY"):
+            if os.environ.get(k) == "":
+                del os.environ[k]
         load_env()
         url, key = os.environ.get("QDRANT_URL"), os.environ.get("QDRANT_API_KEY")
         if not url:
@@ -94,15 +119,14 @@ def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print):
         raise ContractMismatch("glossary", ">0건", 0, "glossary.jsonl이 비어 있음 — 재생성 필요")
     log(f"[contracts] 용어 사전 로드: {len(glossary)}건")
 
-    # ⑥ 임베딩 프로브 — L2 노름 1±1e-3
-    vec = encoder.encode([PROBE_TEXT], normalize_embeddings=True)[0]
-    norm = float((vec ** 2).sum() ** 0.5)
-    if abs(norm - 1.0) > PROBE_TOL:
-        raise ContractMismatch("embedding.probe_norm", f"1±{PROBE_TOL}", norm,
-                               "인코더가 정규화 벡터를 내지 않음 — normalize_embeddings 설정 확인")
+    # ①(차원)·⑥(임베딩 프로브) — 모델 의존부
+    if not defer_encoder:
+        encoder = _validate_encoder(manifest, encoder, log)
+    elif encoder is not None:
+        encoder = _validate_encoder(manifest, encoder, log)
 
-    log(f"[contracts] 계약 검증 통과: {manifest['collection']} {n}포인트, "
-        f"vocab {sp['vocab_size']}토큰, glossary {len(glossary)}건")
+    log(f"[contracts] 계약 검증 {'통과' if not (defer_encoder and encoder is None) else '통과(인코더 검사 유예)'}: "
+        f"{manifest['collection']} {n}포인트, vocab {sp['vocab_size']}토큰, glossary {len(glossary)}건")
     return manifest, vtokens, glossary, client, encoder
 
 

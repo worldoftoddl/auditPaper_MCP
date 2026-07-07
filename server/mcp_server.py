@@ -4,7 +4,9 @@ standards_define_terms. stdio 전송, 기동 시 contracts.validate() 통과 못
 실행: python -m server.mcp_server  (QDRANT_URL/QDRANT_API_KEY는 .env 또는 환경변수)
 """
 
+import os
 import sys
+import threading
 from typing import Annotated, Optional
 
 from pydantic import Field
@@ -14,8 +16,10 @@ from server.core import COLLECTION, Gateway
 
 ANNOTATIONS = {"readOnlyHint": True, "destructiveHint": False,
                "idempotentHint": True, "openWorldHint": False}
+ENCODER_WAIT_SEC = 300
 
-_gateway = None  # 기동 검증 후 주입
+_gateway = None                      # 기동 검증 후 주입
+_encoder_ready = threading.Event()   # bge-m3 지연 로드 완료 신호 (search만 대기)
 
 
 def _wrap(payload):
@@ -64,6 +68,10 @@ def build_app():
         기본적으로 예시류(부록)는 제외된다 — 감사보고서 문안·예시가 필요하면
         include_examples=true. 히트 문단의 이웃 확장은 이 도구가 아니라
         standards_get_paragraph(cid, context=N)을 사용할 것."""
+        if not _encoder_ready.wait(timeout=ENCODER_WAIT_SEC):
+            return _wrap({"error": {"code": "UPSTREAM_UNAVAILABLE",
+                                    "message": "질의측 인코더(bge-m3) 로드가 아직 끝나지 않음",
+                                    "hint": "잠시 후 재시도 — 기동 직후 1분 내 정상화"}})
         return _guard(_gateway.search, query, standard_no, source_type,
                       para_type, top_k, include_examples)
 
@@ -81,18 +89,34 @@ def build_app():
     return mcp
 
 
+def _load_encoder_background(log):
+    """bge-m3 지연 로드 (검사 ①차원·⑥프로브 완결). 실패 시 프로세스 종료 — 기동 거부 보존."""
+    try:
+        _gateway.encoder = contracts.validate_encoder(log=log)
+        _encoder_ready.set()
+        log("[mcp_server] 인코더 준비 완료 — standards_search 활성")
+    except Exception as e:
+        log(f"[기동 거부] 인코더 계약 검증 실패: {e}")
+        os._exit(1)
+
+
 def main():
     global _gateway
+    log = lambda m: print(m, file=sys.stderr)  # noqa: E731
     try:
-        manifest, vtokens, glossary, client, encoder = contracts.validate(
-            log=lambda m: print(m, file=sys.stderr))
+        # 모델 비의존 계약(sparse·토크나이저·컬렉션·glossary)은 즉시 검증 — 위반 시 즉시 거부.
+        # 모델 의존 검사(①차원·⑥프로브)는 백그라운드로 완결한다: bge-m3 로드(~1분)를
+        # 기다리면 MCP initialize 응답이 클라이언트 기동 타임아웃을 넘기기 때문.
+        manifest, vtokens, glossary, client, _ = contracts.validate(
+            log=log, defer_encoder=True)
     except contracts.ContractMismatch as e:
         print(f"[기동 거부] {e}", file=sys.stderr)
         sys.exit(1)
-    print("[mcp_server] 코퍼스 로컬 파스 + Gateway 초기화...", file=sys.stderr)
-    _gateway = Gateway(client, encoder, vtokens, glossary)
+    log("[mcp_server] 코퍼스 로컬 파스 + Gateway 초기화...")
+    _gateway = Gateway(client, None, vtokens, glossary)
+    threading.Thread(target=_load_encoder_background, args=(log,), daemon=True).start()
     app = build_app()
-    print("[mcp_server] auditpaper-standards 기동 (stdio)", file=sys.stderr)
+    log("[mcp_server] auditpaper-standards 기동 (stdio) — 인코더는 백그라운드 로드 중")
     app.run()  # stdio
 
 
