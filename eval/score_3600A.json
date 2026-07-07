@@ -1,0 +1,15 @@
+{
+  "worksheet": "3600A",
+  "title": "**부정에 대한 ****경영진 질문서**",
+  "gold": [
+    "KSA:240"
+  ],
+  "cited": [
+    "KSA:240"
+  ],
+  "recall": 1.0,
+  "missed": [],
+  "extras": [],
+  "extras_note": "",
+  "report": "reports/해석_감사조서서식_3600A 부정에 대한 경영진 질문서.md"
+}

@@ -1,0 +1,27 @@
+{
+  "worksheet": "4000P-1",
+  "title": "K-IFRS 제1115호 고객과의 계약에서 생기는 수익 실증절차",
+  "gold": [
+    "KIFRS:1002",
+    "KIFRS:1024",
+    "KIFRS:1036",
+    "KIFRS:1115"
+  ],
+  "cited": [
+    "KIFRS:1105",
+    "KIFRS:1115",
+    "KSA:240"
+  ],
+  "recall": 0.25,
+  "missed": [
+    "KIFRS:1002",
+    "KIFRS:1024",
+    "KIFRS:1036"
+  ],
+  "extras": [
+    "KIFRS:1105",
+    "KSA:240"
+  ],
+  "extras_note": "사람 검토 대상(감점 아님)",
+  "report": "reports/해석_감사조서서식_4000P-1 K-IFRS 제1115호 고객과의 계약에서 생기는 수익_템플릿.md"
+}
