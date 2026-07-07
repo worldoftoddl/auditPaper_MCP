@@ -1,0 +1,100 @@
+"""MCP 서버 (지시서 v1.1 5장): 도구 3종 — standards_get_paragraph · standards_search ·
+standards_define_terms. stdio 전송, 기동 시 contracts.validate() 통과 못 하면 기동 거부.
+
+실행: python -m server.mcp_server  (QDRANT_URL/QDRANT_API_KEY는 .env 또는 환경변수)
+"""
+
+import sys
+from typing import Annotated, Optional
+
+from pydantic import Field
+
+from server import contracts
+from server.core import COLLECTION, Gateway
+
+ANNOTATIONS = {"readOnlyHint": True, "destructiveHint": False,
+               "idempotentHint": True, "openWorldHint": False}
+
+_gateway = None  # 기동 검증 후 주입
+
+
+def _wrap(payload):
+    """모든 도구 출력 최상위에 collection 포함 (인용 판본 고정 — 규약 3.1)."""
+    return {"collection": COLLECTION, **payload}
+
+
+def _guard(fn, *args, **kwargs):
+    from qdrant_client.http.exceptions import ApiException, ResponseHandlingException
+    try:
+        return _wrap(fn(*args, **kwargs))
+    except (ApiException, ResponseHandlingException, ConnectionError) as e:
+        return _wrap({"error": {"code": "UPSTREAM_UNAVAILABLE",
+                                "message": f"Qdrant 호출 실패: {e}",
+                                "hint": "네트워크·클러스터 상태 확인 후 재시도 (무료 티어 휴면이면 콘솔에서 재개)"}})
+
+
+def build_app():
+    from fastmcp import FastMCP
+    mcp = FastMCP("auditpaper-standards")
+
+    @mcp.tool(annotations=ANNOTATIONS)
+    def standards_get_paragraph(
+        cid: Annotated[str, Field(description="복합 ID(논리), '#순번' 없이. 예: KIFRS::1115::31")],
+        context: Annotated[int, Field(0, ge=0, le=3, description="같은 기준서 seq ±N 이웃 문단 포함(0~3)")] = 0,
+    ) -> dict:
+        """기준서 문단 직조회·인용 검증. 복합 ID로 원문 실물을 확인하고, 분할 문단은
+        재조립해 돌려준다. context=N이면 같은 기준서의 이웃 문단(seq ±N)을 함께 반환한다.
+        해석 보고서의 인용 cid 검증(제출 전 최소 3건 재조회)에 이 도구를 사용할 것."""
+        return _guard(_gateway.get_paragraph, cid, context)
+
+    @mcp.tool(annotations=ANNOTATIONS)
+    def standards_search(
+        query: Annotated[str, Field(min_length=1, max_length=500, description="자연어 질의(1~500자)")],
+        standard_no: Annotated[Optional[list[str]], Field(
+            description="기준서 번호 필터. 조서에서 명시 참조를 발견했을 때의 라우팅 필터 (예: ['1115'])")] = None,
+        source_type: Annotated[Optional[list[str]], Field(
+            description="감사기준 | 회계기준 | 실무지침")] = None,
+        para_type: Annotated[Optional[str], Field(
+            description="문단 성격 필터: 정의·참조·부록·요구사항·적용지침·본문")] = None,
+        top_k: Annotated[int, Field(8, ge=1, le=20)] = 8,
+        include_examples: Annotated[bool, Field(
+            False, description="예시류(부록) 포함 스위치 — 문안·예시 작성 작업이면 true")] = False,
+    ) -> dict:
+        """기준서 하이브리드 검색(dense+sparse, 서버 RRF) + 관련 용어 정의 주입.
+        기본적으로 예시류(부록)는 제외된다 — 감사보고서 문안·예시가 필요하면
+        include_examples=true. 히트 문단의 이웃 확장은 이 도구가 아니라
+        standards_get_paragraph(cid, context=N)을 사용할 것."""
+        return _guard(_gateway.search, query, standard_no, source_type,
+                      para_type, top_k, include_examples)
+
+    @mcp.tool(annotations=ANNOTATIONS)
+    def standards_define_terms(
+        terms: Annotated[list[str], Field(min_length=1, max_length=10,
+                                          description="정의를 찾을 용어 1~10건")],
+        context_standard: Annotated[Optional[str], Field(
+            description="문맥 기준서 번호 — 복수 정의 충돌 시 이 기준서의 정의를 대표로 선택")] = None,
+    ) -> dict:
+        """용어 사전(코퍼스 정의 절 파생 664건) 직조회. 원문 일치 → 공백 제거 일치 순으로
+        매칭하고, 복수 정의는 대표 1건 본문 + 나머지 alternates 포인터로 돌려준다."""
+        return _guard(_gateway.define_terms, terms, context_standard)
+
+    return mcp
+
+
+def main():
+    global _gateway
+    try:
+        manifest, vtokens, glossary, client, encoder = contracts.validate(
+            log=lambda m: print(m, file=sys.stderr))
+    except contracts.ContractMismatch as e:
+        print(f"[기동 거부] {e}", file=sys.stderr)
+        sys.exit(1)
+    print("[mcp_server] 코퍼스 로컬 파스 + Gateway 초기화...", file=sys.stderr)
+    _gateway = Gateway(client, encoder, vtokens, glossary)
+    app = build_app()
+    print("[mcp_server] auditpaper-standards 기동 (stdio)", file=sys.stderr)
+    app.run()  # stdio
+
+
+if __name__ == "__main__":
+    main()

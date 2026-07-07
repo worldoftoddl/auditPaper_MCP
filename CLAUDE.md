@@ -18,6 +18,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서(`벡터저장소_스키마_및_마크다운_작성규약.md` — 목표 규약).
 - `scripts/` — 변환 스크립트(`normalize_corpus.py`)와 적재기(`build_index.py` — corpus_md+guidelines_md → Qdrant Cloud, 지시서 `TASK.md`).
 - `index/` — 적재기 산출물(vocab.json·glossary.jsonl·manifest.json). 구현 확정·이탈 기록은 `index/README.md` 참조. Qdrant 접속 정보는 `.env`(gitignore)의 `QDRANT_URL`/`QDRANT_API_KEY`.
+- `server/` — 3단계 MCP 서버(도구 3종: `standards_get_paragraph`·`standards_search`·`standards_define_terms`). 배선은 루트 `.mcp.json`, 지시서는 `MCP/3단계_지시서_v1.1_콜드해석_MCP.md`, 이탈 기록은 `server/README.md`. 인수 테스트: `.venv/bin/pytest tests/test_acceptance.py`.
+- `eval/` — 콜드 해석 평가: `routing_gold.json`(채점 전용 골드셋 — **서버·에이전트 런타임에서 로드 금지**) + `score_interpretation.py`(recall 채점기).
+- `reports/` — 조서 해석 보고서 저장처(`해석_{조서파일명}.md`).
 
 `corpus_md/`와 `guidelines_md/`는 모두 목표 규약 4장을 따른다: frontmatter 3필드(`source_type`/`standard_no`(따옴표 문자열)/`standard_title`) + `##` 절 제목(`상위 > 하위` 합성) + 행 머리 `번호.` 문단 절단. 청크 ID: `KSA::<번호>::<문단>` / `KIFRS::<번호>::<문단>` / `GUIDE::<번호>::<문단>`.
 
@@ -75,6 +78,27 @@ korean_paragraph_count: 2
 - `para`: K-IFRS 문단번호. 한국 추가 문단은 `한` 접두사(예: `한2.1`), 개념체계는 `SP1.1` 같은 형식
 - `bold_para`: 원문에서 굵은 글씨(의무규정) 문단
 - `korean_addition`: 국제기준에 없는 한국 추가 조항
+
+## 조서 해석 플로우 (사용자가 조서 파일을 주며 해석을 요청할 때)
+
+1. 읽기 — 파일 전체를 직접 연다(전 시트/전문). 제목·머리글·열 구성·점검 항목 문장·
+   서명란·기준서 언급을 관찰하고, 관찰과 추론을 구분해 기록한다.
+2. 정체 가설 — 관찰만으로 "무슨 작업을 위한 조서인가"의 가설을 세운다.
+3. 근거 탐색 (MCP) —
+   - 문서에 기준서·지침 번호가 명시돼 있으면: standards_search에 standard_no
+     필터로 해당 기준의 요구사항을 확인한다 (문서가 준 단서는 콜드 해석의 일부다).
+   - 명시 참조가 없으면: 점검 항목 문장을 질의로 자유 검색한다 (필터 없이 시작,
+     결과가 특정 기준서로 수렴하면 그때 필터를 걸어 심화).
+   - 낯선 용어는 standards_define_terms로 정의를 확보한다.
+   - 이 조서가 문안·예시 작성용으로 판단되면 include_examples=true를 사용한다.
+4. 산출 — reports/해석_{파일명}.md 로 저장:
+   ## ① 이 조서의 정체 (2~4문장: 무엇을, 어느 감사 국면에서, 왜)
+   ## ② 할 일 목록 (조서 항목 순서대로; 각 줄 = 수행 절차 + 근거 [cid])
+   ## ③ 근거 규정 발췌 (②에서 인용한 문단의 원문 일부, cid별)
+   ## ④ 미확인·불확실 사항 (근거를 못 찾은 항목, 가설로 남은 판단 — 솔직하게)
+5. 인용 규율 — ②③의 모든 규정 주장에는 cid를 단다. 제출 전 인용 cid 중
+   최소 3건을 standards_get_paragraph로 재조회해 본문과 대조한다.
+   근거 없는 규정 주장은 쓰지 않는다 — 모르면 ④로 보낸다.
 
 ## 작업 시 유의사항
 
