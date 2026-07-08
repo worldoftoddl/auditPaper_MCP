@@ -6,17 +6,12 @@
 
 A7은 지시서 원문(자유 검색)에서 조정: 해당 질의로는 참조 문단이 top20에 미도달(실측)이라
 para_type='참조' 필터를 병용해 가드 note를 결정적으로 검증한다 — index/README.md 이탈 기록.
-A9는 기동 경로의 단위인 contracts.validate()를 변조 사본으로 직접 호출한다.
+A9는 기동 경로의 단위인 contracts.validate()에 변조한 메타(vocab k1)를 주입해 호출한다.
 """
 
-import json
-import shutil
-from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
-
-ROOT = Path(__file__).resolve().parent.parent
 
 
 @pytest.fixture(scope="session")
@@ -106,16 +101,13 @@ def test_a8_define_terms(ctx):
 
 
 # ── A9 (부정): vocab k1 변조 → CONTRACT_MISMATCH 기동 거부 ──
-def test_a9_contract_mismatch_refuses_start(ctx, tmp_path):
+def test_a9_contract_mismatch_refuses_start(ctx):
     from server import contracts
-    for name in ("manifest.json", "vocab.json", "glossary.jsonl"):
-        shutil.copy(ROOT / "index" / name, tmp_path / name)
-    doc = json.loads((tmp_path / "vocab.json").read_text(encoding="utf-8"))
-    doc["meta"]["k1"] = 9.9  # 변조
-    (tmp_path / "vocab.json").write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+    manifest, vocab_doc, glossary = contracts.load_meta(ctx.client)
+    tampered = {"meta": dict(vocab_doc["meta"], k1=9.9), "tokens": vocab_doc["tokens"]}  # 변조
     with pytest.raises(contracts.ContractMismatch) as ei:
-        contracts.validate(index_dir=tmp_path, client=ctx.client,
-                           encoder=ctx.encoder, log=lambda m: None)
+        contracts.validate(client=ctx.client, encoder=ctx.encoder,
+                           meta=(manifest, tampered, glossary), log=lambda m: None)
     assert ei.value.code == "CONTRACT_MISMATCH"
     assert ei.value.item == "sparse.k1"
     assert ei.value.hint  # 조치 힌트 필수

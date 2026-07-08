@@ -1,10 +1,10 @@
 """3단계 코어: Gateway(도구 3종의 실질 구현) + 정책·주입 — MCP 비의존.
 
 지시서: MCP/3단계_지시서_v1.1_콜드해석_MCP.md 4·5장.
-텍스트 출처: 2단계 payload에는 본문이 없으므로(적재기 upsert_all 참조) 기동 시
-build_index.prepare()로 코퍼스를 로컬 파싱해 cid→본문을 메모리에 보유한다.
-Qdrant는 랭킹·필터·실물 존재 증명을 담당하고, 본문·이웃·재조립은 로컬 레코드가 담당한다.
-로컬 파스와 컬렉션의 동일성은 2단계 S9(전수 왕복)와 기동 검증(포인트 수)이 보증한다.
+텍스트 출처: 컬렉션 payload의 document(적재기 upsert_all 참조) — Qdrant가 랭킹·필터·
+본문·이웃·재조립을 모두 담당하는 단일 소스다(지시서 v1.1 '본문은 로컬 파스' 결정에서
+이탈 — server/README.md 기록). 서버는 코퍼스 저장소 없이 접속 정보만으로 동작하며,
+payload 본문과 파서 산출의 일치는 2단계 S9(왕복+본문 전수 대조)가 보증한다.
 """
 
 import re
@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_index import (  # noqa: E402
-    COLLECTION, KEEP_TAGS, PROJECT_NS, TYPE_CODE, prepare,
+    COLLECTION, KEEP_TAGS, PROJECT_NS, TYPE_CODE,
 )
 from normalize_corpus import gloss_norm  # noqa: E402
 
@@ -44,21 +44,6 @@ class Gateway:
         from kiwipiepy import Kiwi
         self.kiwi = Kiwi()
 
-        records = prepare()[0]  # 파서 총계 assert 포함 — 코퍼스 드리프트면 여기서 실패
-        self.records = records
-        self.by_cid = {r["composite_id"]: r for r in records}
-        # 분할 조각: 논리 ID → [조각 레코드…] (part_no 순)
-        self.parts = defaultdict(list)
-        for r in records:
-            if "part_no" in r:
-                self.parts[r["composite_id"].split("#")[0]].append(r)
-        for v in self.parts.values():
-            v.sort(key=lambda r: r["part_no"])
-        # 이웃 탐색: (source_type, standard_no) → seq → [레코드…]
-        self.by_seq = defaultdict(lambda: defaultdict(list))
-        for r in records:
-            self.by_seq[(r["source_type"], r["standard_no"])][r["seq"]].append(r)
-
         # 용어 사전: term_norm → [항목…] (파일 순서 보존 — 대표 선정 폴백 순서)
         self.gloss_by_norm = defaultdict(list)
         for e in glossary:
@@ -67,14 +52,32 @@ class Gateway:
         self.gloss_norms = sorted(
             (n for n in self.gloss_by_norm if len(n) >= 2), key=len, reverse=True)
 
-    # ── 공통: 논리 ID 재조립 ──────────────────────────────────────────
+    # ── 공통: 컬렉션 조회 + 논리 ID 재조립 ────────────────────────────
 
-    def _logical_records(self, cid):
-        """논리 cid → 물리 레코드 목록 (분할이면 조각들, 아니면 1건)."""
-        if cid in self.parts:
-            return self.parts[cid]
-        r = self.by_cid.get(cid)
-        return [r] if r else []
+    def _fetch_logical(self, source_type, standard_no, para_no):
+        """논리 문단 → payload 목록 (분할이면 part_no 순 조각들, 미존재면 빈 목록).
+
+        (source_type, standard_no, para_no) 등가 조회 — 분할 조각들이 para_no를
+        공유하므로 일반·분할 문단을 한 호출로 처리한다."""
+        from qdrant_client import models as qm
+        flt = qm.Filter(must=[
+            qm.FieldCondition(key="source_type", match=qm.MatchValue(value=source_type)),
+            qm.FieldCondition(key="standard_no", match=qm.MatchValue(value=standard_no)),
+            qm.FieldCondition(key="para_no", match=qm.MatchValue(value=para_no))])
+        pts, _ = self.client.scroll(COLLECTION, scroll_filter=flt, limit=10, with_payload=True)
+        return sorted((p.payload for p in pts), key=lambda r: r.get("part_no", 0))
+
+    def _sibling_payloads(self, payload):
+        """검색 히트 payload → 논리 문단 전체 조각 (분할이 아니면 그대로 1건).
+
+        분할 조각의 물리 ID가 결정적(uuid5)이므로 형제 조각은 직조회로 얻는다."""
+        if "part_no" not in payload:
+            return [payload]
+        logical = payload["composite_id"].split("#")[0]
+        ids = [str(uuid.uuid5(PROJECT_NS, f"{logical}#{n}"))
+               for n in range(1, payload["part_total"] + 1)]
+        got = self.client.retrieve(COLLECTION, ids=ids, with_payload=True)
+        return sorted((p.payload for p in got), key=lambda r: r["part_no"])
 
     def _assemble(self, recs, is_context=False):
         """레코드(들) → 출력 문단 dict + note. 분할 조각은 part_no 순으로 본문 결합."""
@@ -108,41 +111,33 @@ class Gateway:
         if not 0 <= context <= 3:
             return err("INVALID_INPUT", f"context={context}", "0~3 범위로 지정")
 
-        recs = self._logical_records(cid)
-        notes = []
-        if recs:
-            # 실물 증명: UUID5 직조회 (본문은 로컬, 존재는 컬렉션에서 확인)
-            ids = [str(uuid.uuid5(PROJECT_NS, r["composite_id"])) for r in recs]
-            got = self.client.retrieve(COLLECTION, ids=ids, with_payload=False)
-            if len(got) != len(ids):
-                return err("NOT_FOUND",
-                           f"'{cid}'가 로컬 코퍼스엔 있으나 컬렉션에 없음 (드리프트 의심)",
-                           "적재기 재실행으로 컬렉션을 재구축하세요")
-        else:
-            # 폴백: payload 등가 조회 (standard_no + para_no + source_type)
-            from qdrant_client import models as qm
-            flt = qm.Filter(must=[
-                qm.FieldCondition(key="source_type", match=qm.MatchValue(value=CODE_TO_TYPE[seg[0]])),
-                qm.FieldCondition(key="standard_no", match=qm.MatchValue(value=seg[1])),
-                qm.FieldCondition(key="para_no", match=qm.MatchValue(value=seg[2]))])
-            pts, _ = self.client.scroll(COLLECTION, scroll_filter=flt, limit=10, with_payload=True)
-            found_cids = [p.payload["composite_id"] for p in pts]
-            recs = [self.by_cid[c] for c in found_cids if c in self.by_cid]
-            recs.sort(key=lambda r: r.get("part_no", 0))
-            if not recs:
-                return err("NOT_FOUND", f"'{cid}' 문단이 존재하지 않습니다.",
-                           "standards_search로 탐색")
+        recs = self._fetch_logical(CODE_TO_TYPE[seg[0]], seg[1], seg[2])
+        if not recs:
+            return err("NOT_FOUND", f"'{cid}' 문단이 존재하지 않습니다.",
+                       "standards_search로 탐색")
 
+        notes = []
         target, note = self._assemble(recs)
         if note:
             notes.append(note)
         paragraphs = [target]
         if context:
-            group = self.by_seq[(target["source_type"], target["standard_no"])]
-            for s in range(target["seq"] - context, target["seq"] + context + 1):
-                if s == target["seq"] or s not in group:
+            # 이웃 문단: 같은 기준서에서 seq ±context 범위 조회 (분할 조각은 seq 공유)
+            from qdrant_client import models as qm
+            flt = qm.Filter(must=[
+                qm.FieldCondition(key="source_type", match=qm.MatchValue(value=target["source_type"])),
+                qm.FieldCondition(key="standard_no", match=qm.MatchValue(value=target["standard_no"])),
+                qm.FieldCondition(key="seq", range=qm.Range(gte=target["seq"] - context,
+                                                            lte=target["seq"] + context))])
+            pts, _ = self.client.scroll(COLLECTION, scroll_filter=flt, limit=64, with_payload=True)
+            group = defaultdict(list)
+            for p in pts:
+                group[p.payload["seq"]].append(p.payload)
+            for s in sorted(group):
+                if s == target["seq"]:
                     continue
-                para, n = self._assemble(group[s], is_context=True)
+                para, n = self._assemble(
+                    sorted(group[s], key=lambda r: r.get("part_no", 0)), is_context=True)
                 paragraphs.append(para)
                 if n:
                     notes.append(f"{para['cid']}: {n}")
@@ -232,7 +227,7 @@ class Gateway:
             if logical in seen:
                 continue
             seen.add(logical)
-            recs = self._logical_records(logical)
+            recs = self._sibling_payloads(p.payload)
             para, note = self._assemble(recs)
             notes = [note] if note else []
             if para["para_type"] == "참조":

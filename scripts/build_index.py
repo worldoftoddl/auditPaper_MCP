@@ -47,6 +47,7 @@ EXPECTED_DEF = 280               # para_type=정의
 EXPECTED_REF = 14                # para_type=참조
 
 COLLECTION = "standards_20250829_bgem3"
+META_COLLECTION = COLLECTION + "_meta"   # payload 전용: manifest·vocab·glossary — 서버 무파일 기동용
 MODEL_NAME = "BAAI/bge-m3"
 DENSE_DIM = 1024
 MAX_TOKENS = 8192
@@ -380,13 +381,20 @@ def ensure_collection(client, name):
             pass  # 이미 존재 — 멱등
 
 
+def meta_point_id(name):
+    """메타 컬렉션 포인트의 결정적 ID (예: meta::manifest, meta::glossary::0)."""
+    return str(uuid.uuid5(PROJECT_NS, f"meta::{name}"))
+
+
 def upsert_all(client, records, dense, sparse_vecs):
     from qdrant_client import models as qm
     points = []
     for r, dv, (si, sv) in zip(records, dense, sparse_vecs):
+        # document 포함: 서버가 본문을 로컬 코퍼스 재파스 없이 컬렉션에서 직접 제공한다
+        # (v1 '본문 미포함' 결정에서 이탈 — index/README.md 기록)
         payload = {k: r[k] for k in ("composite_id", "source_type", "standard_no",
                                      "standard_title", "para_no", "para_type", "section_path",
-                                     "seq", "has_table", "char_len", "source_file")}
+                                     "seq", "has_table", "char_len", "source_file", "document")}
         if "part_no" in r:
             payload["part_no"], payload["part_total"] = r["part_no"], r["part_total"]
         points.append(qm.PointStruct(
@@ -396,6 +404,37 @@ def upsert_all(client, records, dense, sparse_vecs):
     for i in range(0, len(points), 256):
         client.upsert(COLLECTION, points=points[i:i + 256], wait=True)
         print(f"  업서트 {min(i + 256, len(points))}/{len(points)}")
+
+
+def upsert_meta(client, manifest, report):
+    """메타 컬렉션(payload 전용, 벡터 없음): manifest·vocab·glossary를 DB에 적재.
+
+    서버가 index/ 로컬 파일 없이 Qdrant 접속 정보만으로 기동하기 위한 단일 소스.
+    전부 파생 산출물이므로 판 혼합을 막기 위해 삭제 후 전량 재생성한다.
+    """
+    from qdrant_client import models as qm
+    vocab_doc = json.loads((INDEX_DIR / "vocab.json").read_text(encoding="utf-8"))
+    glossary = [json.loads(l) for l in
+                (INDEX_DIR / "glossary.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+    if client.collection_exists(META_COLLECTION):
+        client.delete_collection(META_COLLECTION)
+    client.create_collection(META_COLLECTION, vectors_config={})
+    points = [
+        qm.PointStruct(id=meta_point_id("manifest"), vector={},
+                       payload={"kind": "manifest", "data": manifest}),
+        qm.PointStruct(id=meta_point_id("vocab"), vector={},
+                       payload={"kind": "vocab", **vocab_doc}),
+    ]
+    # 대표 선정 폴백이 glossary 파일 순서에 의존 — ord로 순서 보존 (server core 참조)
+    points += [qm.PointStruct(id=meta_point_id(f"glossary::{i}"), vector={},
+                              payload={"kind": "glossary", "ord": i, **e})
+               for i, e in enumerate(glossary)]
+    for i in range(0, len(points), 256):
+        client.upsert(META_COLLECTION, points=points[i:i + 256], wait=True)
+    n = client.count(META_COLLECTION, exact=True).count
+    assert n == len(points), f"메타 포인트 {n} != {len(points)}"
+    report.append(f"메타 컬렉션 {META_COLLECTION}: manifest 1 + vocab 1 + "
+                  f"glossary {len(glossary)} = {n}포인트")
 
 
 # ══════════════════════════ [H] 점검 + 스모크 ══════════════════════════
@@ -533,19 +572,21 @@ def run_smokes(client, records, model, report):
     n_ref_local = sum(1 for r in records if r["para_type"] == "참조")
     n_ref = client.count(COLLECTION, count_filter=qfilter(para_type="참조"), exact=True).count
     check("S8 참조", n_ref == n_ref_local == EXPECTED_REF, f"{n_ref}건")
-    # S9 왕복 변환 전수
+    # S9 왕복 변환 전수 (+ payload 본문이 파서 산출과 일치하는지 전수 대조)
     mismatch, offset, seen = 0, None, 0
-    local_ids = {r["composite_id"] for r in records}
+    local_doc = {r["composite_id"]: r["document"] for r in records}
     while True:
-        pts, offset = client.scroll(COLLECTION, limit=1000, offset=offset, with_payload=["composite_id"])
+        pts, offset = client.scroll(COLLECTION, limit=1000, offset=offset,
+                                    with_payload=["composite_id", "document"])
         for p in pts:
             cid = p.payload["composite_id"]
             seen += 1
-            if str(uuid.uuid5(PROJECT_NS, cid)) != str(p.id) or cid not in local_ids:
+            if (str(uuid.uuid5(PROJECT_NS, cid)) != str(p.id)
+                    or p.payload.get("document") != local_doc.get(cid)):
                 mismatch += 1
         if offset is None:
             break
-    check("S9 왕복 변환 전수", mismatch == 0 and seen == EXPECTED_POINTS,
+    check("S9 왕복+본문 전수", mismatch == 0 and seen == EXPECTED_POINTS,
           f"{seen}건 검사, 불일치 {mismatch}")
     # P1~P3 장문 프로브 (기록용 — 합격 기준 아님)
     report.append("── P1~P3 장문 프로브 (기록용: dense 순위 / 하이브리드 순위) ──")
@@ -692,6 +733,8 @@ def stage_upsert(records, texts, dense, sparse_vecs, smeta, report, ext_meta=Non
     manifest = {
         "corpus_commit": corpus_commit,
         "collection": COLLECTION,
+        "meta_collection": META_COLLECTION,
+        "payload_document": True,   # payload에 본문 포함 — 서버는 컬렉션에서 본문 제공
         "uuid5_namespace": NS_STRING,
         "embedding": embedding_info,
         "sparse": smeta,
@@ -700,6 +743,7 @@ def stage_upsert(records, texts, dense, sparse_vecs, smeta, report, ext_meta=Non
         "split": {"KSA::240::부록1": {"parts": 2, "boundary": SPLIT_MARKER}},
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
+    upsert_meta(client, manifest, report)
     (INDEX_DIR / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     report.append(f"매니페스트 기록: index/manifest.json (코퍼스 커밋 {corpus_commit[:7]})")

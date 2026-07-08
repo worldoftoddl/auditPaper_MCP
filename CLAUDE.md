@@ -17,8 +17,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `Conceptual_framework_md/` — (원본) 재무보고를 위한 개념체계, 경영진설명서 개념체계, 중요성 실무서 3개 파일.
 - `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서(`벡터저장소_스키마_및_마크다운_작성규약.md` — 목표 규약).
 - `scripts/` — 변환 스크립트(`normalize_corpus.py`)와 적재기(`build_index.py` — corpus_md+guidelines_md → Qdrant Cloud, 지시서 `TASK.md`).
-- `index/` — 적재기 산출물(vocab.json·glossary.jsonl·manifest.json). 구현 확정·이탈 기록은 `index/README.md` 참조. Qdrant 접속 정보는 `.env`(gitignore)의 `QDRANT_URL`/`QDRANT_API_KEY`.
-- `server/` — 3단계 MCP 서버(도구 3종: `standards_get_paragraph`·`standards_search`·`standards_define_terms`). 배선은 루트 `.mcp.json`, 지시서는 `MCP/3단계_지시서_v1.1_콜드해석_MCP.md`, 이탈 기록은 `server/README.md`. 인수 테스트: `.venv/bin/pytest tests/test_acceptance.py`.
+- `index/` — 적재기 산출물(vocab.json·glossary.jsonl·manifest.json — 재구축·감사용 기록; 서버 런타임은 이 파일들 대신 메타 컬렉션을 읽는다). 구현 확정·이탈 기록은 `index/README.md` 참조. Qdrant 접속 정보는 `.env`(gitignore)의 `QDRANT_URL`/`QDRANT_API_KEY`.
+- `server/` — 3단계 MCP 서버(도구 3종: `standards_get_paragraph`·`standards_search`·`standards_define_terms`). 본문·용어사전·vocab 모두 Qdrant 단일 소스(payload `document` + 메타 컬렉션 `*_meta`) — 서버는 `.env` 접속 정보만으로 기동하며 코퍼스 파일을 읽지 않는다. 배선은 루트 `.mcp.json`, 지시서는 `MCP/3단계_지시서_v1.1_콜드해석_MCP.md`, 이탈 기록은 `server/README.md`. 인수 테스트: `.venv/bin/pytest tests/test_acceptance.py`.
 - `eval/` — 콜드 해석 평가: `routing_gold.json`(채점 전용 골드셋 — **서버·에이전트 런타임에서 로드 금지**) + `score_interpretation.py`(recall 채점기).
 - `reports/` — 조서 해석 보고서 저장처(`해석_{조서파일명}.md`).
 

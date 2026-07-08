@@ -89,10 +89,10 @@ def build_app():
     return mcp
 
 
-def _load_encoder_background(log):
+def _load_encoder_background(manifest, log):
     """bge-m3 지연 로드 (검사 ①차원·⑥프로브 완결). 실패 시 프로세스 종료 — 기동 거부 보존."""
     try:
-        _gateway.encoder = contracts.validate_encoder(log=log)
+        _gateway.encoder = contracts.validate_encoder(manifest, log=log)
         _encoder_ready.set()
         log("[mcp_server] 인코더 준비 완료 — standards_search 활성")
     except Exception as e:
@@ -112,9 +112,9 @@ def main():
     except contracts.ContractMismatch as e:
         print(f"[기동 거부] {e}", file=sys.stderr)
         sys.exit(1)
-    log("[mcp_server] 코퍼스 로컬 파스 + Gateway 초기화...")
+    log("[mcp_server] Gateway 초기화 (본문·용어사전·vocab: Qdrant 단일 소스)...")
     _gateway = Gateway(client, None, vtokens, glossary)
-    threading.Thread(target=_load_encoder_background, args=(log,), daemon=True).start()
+    threading.Thread(target=_load_encoder_background, args=(manifest, log), daemon=True).start()
     app = build_app()
     log("[mcp_server] auditpaper-standards 기동 (stdio) — 인코더는 백그라운드 로드 중")
     app.run()  # stdio

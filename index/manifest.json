@@ -1,6 +1,8 @@
 {
-  "corpus_commit": "ffb3875dfa91b17912911c2967dd9bb2471395bd",
+  "corpus_commit": "6a8c8c92f226831b8ccf26c88c4effecfd7c780a",
   "collection": "standards_20250829_bgem3",
+  "meta_collection": "standards_20250829_bgem3_meta",
+  "payload_document": true,
   "uuid5_namespace": "github.com/worldoftoddl/auditPaper_assist",
   "embedding": {
     "model": "BAAI/bge-m3",
@@ -50,5 +52,5 @@
       "boundary": "자산의 횡령으로 인한 왜곡표시"
     }
   },
-  "generated_at": "2026-07-07T06:19:23.200198+00:00"
+  "generated_at": "2026-07-08T01:10:54.584310+00:00"
 }

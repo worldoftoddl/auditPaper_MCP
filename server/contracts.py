@@ -1,18 +1,19 @@
-"""기동 검증 (지시서 3장): manifest와 실행 환경의 계약 대조 — 불일치면 기동 거부.
+"""기동 검증 (지시서 3장): 메타 컬렉션의 manifest와 실행 환경의 계약 대조 — 불일치면 기동 거부.
 
 검사 순서: ①임베딩 모델 ②sparse 계약 ③토크나이저 ④컬렉션 ⑤용어 사전 ⑥임베딩 프로브.
+manifest·vocab·glossary는 로컬 index/ 파일이 아니라 Qdrant 메타 컬렉션에서 읽는다 —
+서버는 접속 정보(.env)만으로 기동하며 코퍼스 저장소·index/ 산출물이 필요 없다
+(지시서 v1.1 이탈: DB 단일 소스 — server/README.md 기록).
 routing_gold.json은 검증 대상도, 로드 대상도 아니다 (채점 전용).
 """
 
-import json
 import os
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INDEX_DIR = ROOT / "index"
 sys.path.insert(0, str(ROOT / "scripts"))
-from build_index import COLLECTION, load_env  # noqa: E402
+from build_index import COLLECTION, META_COLLECTION, load_env, meta_point_id  # noqa: E402
 
 PROBE_TEXT = "수행의무"
 PROBE_TOL = 1e-3
@@ -30,6 +31,45 @@ class ContractMismatch(Exception):
 def _check(item, expected, actual, hint):
     if expected != actual:
         raise ContractMismatch(item, expected, actual, hint)
+
+
+def make_client():
+    """.env/환경변수에서 Qdrant 클라이언트 생성 — 서버의 유일한 외부 의존."""
+    # .mcp.json의 ${VAR} 확장이 빈 문자열을 넣을 수 있음 — 비우고 .env로 폴백
+    for k in ("QDRANT_URL", "QDRANT_API_KEY"):
+        if os.environ.get(k) == "":
+            del os.environ[k]
+    load_env()
+    url, key = os.environ.get("QDRANT_URL"), os.environ.get("QDRANT_API_KEY")
+    if not url:
+        raise ContractMismatch("qdrant.접속", "QDRANT_URL/.env", None,
+                               ".env에 QDRANT_URL·QDRANT_API_KEY를 기록하세요")
+    from qdrant_client import QdrantClient
+    return QdrantClient(url=url, api_key=key, timeout=60)
+
+
+def load_meta(client):
+    """메타 컬렉션 → (manifest, vocab_doc, glossary). glossary는 ord 순(파일 순서 보존)."""
+    if not client.collection_exists(META_COLLECTION):
+        raise ContractMismatch("meta.collection", META_COLLECTION, None,
+                               "적재기(build_index.py --stage upsert)로 메타 컬렉션을 생성하세요")
+    got = client.retrieve(META_COLLECTION,
+                          ids=[meta_point_id("manifest"), meta_point_id("vocab")],
+                          with_payload=True)
+    by_kind = {p.payload["kind"]: p.payload for p in got}
+    if set(by_kind) != {"manifest", "vocab"}:
+        raise ContractMismatch("meta.points", "manifest+vocab", sorted(by_kind),
+                               "메타 컬렉션 불완전 — 적재기 재실행")
+    manifest = by_kind["manifest"]["data"]
+    vocab_doc = {"meta": by_kind["vocab"]["meta"], "tokens": by_kind["vocab"]["tokens"]}
+    glossary, offset = [], None
+    while True:
+        pts, offset = client.scroll(META_COLLECTION, limit=1000, offset=offset, with_payload=True)
+        glossary += [p.payload for p in pts if p.payload.get("kind") == "glossary"]
+        if offset is None:
+            break
+    glossary.sort(key=lambda e: e["ord"])
+    return manifest, vocab_doc, glossary
 
 
 def _validate_encoder(manifest, encoder=None, log=print):
@@ -50,36 +90,39 @@ def _validate_encoder(manifest, encoder=None, log=print):
     return encoder
 
 
-def validate_encoder(index_dir=INDEX_DIR, encoder=None, log=print):
+def validate_encoder(manifest, encoder=None, log=print):
     """지연 로드 경로(mcp_server 백그라운드)용 단독 진입점."""
-    manifest = json.loads((Path(index_dir) / "manifest.json").read_text(encoding="utf-8"))
     return _validate_encoder(manifest, encoder, log)
 
 
-def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print, defer_encoder=False):
+def validate(client=None, encoder=None, log=print, defer_encoder=False, meta=None):
     """계약 6항목 검증. 통과 시 (manifest, vocab_tokens, glossary, client, encoder) 반환.
 
     client/encoder를 주면 재사용(테스트·경량 기동), 없으면 여기서 생성한다.
+    meta=(manifest, vocab_doc, glossary)를 주면 메타 컬렉션 조회를 건너뛴다(테스트용 변조 주입).
     defer_encoder=True면 모델 의존 검사(①차원·⑥프로브)를 뒤로 미루고 encoder=None을
     반환한다 — 호출측은 반드시 validate_encoder()로 나머지 검사를 완결해야 하며,
     실패 시 서빙을 중단해 기동 거부 의미를 보존해야 한다 (mcp_server 참조).
     """
-    index_dir = Path(index_dir)
-    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    if client is None:
+        client = make_client()
+    manifest, vocab_doc, glossary = meta if meta is not None else load_meta(client)
     emb, sp = manifest["embedding"], manifest["sparse"]
 
     # ① 임베딩 모델 — normalize 계약(모델 비의존부)
     _check("embedding.normalize_embeddings", True, emb["normalize_embeddings"],
            "manifest가 정규화 임베딩이 아님 — 2단계 적재기와 계약 확인")
+    # payload 본문 계약 — 서버는 본문을 컬렉션에서 제공하므로 없으면 기동 불가
+    _check("payload_document", True, manifest.get("payload_document"),
+           "컬렉션 payload에 본문 없음 — 적재기(--stage upsert) 재실행으로 재구축")
 
-    # ② sparse 계약 — vocab.json meta == manifest.sparse (k1·b·avgdl·vocab_size)
-    vocab_doc = json.loads((index_dir / "vocab.json").read_text(encoding="utf-8"))
+    # ② sparse 계약 — 메타 컬렉션 vocab.meta == manifest.sparse (k1·b·avgdl·vocab_size)
     vmeta, vtokens = vocab_doc["meta"], vocab_doc["tokens"]
     for key in ("k1", "b", "avgdl", "vocab_size"):
         _check(f"sparse.{key}", sp[key], vmeta.get(key),
-               "vocab.json이 컬렉션과 다른 판 — index/ 산출물을 manifest와 같은 커밋으로 복원")
+               "메타 컬렉션 vocab이 컬렉션과 다른 판 — 적재기 재실행으로 동일 판 재구축")
     _check("sparse.vocab_size(tokens)", sp["vocab_size"], len(vtokens),
-           "vocab.json tokens 수가 meta와 불일치 — 파일 손상 의심, 재생성 필요")
+           "vocab tokens 수가 meta와 불일치 — 메타 컬렉션 손상 의심, 적재기 재실행")
 
     # ③ 토크나이저 — kiwipiepy major.minor 일치 (패치 차이는 경고)
     import kiwipiepy
@@ -91,33 +134,17 @@ def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print, defer_en
         log(f"[contracts] 경고: kiwipiepy 패치 버전 차이 ({exp_v} → {act_v})")
 
     # ④ 컬렉션 — 존재 + 포인트 수
-    if client is None:
-        # .mcp.json의 ${VAR} 확장이 빈 문자열을 넣을 수 있음 — 비우고 .env로 폴백
-        for k in ("QDRANT_URL", "QDRANT_API_KEY"):
-            if os.environ.get(k) == "":
-                del os.environ[k]
-        load_env()
-        url, key = os.environ.get("QDRANT_URL"), os.environ.get("QDRANT_API_KEY")
-        if not url:
-            raise ContractMismatch("qdrant.접속", "QDRANT_URL/.env", None,
-                                   ".env에 QDRANT_URL·QDRANT_API_KEY를 기록하세요")
-        from qdrant_client import QdrantClient
-        client = QdrantClient(url=url, api_key=key, timeout=60)
     _check("collection.exists", True, client.collection_exists(manifest["collection"]),
            f"컬렉션 {manifest['collection']} 없음 — 적재기(build_index.py)로 재구축")
     n = client.count(manifest["collection"], exact=True).count
     _check("collection.points", manifest["points"], n,
            "포인트 수 불일치 — 컬렉션과 manifest의 판이 다름, 적재기 재실행")
 
-    # ⑤ 용어 사전 로드
-    gpath = index_dir / "glossary.jsonl"
-    if not gpath.exists():
-        raise ContractMismatch("glossary", "index/glossary.jsonl", None,
-                               "적재기 --stage offline으로 재생성")
-    glossary = [json.loads(l) for l in gpath.read_text(encoding="utf-8").splitlines() if l.strip()]
+    # ⑤ 용어 사전
     if not glossary:
-        raise ContractMismatch("glossary", ">0건", 0, "glossary.jsonl이 비어 있음 — 재생성 필요")
-    log(f"[contracts] 용어 사전 로드: {len(glossary)}건")
+        raise ContractMismatch("glossary", ">0건", 0,
+                               "메타 컬렉션에 glossary 없음 — 적재기 재실행")
+    log(f"[contracts] 용어 사전 로드: {len(glossary)}건 (메타 컬렉션)")
 
     # ①(차원)·⑥(임베딩 프로브) — 모델 의존부
     if not defer_encoder:
@@ -130,4 +157,4 @@ def validate(index_dir=INDEX_DIR, client=None, encoder=None, log=print, defer_en
     return manifest, vtokens, glossary, client, encoder
 
 
-assert COLLECTION  # build_index와의 상수 연결 유지 (import 시 드리프트 조기 감지)
+assert COLLECTION and META_COLLECTION  # build_index와의 상수 연결 유지 (import 시 드리프트 조기 감지)
