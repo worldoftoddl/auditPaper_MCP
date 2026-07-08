@@ -15,12 +15,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `auditstandard_md/` — (원본) 회계감사기준 전문(2025 개정). ISA-200~720, ISQM-1, FRMK-1, ASSR-3000 등 40개 파일. `00_전문.md`는 전체 목차.
 - `ifrs_md/` — (원본) K-IFRS 기준서. 계열별 하위 폴더: `IAS_10XX/`, `IFRS_11XX/`, `IFRIC_21XX/`, `SIC_20XX/`.
 - `Conceptual_framework_md/` — (원본) 재무보고를 위한 개념체계, 경영진설명서 개념체계, 중요성 실무서 3개 파일.
-- `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF)과 벡터 저장소 설계 문서(`벡터저장소_스키마_및_마크다운_작성규약.md` — 목표 규약).
-- `scripts/` — 변환 스크립트(`normalize_corpus.py`)와 적재기(`build_index.py` — corpus_md+guidelines_md → Qdrant Cloud, 지시서 `TASK.md`).
-- `index/` — 적재기 산출물(vocab.json·glossary.jsonl·manifest.json — 재구축·감사용 기록; 서버 런타임은 이 파일들 대신 메타 컬렉션을 읽는다). 구현 확정·이탈 기록은 `index/README.md` 참조. Qdrant 접속 정보는 `.env`(gitignore)의 `QDRANT_URL`/`QDRANT_API_KEY`.
-- `server/` — 3단계 MCP 서버(도구 3종: `standards_get_paragraph`·`standards_search`·`standards_define_terms`). 본문·용어사전·vocab 모두 Qdrant 단일 소스(payload `document` + 메타 컬렉션 `*_meta`) — 서버는 `.env` 접속 정보만으로 기동하며 코퍼스 파일을 읽지 않는다. 배선은 루트 `.mcp.json`, 지시서는 `MCP/3단계_지시서_v1.1_콜드해석_MCP.md`, 이탈 기록은 `server/README.md`. 인수 테스트: `.venv/bin/pytest tests/test_acceptance.py`.
-- `eval/` — 콜드 해석 평가: `routing_gold.json`(채점 전용 골드셋 — **서버·에이전트 런타임에서 로드 금지**) + `score_interpretation.py`(recall 채점기).
-- `reports/` — 조서 해석 보고서 저장처(`해석_{조서파일명}.md`).
+- `guidelines_raw/` — 실무지침 원본(DOC/DOCX/PDF).
+- `scripts/` — 변환 스크립트(`normalize_corpus.py`)와 적재기(`build_index.py` — corpus_md+guidelines_md → Qdrant Cloud).
+- `index/` — 적재기 산출물(vocab.json·glossary.jsonl·manifest.json — 재구축·감사용 기록; 서버 런타임은 이 파일들 대신 메타 컬렉션을 읽는다). Qdrant 접속 정보는 `.env`(gitignore)의 `QDRANT_URL`/`QDRANT_API_KEY`.
+- `server/` — 3단계 MCP 서버(도구 3종: `standards_get_paragraph`·`standards_search`·`standards_define_terms`). 본문·용어사전·vocab 모두 Qdrant 단일 소스(payload `document` + 메타 컬렉션 `*_meta`) — 서버는 `.env` 접속 정보만으로 기동하며 코퍼스 파일을 읽지 않는다. 배선은 루트 `.mcp.json`. 인수 테스트: `.venv/bin/pytest tests/test_acceptance.py`.
+- `eval/` — 콜드 해석 평가: `routing_gold.json`(채점 전용 골드셋 — **서버·에이전트 런타임에서 로드 금지**) + `score_interpretation.py`(recall 채점기) + `score_{조서번호}.json`(채점 결과).
+- `reports/` — 조서 해석 보고서 저장처(`해석_{조서번호}.md` — 번호는 `eval/score_*.json`과 동일 슬러그).
+- `docs/` — 설계 규약 정본(`규약_벡터저장소_스키마.md`), 지시서 아카이브(`workorders/` — 각 파일 머리에 이행 상태), **결함·이탈 기록 대장(`LEDGER.md`** — 전 폴더의 결함 C-xx·이탈 D-xx를 여기에 통합 기록; 새 결함·이탈도 여기에 추가**)**.
 
 `corpus_md/`와 `guidelines_md/`는 모두 목표 규약 4장을 따른다: frontmatter 3필드(`source_type`/`standard_no`(따옴표 문자열)/`standard_title`) + `##` 절 제목(`상위 > 하위` 합성) + 행 머리 `번호.` 문단 절단. 청크 ID: `KSA::<번호>::<문단>` / `KIFRS::<번호>::<문단>` / `GUIDE::<번호>::<문단>`.
 
@@ -91,7 +92,7 @@ korean_paragraph_count: 2
      결과가 특정 기준서로 수렴하면 그때 필터를 걸어 심화).
    - 낯선 용어는 standards_define_terms로 정의를 확보한다.
    - 이 조서가 문안·예시 작성용으로 판단되면 include_examples=true를 사용한다.
-4. 산출 — reports/해석_{파일명}.md 로 저장:
+4. 산출 — reports/해석_{조서번호}.md 로 저장 (번호는 eval/score_*.json과 같은 슬러그):
    ## ① 이 조서의 정체 (2~4문장: 무엇을, 어느 감사 국면에서, 왜)
    ## ② 할 일 목록 (조서 항목 순서대로; 각 줄 = 수행 절차 + 근거 [cid])
    ## ③ 근거 규정 발췌 (②에서 인용한 문단의 원문 일부, cid별)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """기존 코퍼스(auditstandard_md/, ifrs_md/, Conceptual_framework_md/)를
-벡터저장소 규약(guidelines_raw/벡터저장소_스키마_및_마크다운_작성규약.md 4장) 형식으로
+벡터저장소 규약(docs/규약_벡터저장소_스키마.md 4장) 형식으로
 corpus_md/에 변환한다. 원본 파일은 수정하지 않는다.
 
 규약 요약: frontmatter 3필드(source_type/standard_no/standard_title), 절 제목 `##`만,

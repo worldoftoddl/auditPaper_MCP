@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """적재기(2단계): corpus_md/ + guidelines_md/ → Qdrant Cloud.
 
-지시서: TASK.md (v2 — Qdrant판). 참조 규약: guidelines_raw/벡터저장소_스키마_및_마크다운_작성규약.md (v2.1)
+지시서: docs/workorders/02_적재기_v2_Qdrant.md. 참조 규약: docs/규약_벡터저장소_스키마.md (v2.1)
 
 단계: [A]파서 → [B]para_type 유도 → [C]분할(240::부록1) → [D]dense 임베딩 →
 [E]sparse 벡터 → [F]용어 사전 → [G]Qdrant 업서트 → [H]점검 1~7 + 스모크 S1~S9
