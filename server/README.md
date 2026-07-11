@@ -10,6 +10,9 @@
 배선: 루트 `.mcp.json` (접속 실값은 `.env` — 커밋 금지). 인수 테스트:
 `.venv/bin/pytest tests/test_acceptance.py -v` (A1~A10, 실 Qdrant 대상 ~30초).
 
+원격 공유: `MCP_TRANSPORT=http`면 HTTP로 서빙하며 `MCP_AUTH_TOKEN`(Bearer, 16자 이상)이
+없으면 기동 거부한다. Colab 호스팅 절차는 `colab/auditpaper_mcp_colab.ipynb` 참조.
+
 ## v1.1 전환 사유 (완료 기준 ⑥)
 
 v1의 `standards_worksheet_map` 런타임 도구(조서번호 → 기준서 사전 라우팅 표)는 폐기했다.

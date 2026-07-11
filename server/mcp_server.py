@@ -1,7 +1,11 @@
 """MCP 서버 (지시서 v1.1 5장): 도구 3종 — standards_get_paragraph · standards_search ·
-standards_define_terms. stdio 전송, 기동 시 contracts.validate() 통과 못 하면 기동 거부.
+standards_define_terms. 기동 시 contracts.validate() 통과 못 하면 기동 거부.
 
 실행: python -m server.mcp_server  (QDRANT_URL/QDRANT_API_KEY는 .env 또는 환경변수)
+
+전송은 기본 stdio. MCP_TRANSPORT=http면 HTTP로 서빙하며(원격 공유용 — colab/ 노트북 참조),
+이때 MCP_AUTH_TOKEN(Bearer 정적 토큰)이 없으면 기동 거부한다 — Qdrant 키를 쥔 서버를
+무인증으로 공인망에 노출하지 않기 위함. MCP_HOST/MCP_PORT로 바인딩 조정(기본 127.0.0.1:8000).
 """
 
 import os
@@ -37,9 +41,23 @@ def _guard(fn, *args, **kwargs):
                                 "hint": "네트워크·클러스터 상태 확인 후 재시도 (무료 티어 휴면이면 콘솔에서 재개)"}})
 
 
-def build_app():
+def _static_token_auth(token):
+    """HTTP 전송용 정적 Bearer 토큰 검증기 — 상수시간 비교, 불일치는 401."""
+    import hmac
+    from fastmcp.server.auth import AccessToken, TokenVerifier
+
+    class _StaticTokenVerifier(TokenVerifier):
+        async def verify_token(self, presented):
+            if hmac.compare_digest(presented, token):
+                return AccessToken(token=presented, client_id="auditpaper-remote", scopes=[])
+            return None
+
+    return _StaticTokenVerifier()
+
+
+def build_app(auth=None):
     from fastmcp import FastMCP
-    mcp = FastMCP("auditpaper-standards")
+    mcp = FastMCP("auditpaper-standards", auth=auth)
 
     @mcp.tool(annotations=ANNOTATIONS)
     def standards_get_paragraph(
@@ -115,9 +133,22 @@ def main():
     log("[mcp_server] Gateway 초기화 (본문·용어사전·vocab: Qdrant 단일 소스)...")
     _gateway = Gateway(client, None, vtokens, glossary)
     threading.Thread(target=_load_encoder_background, args=(manifest, log), daemon=True).start()
-    app = build_app()
-    log("[mcp_server] auditpaper-standards 기동 (stdio) — 인코더는 백그라운드 로드 중")
-    app.run()  # stdio
+    transport = os.environ.get("MCP_TRANSPORT", "stdio")
+    if transport == "http":
+        token = os.environ.get("MCP_AUTH_TOKEN", "")
+        if len(token) < 16:
+            print("[기동 거부] HTTP 전송은 MCP_AUTH_TOKEN(16자 이상) 필수 — 무인증 공개 노출 방지",
+                  file=sys.stderr)
+            sys.exit(1)
+        host, port = os.environ.get("MCP_HOST", "127.0.0.1"), int(os.environ.get("MCP_PORT", "8000"))
+        app = build_app(auth=_static_token_auth(token))
+        log(f"[mcp_server] auditpaper-standards 기동 (http {host}:{port}/mcp, Bearer 인증)"
+            " — 인코더는 백그라운드 로드 중")
+        app.run(transport="http", host=host, port=port, path="/mcp")
+    else:
+        app = build_app()
+        log("[mcp_server] auditpaper-standards 기동 (stdio) — 인코더는 백그라운드 로드 중")
+        app.run()  # stdio
 
 
 if __name__ == "__main__":
