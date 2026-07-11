@@ -9,15 +9,16 @@
 ## 1. 연결 방법
 
 프로젝트 루트 `.mcp.json`에 아래를 넣고 Claude Code 재시작 → MCP 승인 →
-`claude mcp list`에서 ✔ Connected 확인. URL·토큰은 서버 운영자에게 받는다
-(HF Space는 `https://<계정>-<space이름>.hf.space/mcp` 고정 URL, Colab은 세션마다 확인).
+`claude mcp list`에서 ✔ Connected 확인. 토큰(`MCP_AUTH_TOKEN`)은 서버 운영자에게
+안전한 경로로 받는다. 현행 배포는 HF Space `toddl/auditpaper-mcp`(고정 URL — 아래 예시).
+Colab+터널 호스팅이면 URL을 세션마다 운영자에게 확인.
 
 ```json
 {
   "mcpServers": {
     "auditpaper-standards": {
       "type": "http",
-      "url": "https://<터널주소>/mcp",
+      "url": "https://toddl-auditpaper-mcp.hf.space/mcp",
       "headers": { "Authorization": "Bearer <MCP_AUTH_TOKEN>" }
     }
   }
