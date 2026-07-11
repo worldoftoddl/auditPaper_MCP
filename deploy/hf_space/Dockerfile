@@ -18,8 +18,11 @@ RUN useradd -m -u 1000 user
 USER user
 ENV HF_HOME=/home/user/.cache/huggingface
 
-# bge-m3 가중치를 이미지에 선탑재 — 슬립 후 콜드 스타트 단축 + 빌드 시 로드 검증
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-m3')"
+# bge-m3 가중치를 이미지에 선탑재 — 슬립 후 콜드 스타트 단축 + 빌드 시 로드 검증.
+# HF_TOKEN Secret이 있으면 인증 다운로드(속도 제한 회피), 없어도 동작(required=false).
+RUN --mount=type=secret,id=HF_TOKEN,mode=0444,required=false \
+    HF_TOKEN=$(cat /run/secrets/HF_TOKEN 2>/dev/null || true) \
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-m3')"
 
 # QDRANT_URL·QDRANT_API_KEY·MCP_AUTH_TOKEN은 Space Secrets로 주입 (런타임 환경변수)
 ENV MCP_TRANSPORT=http MCP_HOST=0.0.0.0 MCP_PORT=7860

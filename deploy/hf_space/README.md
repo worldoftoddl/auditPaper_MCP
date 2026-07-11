@@ -24,6 +24,7 @@ pinned: false
 | `QDRANT_URL` | Qdrant Cloud 클러스터 URL |
 | `QDRANT_API_KEY` | Qdrant API 키 |
 | `MCP_AUTH_TOKEN` | 접속 비밀번호 (16자 이상 — 미설정 시 서버가 기동 거부) |
+| `HF_TOKEN` | (선택) HF Access Token(Read) — 빌드 시 모델 다운로드 속도 제한 회피 |
 
 - Space는 **Public**이어야 한다 (Private Space는 HF 자체 인증 헤더를 요구해
   MCP 클라이언트의 Bearer 토큰과 충돌). 접근 통제는 `MCP_AUTH_TOKEN`이 담당한다.
