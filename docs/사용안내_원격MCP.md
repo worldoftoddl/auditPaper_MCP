@@ -1,13 +1,16 @@
 # auditpaper-standards 원격 MCP 사용 안내
 
 다른 컴퓨터·다른 프로젝트에서 이 MCP 서버를 HTTP로 쓰는 소비자(클라이언트) 안내서.
-서버 호스팅 절차는 [`colab/auditpaper_mcp_colab.ipynb`](../colab/auditpaper_mcp_colab.ipynb),
+서버 호스팅은 두 경로: **HuggingFace Space**(상시·고정 URL — 권장,
+[`deploy/hf_space/`](../deploy/hf_space/)) 또는 Colab+터널(일시,
+[`colab/auditpaper_mcp_colab.ipynb`](../colab/auditpaper_mcp_colab.ipynb)).
 서버 내부 구조는 [`server/README.md`](../server/README.md) 참조.
 
 ## 1. 연결 방법
 
 프로젝트 루트 `.mcp.json`에 아래를 넣고 Claude Code 재시작 → MCP 승인 →
-`claude mcp list`에서 ✔ Connected 확인. URL·토큰은 서버 운영자(Colab 노트북 ⑤셀 출력)에게 받는다.
+`claude mcp list`에서 ✔ Connected 확인. URL·토큰은 서버 운영자에게 받는다
+(HF Space는 `https://<계정>-<space이름>.hf.space/mcp` 고정 URL, Colab은 세션마다 확인).
 
 ```json
 {
@@ -172,6 +175,8 @@
 
 - `UPSTREAM_UNAVAILABLE` 오류: Qdrant 무료 티어 휴면 또는 터널/세션 끊김 —
   서버 운영자에게 문의 (Colab 세션은 최대 24시간).
+- HF Space 호스팅은 48시간 미사용 시 슬립한다 — 첫 요청이 자동으로 깨우며
+  1~2분 걸릴 수 있으니, 응답이 없으면 잠시 후 재시도.
 - 토큰은 접속 비밀번호다 — 설정 파일을 공개 저장소에 커밋하지 말 것.
 - 규정을 인용할 때는 응답의 `cid`를 그대로 달고, 중요한 인용은
   `standards_get_paragraph`로 원문을 재확인하는 것을 권장.

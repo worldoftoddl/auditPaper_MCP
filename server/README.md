@@ -11,7 +11,8 @@
 `.venv/bin/pytest tests/test_acceptance.py -v` (A1~A10, 실 Qdrant 대상 ~30초).
 
 원격 공유: `MCP_TRANSPORT=http`면 HTTP로 서빙하며 `MCP_AUTH_TOKEN`(Bearer, 16자 이상)이
-없으면 기동 거부한다. Colab 호스팅 절차는 `colab/auditpaper_mcp_colab.ipynb` 참조.
+없으면 기동 거부한다. 호스팅: HuggingFace Space(상시 — `deploy/hf_space/`) 또는
+Colab+터널(일시 — `colab/auditpaper_mcp_colab.ipynb`). 소비자 안내는 `docs/사용안내_원격MCP.md`.
 
 ## v1.1 전환 사유 (완료 기준 ⑥)
 
