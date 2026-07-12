@@ -54,6 +54,8 @@ META_COLLECTION = COLLECTION + "_meta"   # payload 전용: manifest·vocab·glos
 MODEL_NAME = "BAAI/bge-m3"
 DENSE_DIM = 1024
 MAX_TOKENS = 8192
+# 주의: 저장소가 auditPaper_MCP로 개명됐지만 이 문자열은 uuid5 네임스페이스라 동결 —
+# 바꾸면 전 포인트의 물리 ID가 달라져 기존 컬렉션과의 업서트 멱등성이 깨진다 (D-01)
 NS_STRING = "github.com/worldoftoddl/auditPaper_assist"
 PROJECT_NS = uuid.uuid5(uuid.NAMESPACE_URL, NS_STRING)
 

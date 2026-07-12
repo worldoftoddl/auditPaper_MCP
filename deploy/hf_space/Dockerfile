@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 
 # 서버 코드: 공개 GitHub 저장소에서 — Space에는 Dockerfile·README만 두면 된다.
 # 코드가 갱신되면 Space Settings → Factory rebuild로 다시 clone된다.
-RUN git clone --depth 1 https://github.com/worldoftoddl/auditPaper_assist.git /app
+RUN git clone --depth 1 https://github.com/worldoftoddl/auditPaper_MCP.git /app
 WORKDIR /app
 
 # HF Spaces는 uid 1000 비루트로 실행한다

@@ -11,7 +11,7 @@ pinned: false
 # auditpaper-standards MCP 서버
 
 한국 회계감사기준(KSA)·K-IFRS·회계감사실무지침을 검색·조회하는 읽기 전용 MCP 서버.
-코드·데이터 구조는 [GitHub 저장소](https://github.com/worldoftoddl/auditPaper_assist) 참조.
+코드·데이터 구조는 [GitHub 저장소](https://github.com/worldoftoddl/auditPaper_MCP) 참조.
 
 이 Space는 위 저장소를 빌드 시 clone해 FastMCP HTTP 서버로 실행한다.
 엔드포인트는 `https://<이-Space-URL>/mcp`이며, 모든 요청에
@@ -45,4 +45,4 @@ pinned: false
 ```
 
 도구 스키마·캐시 규칙 등 소비자 안내는 저장소의
-[`docs/사용안내_원격MCP.md`](https://github.com/worldoftoddl/auditPaper_assist/blob/main/docs/%EC%82%AC%EC%9A%A9%EC%95%88%EB%82%B4_%EC%9B%90%EA%B2%A9MCP.md) 참조.
+[`docs/사용안내_원격MCP.md`](https://github.com/worldoftoddl/auditPaper_MCP/blob/main/docs/%EC%82%AC%EC%9A%A9%EC%95%88%EB%82%B4_%EC%9B%90%EA%B2%A9MCP.md) 참조.
