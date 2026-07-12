@@ -41,15 +41,15 @@ CACHE_DIR = INDEX_DIR / "cache"
 # ── 상수 (지시서 0·2·5·7장 + BC·IE 확장) ────────────────────────────
 TYPE_CODE = {"감사기준": "KSA", "회계기준": "KIFRS", "실무지침": "GUIDE"}
 # 회계기준 = 정본 6,255 + 결론도출근거 8,721 + 적용사례 1,753 (규약 4.3-5 갈래, 2026-07-12)
-EXPECTED_COUNTS = {"감사기준": 3630, "회계기준": 16729, "실무지침": 177}
-EXPECTED_TOTAL = 20536
-EXPECTED_POINTS = 20536          # + SPLIT_TARGETS 분할 순증 (아래에서 가산)
+EXPECTED_COUNTS = {"감사기준": 3630, "회계기준": 17163, "실무지침": 177}
+EXPECTED_TOTAL = 20970
+EXPECTED_POINTS = 20970          # + SPLIT_TARGETS 분할 순증 (아래에서 가산)
 EXPECTED_DEF = 280               # para_type=정의
 EXPECTED_REF = 14                # para_type=참조
-EXPECTED_BC = 8721               # para_type=결론도출근거
+EXPECTED_BC = 9155  # +434 (BCIN 20 + C-15 4 + CF BC 410 — 2026-07 확장)               # para_type=결론도출근거
 EXPECTED_IE = 1753               # para_type=적용사례
 
-COLLECTION = "standards_20250829_bgem3_v2"
+COLLECTION = "standards_20250829_bgem3_v3"
 META_COLLECTION = COLLECTION + "_meta"   # payload 전용: manifest·vocab·glossary — 서버 무파일 기동용
 MODEL_NAME = "BAAI/bge-m3"
 DENSE_DIM = 1024

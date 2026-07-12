@@ -590,6 +590,9 @@ def convert_ifrs_file(path, expected):
         std_no = fm["standard_number"]
         token = std_no
         title = fm["title"]
+    # BC·IE 갈래 허용 여부: 기준서 전체 + 재무보고 개념체계(CF)의 BC만.
+    # MC는 BC 실질 부재, PS2 BC는 보류 결정(감사 보고서 2026-07 §7) — 종전대로 제외.
+    z_ok = (not is_cf) or std_no == "CF"
 
     lines = body.split("\n")
 
@@ -629,7 +632,7 @@ def convert_ifrs_file(path, expected):
     # 고유 번호 체계(BC/IE/IG)를 갖는가(있으면 잔여 정수는 표 각주 후보 — 1036)
     z_has_para = {"bc": False, "ie": False}
     z_native = {"bc": False, "ie": False}
-    if not is_cf:
+    if z_ok:
         zz = None
         for ln in lines:
             cc = parse_comment(ln)
@@ -719,7 +722,7 @@ def convert_ifrs_file(path, expected):
             elif "authority_declaration" in c and not is_cf:
                 # 원본이 부록 서두에 스스로 선언한 정본 여부 — component 태그와 동급으로 반영
                 comp_include = c["authority_declaration"] == "authoritative"
-            elif "para" in c and zone is not None and not is_cf:
+            elif "para" in c and zone is not None and z_ok:
                 # BC·IE 갈래 승격: 직전 본문 행을 합성 번호 문단으로 (정본 승격 메커니즘과 동형)
                 if z_last_idx[zone] is not None:
                     p = str(c["para"])
@@ -792,7 +795,7 @@ def convert_ifrs_file(path, expected):
                 h3 = t
             em.set_section(h2 if not h3 else f"{h2} > {h3}")
             # BC·IE 갈래의 구역 전환·내부 절 추적 (정본 래치와 별개)
-            if not is_cf:
+            if z_ok:
                 if lvl == 2 and t.startswith("결론도출근거"):
                     zone = "bc"
                     z_h2 = z_h3 = z_case = None
@@ -825,7 +828,7 @@ def convert_ifrs_file(path, expected):
 
         if not include or not body_started:
             # ── BC·IE 갈래 내용 라우팅 ── (구역 밖의 배제 행은 종전대로 버림)
-            if zone is not None and not is_cf:
+            if zone is not None and z_ok:
                 zs = ln.rstrip()
                 zt = zs.strip()
                 zem = z_em[zone]
@@ -878,7 +881,8 @@ def convert_ifrs_file(path, expected):
                     fb = Z_HEAD_FALLBACK.match(zt)
                     if fb:
                         head = fb.group(1).rstrip(".")
-                        if head in ("BC1", "IE1", "IG1") or (
+                        # 계열 시작 인정: BCIN.1은 1109 결론도출근거 서두(BC 도입부)
+                        if head in ("BC1", "IE1", "IG1", "BCIN.1") or (
                                 zem.paras and zem.paras[-1][:2] == head[:2]):
                             bold = zt.startswith("**")
                             zem.para(head + ".", ("**" if bold else "") + fb.group(2))
@@ -1118,14 +1122,14 @@ BCIE_EXPECT = {
     "kifrs_1008_bc.md": 60,
     "kifrs_1010_bc.md": 5,
     "kifrs_1012_bc.md": 118,
-    "kifrs_1016_bc.md": 164,
+    "kifrs_1016_bc.md": 165,
     "kifrs_1019_bc.md": 314,
     "kifrs_1020_bc.md": 5,
     "kifrs_1021_bc.md": 71,
     "kifrs_1023_bc.md": 33,
     "kifrs_1024_bc.md": 52,
     "kifrs_1027_bc.md": 42,
-    "kifrs_1028_bc.md": 84,
+    "kifrs_1028_bc.md": 85,
     "kifrs_1029_bc.md": 2,
     "kifrs_1032_bc.md": 124,
     "kifrs_1033_bc.md": 15,
@@ -1135,15 +1139,16 @@ BCIE_EXPECT = {
     "kifrs_1038_bc.md": 138,
     "kifrs_1039_bc.md": 285,
     "kifrs_1040_bc.md": 90,
-    "kifrs_1041_bc.md": 98,
-    "kifrs_1101_bc.md": 175,
+    "kifrs_1041_bc.md": 99,
+    "kifrs_1101_bc.md": 176,
     "kifrs_1102_bc.md": 458,
     "kifrs_1103_bc.md": 509,
     "kifrs_1105_bc.md": 109,
     "kifrs_1106_bc.md": 69,
     "kifrs_1107_bc.md": 289,
     "kifrs_1108_bc.md": 66,
-    "kifrs_1109_bc.md": 1743,
+    "kifrs_1109_bc.md": 1763,
+    "kifrs_cf_bc.md": 410,  # 재무보고 개념체계 BC (2026-07 확장 — 감사 보고서 §7)
     "kifrs_1110_bc.md": 337,
     "kifrs_1111_bc.md": 99,
     "kifrs_1112_bc.md": 149,
