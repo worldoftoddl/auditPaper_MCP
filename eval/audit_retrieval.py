@@ -44,7 +44,7 @@ def load_gold():
     return out
 
 
-def evaluate(gw, worksheets, track, top_k=20):
+def evaluate(gw, worksheets, track, top_k=20, **search_kwargs):
     rows, skipped = [], 0
     for wid, w in sorted(worksheets.items()):
         if not w["gold"]:
@@ -53,7 +53,7 @@ def evaluate(gw, worksheets, track, top_k=20):
         q = w["title"]
         if track == "C":
             q = re.sub(r"\s{2,}", " ", LEAK_RE.sub(" ", q)).strip() or w["title"]
-        res = gw.search(q, top_k=top_k)
+        res = gw.search(q, top_k=top_k, **search_kwargs)
         if "error" in res:
             raise SystemExit(f"[중단] {wid} 검색 오류: {res['error']}")
         hits = [f"{r['cid'].split('::')[0]}:{r['standard_no']}" for r in res["results"]]
@@ -80,6 +80,7 @@ def main():
     ap.add_argument("--collection", help="평가 대상 컬렉션 (기본: build_index.COLLECTION)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--include-bc", action="store_true", help="민감도 분석용 — 기본 미사용")
+    ap.add_argument("--include-examples", action="store_true", help="민감도 분석용 — 기본 미사용")
     args = ap.parse_args()
 
     import build_index
@@ -99,7 +100,9 @@ def main():
               "points": manifest.get("points"), "tracks": {}}
     for track in ("R", "C"):
         print(f"트랙 {track} 평가 중 ({len(worksheets)}조서)...")
-        result["tracks"][track] = evaluate(gw, worksheets, track)
+        result["tracks"][track] = evaluate(
+            gw, worksheets, track,
+            include_bc=args.include_bc, include_examples=args.include_examples)
         a = result["tracks"][track]["aggregate"]
         print(f"  트랙 {track}: n={a['n']} macro_r@10={a['macro_recall@10']} "
               f"micro_r@10={a['micro_recall@10']} MRR={a['mrr']}")
