@@ -160,3 +160,22 @@ def test_a14_explicit_para_type_overrides_optout(ctx):
     out = ctx.gw.search("금융부채 분류 근거", para_type="결론도출근거", top_k=5)
     assert out["results"] and all(r["para_type"] == "결론도출근거" for r in out["results"])
     assert any("명시 요청" in n for n in out["applied"]["notes"])
+
+
+def test_a15_framework_opt_in(ctx):
+    """개념체계류(CF·MC·PS2) 기본 제외 + include_framework 옵트인 + standard_no 명시 우선.
+
+    개념체계는 회계기준이 아니다 — 기준서 무규정 사안의 판단 근거로만 소급(D-25).
+    """
+    q = "자산의 정의와 인식 요건"
+    base = ctx.gw.search(q, top_k=10)
+    assert all(r["standard_no"] not in {"CF", "MC", "PS2"} for r in base["results"])
+    assert base["applied"]["framework_excluded"] >= 1  # 이 질의는 CF가 상위권에 실존
+    assert any("include_framework" in n for n in base["applied"]["notes"])
+
+    on = ctx.gw.search(q, top_k=10, include_framework=True)
+    assert any(r["standard_no"] == "CF" for r in on["results"])
+
+    pin = ctx.gw.search(q, standard_no=["CF"], top_k=5)
+    assert pin["results"] and all(r["standard_no"] == "CF" for r in pin["results"])
+    assert any("우선 적용" in n for n in pin["applied"]["notes"])

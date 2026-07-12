@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **적재 파이프라인이 읽어야 할 폴더는 `corpus_md/` + `guidelines_md/` 두 개다.** 나머지는 원본/이전 단계 산출물이다.
 
-- `corpus_md/` — **규약 형식 통일 코퍼스** (정본: 감사기준 39 + 회계기준 63 = 102개 파일 9,885문단 / **BC·IE 갈래**: `kifrs_<번호>_bc.md`·`_ie.md` 100개 파일 10,474문단 — K-IFRS 결론도출근거·적용사례, 규약 4.3-5). `scripts/normalize_corpus.py`가 아래 두 원본 폴더에서 생성하며 재실행으로 전체 재생성 가능. 파일명 `ksa_<번호>.md`/`kifrs_<번호>.md`. 수록 범위·원본 결함 보정 내역은 `corpus_md/README.md` 참조 (감사기준 예시문은 `부록N`/`부록-사례N` 가상 번호로 분리, 부록 A 용어정의는 `정의-<용어>` 행 단위 분리. BC·IE는 검색 옵트인 — include_bc/include_examples).
+- `corpus_md/` — **규약 형식 통일 코퍼스** (정본: 감사기준 39 + 회계기준 63 = 102개 파일 9,885문단 / **BC·IE 갈래**: `kifrs_<번호>_bc.md`·`_ie.md` 100개 파일 10,474문단 — K-IFRS 결론도출근거·적용사례, 규약 4.3-5). `scripts/normalize_corpus.py`가 아래 두 원본 폴더에서 생성하며 재실행으로 전체 재생성 가능. 파일명 `ksa_<번호>.md`/`kifrs_<번호>.md`. 수록 범위·원본 결함 보정 내역은 `corpus_md/README.md` 참조 (감사기준 예시문은 `부록N`/`부록-사례N` 가상 번호로 분리, 부록 A 용어정의는 `정의-<용어>` 행 단위 분리. BC·IE는 검색 옵트인 — include_bc/include_examples. 개념체계류 CF·MC·PS2도 기본 제외 — include_framework).
 - `guidelines_md/` — 회계감사실무지침 9건(2014-1~2018-3), `guide_<번호>.md` 형식. `guidelines_raw/`의 원본에서 변환. 변환 결정사항은 `guidelines_md/README.md` 참조.
 - `auditstandard_md/` — (원본) 회계감사기준 전문(2025 개정). ISA-200~720, ISQM-1, FRMK-1, ASSR-3000 등 40개 파일. `00_전문.md`는 전체 목차.
 - `ifrs_md/` — (원본) K-IFRS 기준서. 계열별 하위 폴더: `IAS_10XX/`, `IFRS_11XX/`, `IFRIC_21XX/`, `SIC_20XX/`.
@@ -92,6 +92,8 @@ korean_paragraph_count: 2
      결과가 특정 기준서로 수렴하면 그때 필터를 걸어 심화).
    - 낯선 용어는 standards_define_terms로 정의를 확보한다.
    - 이 조서가 문안·예시 작성용으로 판단되면 include_examples=true를 사용한다.
+   - 기준서에 규정이 없는 사안의 판단(회계정책 개발 등)이면 include_framework=true로
+     개념체계를 소급하되, 개념체계는 회계기준이 아니므로 기준서와 동렬로 인용하지 않는다.
 4. 산출 — reports/해석_{조서번호}.md 로 저장 (번호는 eval/score_*.json과 같은 슬러그):
    ## ① 이 조서의 정체 (2~4문장: 무엇을, 어느 감사 국면에서, 왜)
    ## ② 할 일 목록 (조서 항목 순서대로; 각 줄 = 수행 절차 + 근거 [cid])

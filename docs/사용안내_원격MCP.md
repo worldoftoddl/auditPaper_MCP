@@ -88,6 +88,7 @@ Colab+터널 호스팅이면 URL을 세션마다 운영자에게 확인.
 | `top_k` | int, 기본 8 | 1~20 |
 | `include_examples` | bool, 기본 false | 예시류(부록·**적용사례 IE**) 포함 스위치 — 문안·예시·회계처리 사례 작업이면 true |
 | `include_bc` | bool, 기본 false | **결론도출근거(BC)** 포함 스위치 — 기준 제정 근거·연혁·논리구축 질의면 true |
+| `include_framework` | bool, 기본 false | **개념체계류(CF·MC·PS2)** 포함 스위치 — 기준서에 규정이 없는 사안의 판단 근거 질의면 true. 개념체계는 회계기준이 아니므로 기준서와 동렬로 인용하지 말 것 |
 
 출력:
 
