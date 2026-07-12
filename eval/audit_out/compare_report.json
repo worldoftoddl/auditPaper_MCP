@@ -1,0 +1,6026 @@
+{
+ "report": {
+  "kifrs_1001": {
+   "n_para": 208,
+   "ok": 208,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1001_bc": {
+   "n_para": 267,
+   "ok": 267,
+   "partial": [],
+   "missing": [],
+   "n_sections": 15,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1001_ie": {
+   "n_para": 12,
+   "ok": 11,
+   "partial": [
+    {
+     "para": "IG6",
+     "rate": 0.997,
+     "fails": [
+      {
+       "line": "| 확정급여제도의 | (667) |  | 1,333 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1002": {
+   "n_para": 51,
+   "ok": 51,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1002_bc": {
+   "n_para": 31,
+   "ok": 31,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1007": {
+   "n_para": 81,
+   "ok": 81,
+   "partial": [],
+   "missing": [],
+   "n_sections": 20,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6"
+   ],
+   "l2_corpus_only": [
+    "A1",
+    "A2",
+    "A3",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+   ]
+  },
+  "kifrs_1007_bc": {
+   "n_para": 61,
+   "ok": 61,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1007_ie": {
+   "n_para": 8,
+   "ok": 7,
+   "partial": [
+    {
+     "para": "IE부록C-2",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "|  |  | 현금 | 비현금 변동 |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 20X1 | 현금 | 취득 | 환율 | 공정가치 | 20X2 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  | 흐름 |  | 변동 | 변동 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 장기차입금의 위험을 회피 | (675) | 150 | - | - | (25) | (550) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1008": {
+   "n_para": 71,
+   "ok": 71,
+   "partial": [],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "1.1"
+   ]
+  },
+  "kifrs_1008_bc": {
+   "n_para": 67,
+   "ok": 67,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1008_ie": {
+   "n_para": 20,
+   "ok": 19,
+   "partial": [
+    {
+     "para": "IE사례1-1.6",
+     "rate": 0.955,
+     "fails": [
+      {
+       "line": "|  | 자본금 | 이익 | 합계 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1010": {
+   "n_para": 31,
+   "ok": 31,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1010_bc": {
+   "n_para": 6,
+   "ok": 6,
+   "partial": [],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1012": {
+   "n_para": 146,
+   "ok": 144,
+   "partial": [
+    {
+     "para": "7",
+     "rate": 0.722,
+     "fails": [
+      {
+       "line": "| 1 | 한 기계의 원가가 100원이었다. 세무상 감가상각비 30원은 이미 당기와 과거기간에 공제되었고 미상각잔액은 미래 회계기간에 감가상각이나 처분으로 공제된다. 기계를 사용하여 창출할 수익과 기계의 처분시 차익",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 2 | 미수이자의 장부금액이 100원이다. 관련 이자수익은 현금기준으로 과세된다. 이 미수이자의 세무기준액은 영(0)이다. |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 3 | 매출채권의 장부금액이 100원이다. 관련 수익(매출액)이 이미 과세소득(세무상결손금)에 포함되었다. 이 매출채권의 세무기준액은 100원이다. |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 4 | 종속기업으로부터의 미수배당금 장부금액이 100원이다. 배당소득은 과세대상이 아니다. 실질적으로, 자산의 전체 장부금액이 경제적효익으로부터 차감될 금액이다. 결과적으로, 이 미수배당금의 세무기준액은 100원",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "8",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "| 1 | 유동부채에 장부금액이 100원인 미지급비용이 포함되어 있다. 관련 비용은 현금기준으로 세무상 공제될 것이다. 이 미지급비용의 세무기준액은 영(0)이다. |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 2 | 유동부채에 장부금액이 100원인 선수이자가 포함되어 있다. 관련 이자수익은 현금기준으로 이미 과세되었다. 이 선수이자의 세무기준액은 영(0)이다. |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 3 | 유동부채에 장부금액이 100원인 미지급비용이 포함되어 있다. 관련 비용이 세무상 이미 공제되었다. 이 미지급비용의 세무기준액은 100원이다. |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 4 | 유동부채에 장부금액이 100원인 미지급벌과금이 포함되어 있다. 벌과금은 세무상 공제되지 않는다. 이 미지급벌과금의 세무기준액은 100원이다. |",
+       "chunk_hit": "1/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1012_bc": {
+   "n_para": 121,
+   "ok": 121,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1012_ie": {
+   "n_para": 48,
+   "ok": 41,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.968,
+     "fails": [
+      {
+       "line": "| 과세소득 | (500) |  | (500) |  | (500) |  | (500) |  | 2,000 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.898,
+     "fails": [
+      {
+       "line": "| 원가 | 건물 |  | 차량 |  | 합계 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 감가상각누계액 | 건물 |  | 차량 |  | 합계 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 원가 | 건물 |  | 차량 |  | 합계 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 장부금액 |  | 세무 |  | 일시적 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.918,
+     "fails": [
+      {
+       "line": "|  | 취득시 |  | 세무 |  | 일시적 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 인식한 금액 |  | 기준액 |  | 차이 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 이연법인세를 제외한 식별가능한 | 504 |  | 369 |  | 135 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 이연법인세를 제외한 식별가능한 |  | 504 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.938,
+     "fails": [
+      {
+       "line": "| 자본요소(249-100) |  |  |  | 1,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 자본요소(249-100) |  |  |  | 1,000 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.938,
+     "fails": [
+      {
+       "line": "|  |  | 종업원비용 |  | 기말시점 |  | 주식선택권당 내재가치 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| ⑴ 내재가치의 증가: | 18,000 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| ⑵ 주식선택권 수량의 감소: | (3,333) |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 자본에 직접 인식한 금액 | 46,800 |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.976,
+     "fails": [
+      {
+       "line": "| 이연법인세자산 및 이연법인세부채를 제외한 | (450) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.932,
+     "fails": [
+      {
+       "line": "|  | 장부금액 | 세무기준액 | 차감할(가산할) | 이연법인세 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  | 일시적차이 | 자산(부채) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 리스부채의 | 435 | - | (435) | (87) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1016": {
+   "n_para": 109,
+   "ok": 109,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [
+    "BC35F",
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1016_bc": {
+   "n_para": 179,
+   "ok": 179,
+   "partial": [],
+   "missing": [],
+   "n_sections": 19,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1019": {
+   "n_para": 184,
+   "ok": 184,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO14",
+    "DO15",
+    "DO16",
+    "DO17",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9",
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8"
+   ],
+   "l2_corpus_only": [
+    "A1"
+   ]
+  },
+  "kifrs_1019_bc": {
+   "n_para": 320,
+   "ok": 320,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1019_ie": {
+   "n_para": 1,
+   "ok": 1,
+   "partial": [],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1020": {
+   "n_para": 52,
+   "ok": 52,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1020_bc": {
+   "n_para": 7,
+   "ok": 7,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1021": {
+   "n_para": 109,
+   "ok": 109,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1021_bc": {
+   "n_para": 75,
+   "ok": 75,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1021_ie": {
+   "n_para": 20,
+   "ok": 20,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1023": {
+   "n_para": 36,
+   "ok": 36,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1023_bc": {
+   "n_para": 36,
+   "ok": 36,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1024": {
+   "n_para": 36,
+   "ok": 36,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1024_bc": {
+   "n_para": 56,
+   "ok": 56,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1024_ie": {
+   "n_para": 26,
+   "ok": 26,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1026": {
+   "n_para": 46,
+   "ok": 46,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1027": {
+   "n_para": 35,
+   "ok": 35,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "IN1",
+    "IN2",
+    "IN3"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1027_bc": {
+   "n_para": 44,
+   "ok": 44,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1027_ie": {
+   "n_para": 1,
+   "ok": 1,
+   "partial": [],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1028": {
+   "n_para": 64,
+   "ok": 64,
+   "partial": [],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [
+    "BC20",
+    "DO1",
+    "DO2",
+    "DO3",
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1028_bc": {
+   "n_para": 94,
+   "ok": 94,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1028_ie": {
+   "n_para": 1,
+   "ok": 0,
+   "partial": [
+    {
+     "para": "IE부록1",
+     "rate": 0.977,
+     "fails": [
+      {
+       "line": "| 기중 | 기업회계기준서제1109호를 적용한 손상차손(환입 | 기업회계기준서 제1109호를 적용한 P 주식의 손익 | 지분법을 적용하여 인식된, 투자자의 지분에 해당하는 관계기업의 이익(손실) | 기업회계기준서 제",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 25 | 35 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 26 | 35 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 42 | 47 |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1029": {
+   "n_para": 43,
+   "ok": 43,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1029_bc": {
+   "n_para": 7,
+   "ok": 7,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1032": {
+   "n_para": 145,
+   "ok": 145,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1032_bc": {
+   "n_para": 134,
+   "ok": 134,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1032_ie": {
+   "n_para": 50,
+   "ok": 45,
+   "partial": [
+    {
+     "para": "IE12",
+     "rate": 0.947,
+     "fails": [
+      {
+       "line": "| 행사일 |  | 20X3. 1. 31. |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE17",
+     "rate": 0.947,
+     "fails": [
+      {
+       "line": "| 행사일 |  | 20X3. 1. 31. |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE22",
+     "rate": 0.947,
+     "fails": [
+      {
+       "line": "| 행사일 |  | 20X3. 1. 31. |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE27",
+     "rate": 0.95,
+     "fails": [
+      {
+       "line": "| 행사일 |  | 20X3. 1. 31. |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE49",
+     "rate": 0.917,
+     "fails": [
+      {
+       "line": "| 전환시 추가적으로 발행될 보통주의 가치 |  | 400원 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1033": {
+   "n_para": 104,
+   "ok": 103,
+   "partial": [
+    {
+     "para": "A2",
+     "rate": 0.923,
+     "fails": [
+      {
+       "line": "| 조정비율 ＝ | 이론적 권리락 주당공정가치 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1033_bc": {
+   "n_para": 22,
+   "ok": 22,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1033_ie": {
+   "n_para": 14,
+   "ok": 7,
+   "partial": [
+    {
+     "para": "IE부록4",
+     "rate": 0.9,
+     "fails": [
+      {
+       "line": "| 20X0년 기본주당이익 | 180원 | = 0.30원 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE부록5",
+     "rate": 0.826,
+     "fails": [
+      {
+       "line": "| 주주우선배정 | 유통보통주 5주당 신주 1주(신주는 총 100주) |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 신주발행 내용 | 행사가격: 5.00원 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X0년 당초 보고된 | 1,100원÷500주 | 2.20원 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 주주우선배정 신주발행으로 재계산된 20X0년 기본주당이익: | 1,100원 | 2.00원 |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE부록6",
+     "rate": 0.882,
+     "fails": [
+      {
+       "line": "| 옵션이 행사될 경우 발행될 |  | 100,000 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 평균시장가격으로 발행되었을 경우의 가중평균보통주식수: | ⑴ | (75,000) |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE부록7",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "| 주식선택권의 대가로서 종업원이 제공하는 용역에 대하여 | 1,200원 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 주식선택권 1개당 제공해야 할 용역의 공정가치: | 1.20원 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE부록9",
+     "rate": 0.911,
+     "fails": [
+      {
+       "line": "| 이 기간 동안 개점한 영업점: | 20X1년 9월 1일에 1개 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 지배기업의 보통주에 귀속되는 연결 누적중간기간 이익: | 20X1년 6월 30일 현재 2,300,000원 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "| 지배기업의 보통주에 귀속되는 연결 누적중간기간 이익: | 20X1년 9월 30일 현재 1,900,000원 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "| 지배기업의 보통주에 귀속되는 연결 누적중간기간 이익: | 20X1년 12월 31일 현재 2,900,000원 |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "IE부록11",
+     "rate": 0.965,
+     "fails": [
+      {
+       "line": "| 대가없이 발행된 증분주식 | 100,000 × |  | 20,000 | 없음 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 이익의 증가 | 100,000,000 × 0.05 × | 3,000,000 |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE부록14",
+     "rate": 0.981,
+     "fails": [
+      {
+       "line": "| 전환가정시 지배기업의 보통주에 |  | 1,000,000원 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 전환가정시 지배기업의 보통주에 |  | (1,000,000원) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 4월 1일 연이자율 5% | 480,000 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "⑵ [(57.125원* - 55원) ÷ 57.125원] × 600,000 = 22,320주; 22,320 × 8/12 = 14,880주",
+       "chunk_hit": "1/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1034": {
+   "n_para": 72,
+   "ok": 72,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1034_bc": {
+   "n_para": 27,
+   "ok": 27,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1034_ie": {
+   "n_para": 49,
+   "ok": 49,
+   "partial": [],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1036": {
+   "n_para": 182,
+   "ok": 181,
+   "partial": [
+    {
+     "para": "A8",
+     "rate": 0.786,
+     "fails": [
+      {
+       "line": "| 1년 후 유입되는 현금흐름 1,000원의 현재가치 | 952.38 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 2년 후 유입되는 현금흐름 1,000원의 현재가치 | 902.73 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 3년 후 유입되는 현금흐름 1,000원의 현재가치 | 851.61 |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [
+    "DO10",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9",
+    "E55"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1036_bc": {
+   "n_para": 271,
+   "ok": 271,
+   "partial": [],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1036_ie": {
+   "n_para": 110,
+   "ok": 87,
+   "partial": [
+    {
+     "para": "IE23",
+     "rate": 0.7,
+     "fails": [
+      {
+       "line": "| A국에서의 활동 | 3,000 | 2,000 | 1,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| B국에서의 활동 | 2,000 | 1,500 | 500 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| C국에서의 활동 | 5,000 | 3,500 | 1,500 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE34",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "| 장부금액(사례 2) | 1,833 | (473)",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 세무기준액 | 900 |  | 900 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE36",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "| 장부금액 | 1,000 | (350) | 650 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 세무기준액 | 800 | - | 800 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 이연법인세부채(자산), | 60 | (105) | (45) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE40",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "| 역사적원가 | 1,000 | 2,000 | 3,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 감가상각누계액 | - | (167) | (167) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 손상차손 | (1,000) | (473) | (1,473) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE43",
+     "rate": 0.611,
+     "fails": [
+      {
+       "line": "| 역사적원가 | 2,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 감가상각누계액(166.7×3년) | (500) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 장부금액(<표 1> 참조) | 1,113 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 총 장부금액 | 1,000 | 2,000 | 3,000 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE48",
+     "rate": 0.5,
+     "fails": [
+      {
+       "line": "| 20X1 | 3001 | 263 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X2 | 2802 | 215 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X3 | 4202 | 283 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X4 | 5202 | 308 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE49",
+     "rate": 0.778,
+     "fails": [
+      {
+       "line": "| 손상차손 인식 전 장부금액 | 3,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 회수가능액(표 1) | 2,051 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE51",
+     "rate": 0.556,
+     "fails": [
+      {
+       "line": "| 20X3 | 4201 | 368 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X4 | 5702 | 439 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X5 | 3802 | 256 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X6 | 4502 | 266 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE52",
+     "rate": 0.786,
+     "fails": [
+      {
+       "line": "| 20X2년 말 | (410) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 손상차손환입 전 장부금액 | 1,641 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 회수가능액(표 3) | 2,162 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE53",
+     "rate": 0.917,
+     "fails": [
+      {
+       "line": "| 연도 말 | 감가상각 후 | 회수가능액 | 조정된 감가상각액 | (손상차손) | 손상차손 인식 후 장부금액 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE57",
+     "rate": 0.524,
+     "fails": [
+      {
+       "line": "| 20X1 | 22,1651 | 19,443 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X2 | 21,4501 | 16,505 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X3 | 20,5501 | 13,871 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X4 | 24,7251,2 | 14,639 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE58",
+     "rate": 0.778,
+     "fails": [
+      {
+       "line": "| 손상차손 인식 전 장부금액 | 150,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 회수가능액(표 1) | 121,128 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE60",
+     "rate": 0.6,
+     "fails": [
+      {
+       "line": "| 20X5 | 30,321 | 26,597 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X6 | 32,750 | 25,200 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X7 | 31,721 | 21,411 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X8 | 31,950 | 18,917 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE61",
+     "rate": 0.621,
+     "fails": [
+      {
+       "line": "| 20X4년 말 | (48,452) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 감가상각액(20X1년부터 20X4년까지: 표 5) | 25,000 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 손상차손환입 전 장부금액 | 97,676 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 회수가능액(표 3) | 122,072 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE65",
+     "rate": 0.875,
+     "fails": [
+      {
+       "line": "| 20X3년 말 |  | 종속기업의 |  | 식별할 수 있는 순자산 |  | 합계 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 인식되지 않은 |  | 100 |  | - |  | 100 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE68",
+     "rate": 0.875,
+     "fails": [
+      {
+       "line": "| 손상차손 인식 후 |  | - |  | 1,000 |  | 1,000 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE75",
+     "rate": 0.5,
+     "fails": [
+      {
+       "line": "| 장부금액 | 100 | 150 | 200 | 450 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 내용연수 | 10년 | 20년 | 20년 | 800 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 내용연수에 기초한 가중치 | 1 | 2 | 2 | 100% |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 가중치 부여 후 장부금액 | 100 | 300 | 400 | 150 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE76",
+     "rate": 0.875,
+     "fails": [
+      {
+       "line": "| 연도 | 미래현금흐름 | 할인된 현금흐름 | 미래현금흐름 | 할인된 현금흐름 | 미래현금흐름 | 할인된 현금흐름 | 미래현금흐름 | 할인된 현금흐름 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  |  | (15%) |  | (15%) |  | (15%) |  | (15%) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 장부금액 | 119 | 206 | 275 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (건물 배분 후)(표 1) | 199 | 164 | 271 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE77",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "| 본사 건물에 배분하는 금액 | (12)(42×56/206) | (1)(4×75/275) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 현금창출단위 내에 포함 된 자산에 배분하는 금액 | (30)(42×150/206) | (3)(4×200/275) |",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "IE78",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "| 장부금액 | 100 | 150 | 200 | 150 | 50 | 650 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 검사의 1단계에서 판명된 손상차손 | - | (30) | (3) | (13) | - | (46) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE83",
+     "rate": 0.5,
+     "fails": [
+      {
+       "line": "| 예산 기간의 | 예산 기간의 | 예산 기간의 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 매출총이익률 | 5년 만기 미국 국채수익률 | 매출총이익률 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (예산 기간=4년) | (예산 기간=5년) | (예산 기간=5년) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 예산 기간의 | 예산 기간의 | 예산 기간의 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE89",
+     "rate": 0.823,
+     "fails": [
+      {
+       "line": "| 주요 가정 | 예산 매출총이익률 | 5년 만기 미국국채수익률 | 예산 매출총이익률 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 주요 가정치를 결정하는 기준 | 예산 기간이 시작되기 직전의 회계연도에 달성되고, 예상되는 효율 개선을 고려하여 상승한 평균 매출총이익률 | 예산 기간이 시작되는 시점의 5년 만기 미국 국채수익률 | 예산 기간이",
+       "chunk_hit": "1/4"
+      },
+      {
+       "line": "|  | 주요 가정치는 효율  개선을 제외하고는 과거 경험치를 반영함. 경영진은 매년 5%의 개선은 상당히 달성 가능하다고 판단함. | 주요 가정치는 외부정보원천과 일치함 | 주요 가정치는 효율 개선을 제외하고는 과",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 주요 가정 | 예산 기간동안의 일본 엔화 대 미국 달러 환율 | 원재료 가격 상승률 | 원재료 가격 상승률 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [
+    {
+     "para": "IE32",
+     "rate": 0.444,
+     "fails": [
+      {
+       "line": "| 20X2(n=1) | 3% | 2301 | 0.86957 | 200 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X3 | -2% | 2531 | 0.75614 | 191 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X4 | -6% | 2731 | 0.65752 | 180 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X5 | -15% | 2901 | 0.57175 | 166 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1037": {
+   "n_para": 115,
+   "ok": 115,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1037_bc": {
+   "n_para": 30,
+   "ok": 30,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1037_ie": {
+   "n_para": 20,
+   "ok": 20,
+   "partial": [],
+   "missing": [],
+   "n_sections": 20,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1038": {
+   "n_para": 154,
+   "ok": 154,
+   "partial": [],
+   "missing": [],
+   "n_sections": 15,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1038_bc": {
+   "n_para": 149,
+   "ok": 149,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1038_ie": {
+   "n_para": 10,
+   "ok": 10,
+   "partial": [],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1039": {
+   "n_para": 136,
+   "ok": 136,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "DO1",
+    "DO2"
+   ],
+   "l2_corpus_only": [
+    "103U"
+   ]
+  },
+  "kifrs_1039_bc": {
+   "n_para": 288,
+   "ok": 285,
+   "partial": [
+    {
+     "para": "BC196",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "| 위험회피대상이 아닌 층 |  | 위험회피대상이 아닌 층 |  | 위험회피대상이 아닌 층 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "BC197",
+     "rate": 0.786,
+     "fails": [
+      {
+       "line": "| 위험회피대상 |  | 위험회피대상 |  | 위험회피대상 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 금액 20원 |  | 금액 20원 |  | 금액 20원 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 위험회피대상 |  |  | 10원 감소 | 위험회피대상 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 금액 |  |  |  | 금액 |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "BC199",
+     "rate": 0.739,
+     "fails": [
+      {
+       "line": "|  | 자산 100원 |  |  | 자산 |  |  | 자산 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  |  | 90원 |  |  | 110원 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 자산 100원 |  |  | 자산 |  |  | 자산 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  |  | 90원 |  |  | 110원 |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1039_ie": {
+   "n_para": 31,
+   "ok": 29,
+   "partial": [
+    {
+     "para": "IE18",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "|  |  |  |  | 별도의 | 3,793 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE31",
+     "rate": 0.974,
+     "fails": [
+      {
+       "line": "| 차감 : |  | - |  | - |  | (3,793) |  | - |  | - |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1040": {
+   "n_para": 113,
+   "ok": 113,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1040_bc": {
+   "n_para": 95,
+   "ok": 95,
+   "partial": [],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1041": {
+   "n_para": 65,
+   "ok": 65,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [
+    "A1",
+    "A2",
+    "BC3",
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1041_bc": {
+   "n_para": 105,
+   "ok": 105,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1041_ie": {
+   "n_para": 5,
+   "ok": 3,
+   "partial": [
+    {
+     "para": "IE사례1-3",
+     "rate": 0.545,
+     "fails": [
+      {
+       "line": "| 20X1년 1월 1일 장부금액 | 459,570 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 매입으로 인한 증가 | 26,250 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 물리적 변화에 기인하는 순공정가치의 변동에서 | 15,350 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 발생한 이익 | 24,580 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [
+    {
+     "para": "(무번호)",
+     "rate": 0.269,
+     "fails": [
+      {
+       "line": "| 20X1년 1월 1일 2년된 가축 | 100 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X1년 7월 1일 새로 태어난 가축 | 70 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X1년 7월 1일 2.5년된 가축 | 108 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X1년 12월 31일 새로 태어난 가축 | 72 |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1101": {
+   "n_para": 173,
+   "ok": 173,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "BC2"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1101_bc": {
+   "n_para": 182,
+   "ok": 182,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1101_ie": {
+   "n_para": 77,
+   "ok": 77,
+   "partial": [],
+   "missing": [],
+   "n_sections": 18,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1102": {
+   "n_para": 176,
+   "ok": 176,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "BC247"
+   ]
+  },
+  "kifrs_1102_bc": {
+   "n_para": 469,
+   "ok": 469,
+   "partial": [],
+   "missing": [],
+   "n_sections": 15,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1102_ie": {
+   "n_para": 35,
+   "ok": 33,
+   "partial": [
+    {
+     "para": "IG23",
+     "rate": 0.829,
+     "fails": [
+      {
+       "line": "| 가득조건 | 1.5년 근무 | 3년 근무 | 3년 근무 | 3년 근무 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 시장성과조건: 목표주가달성(달성됨) |  | 주당이익의 성장목표치 달성 | 시장점유율의 증가목표치 달성 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  | 주식선택권 | 가중평균 행사가격 | 주식선택권 | 가중평균 행사가격 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 수량 |  | 수량 |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG24",
+     "rate": 0.583,
+     "fails": [
+      {
+       "line": "|  | 용역제공 | 성과조건 | 비가득조건 |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 용역제공 | 시장조건인 성과조건 | 그 밖의 성과조건 | 기업이나 거래상대방 어느 누구도 조건의 충족 여부를 선택할 수 없는 경우 | 거래상대방이 조건의 충족 여부를 선택할 수 있는 경우 | 기업이 조건의 ",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 조건 예시 | 3년 동안 계속 근무해야 하는 조건 | 기업 지분상품의 시장가격에 근거한 목표 | 성공적인 기업공개에 근거한 목표 | 일반상품지수에 근거한 목표 | 주식기준보상의 행사가격 지급을 위한 기여금의 납부",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 부여일 후 가득기간에 조건이 충족되지 않을 경우의 회계처리 | 상실. | 회계처리에 어떠한 변화도 없음. 기업은 잔여 가득기간에 계속해서 비용을 인식한다. | 상실. | 회계처리에 어떠한 변화도 없음. 기업은 잔",
+       "chunk_hit": "0/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1103": {
+   "n_para": 197,
+   "ok": 197,
+   "partial": [],
+   "missing": [],
+   "n_sections": 17,
+   "l2_raw_only": [
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1103_bc": {
+   "n_para": 514,
+   "ok": 514,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1103_ie": {
+   "n_para": 143,
+   "ok": 140,
+   "partial": [
+    {
+     "para": "IE2",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "|  |  |  | A사 |  | B사 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  | (법적 지배기업, 회계상 피취득자) |  | (법적 종속기업, |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE61",
+     "rate": 0.714,
+     "fails": [
+      {
+       "line": "| 대체보상 | 요구되지 않는 경우 | 사례 1 | 사례 4 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 대체보상 | 요구되는 경우 | 사례 2 | 사례 3 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.968,
+     "fails": [
+      {
+       "line": "| B64⑹㈐  B64⑺ | 조건부 대가 약정에 따라 AC사는 TC사가 소유한 비연결지분투자 XC사의 수익 중 20X3년에 대해서 7,500원을 초과하는 금액의 5%를 TC사의 이전 소유주에게 지급해야 하며, 최대 ",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| B64⑽ | 지난 3년 동안 TC사가 판매한 제품에 대해 예상되는 보증청구액에 대해 충당부채 1,000원을 인식하였습니다. 이 지출의 대부분은 20X3년에 발생할 것으로 예상되며, 모든 지출은 20X4년 말까지는",
+       "chunk_hit": "5/6"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1105": {
+   "n_para": 81,
+   "ok": 81,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1105_bc": {
+   "n_para": 117,
+   "ok": 117,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1105_ie": {
+   "n_para": 19,
+   "ok": 19,
+   "partial": [],
+   "missing": [],
+   "n_sections": 19,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1106": {
+   "n_para": 37,
+   "ok": 37,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [
+    "DO2",
+    "DO3",
+    "DO4"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1106_bc": {
+   "n_para": 73,
+   "ok": 73,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1107": {
+   "n_para": 220,
+   "ok": 220,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "44Z"
+   ]
+  },
+  "kifrs_1107_bc": {
+   "n_para": 294,
+   "ok": 294,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1107_ie": {
+   "n_para": 41,
+   "ok": 32,
+   "partial": [
+    {
+     "para": "IG11B",
+     "rate": 0.967,
+     "fails": [
+      {
+       "line": "| 2기업회계기준서 제1107호 문단 |  | 처분한 투자 | 202 |  | 20 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG13C",
+     "rate": 0.692,
+     "fails": [
+      {
+       "line": "|  | 위험회피수단의 명목금액 | 자산 | 부채 | 재무상태표 상 위험회피수단의 계정과목 | 20X1년의 위험회피의 비효과적인 부분을 계산하기 위해 사용된 공정가치의 변동 |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 일반상품가격위험 | XX | XX | XX | 계정과목 XX | XX |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 이자율위험 | XX | XX | XX | 계정과목 XX | XX |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 외화환산위험 | XX | XX | XX | 계정과목 XX | XX |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG13D",
+     "rate": 0.824,
+     "fails": [
+      {
+       "line": "|  | 자산 | 부채 | 자산 | 부채 | 재무상태표상 위험회피대상항목을 포함한 계정과목 | 20X1의 위험회피의 비효과적인 부분을 계산하기 위해 사용된 가치 변동 | 현금흐름위험회피적립금 |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| -차입금 | - | XX | - | XX | 계정과목 | XX | n/a |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 외화환산위험 | XX | XX | XX | XX | 계정과목 | XX | n/a |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG13E",
+     "rate": 0.846,
+     "fails": [
+      {
+       "line": "| 일반상품가격위험 | n/a | XX | XX | 계정과목 XX | XX | 계정과목 XX |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 일반상품X-위험회피중단 | n/a |  |  | n/a | XX | 계정과목 XX |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG20D",
+     "rate": 0.929,
+     "fails": [
+      {
+       "line": "| 20XX | 현재 | 30일 이상 | 60일 이상 | 90일 이상 | 합계 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG31A",
+     "rate": 0.9,
+     "fails": [
+      {
+       "line": "|  | 합계 | 1개월 미만 | 1개월 이상 - | 3개월 초과–6 | 6개월 초과 | 1년 초과–3 | 3년 초과–5년 이하 | 5년 초과 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  |  |  | 3 개월 | 개월  이하 | –1년 이하 | 년 이하 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 리스부채* | 4,970 |  |  | 340 | 310 | 290 | 4,030 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG40B",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "|  | 단기매매 자산 | 파생상품 | 주택담보 | 소비자 | 지분투자 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  | 대여금 | 대여금 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (단위: 백만원) | (제거된) 양도자산을 | 당기손익인식금융자산 | 기타포괄손익인식금융자산 | 당기손익인식금융부채 | 자산 | 부채 | 손실에 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  | 재매입하기 위한 현금 유출액 |  |  |  |  |  | 최대로 노출되는 금액 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG40C",
+     "rate": 0.758,
+     "fails": [
+      {
+       "line": "|  | 단기매매 증권 | 파생상품 | 주택담보 | 소비자 | 지분투자 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  |  | 대여금 | 대여금 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (단위: 백만원) | (제거된) 양도자산을 | 단기매매 | 매도가능 | 당기손익인식금융부채 | 자산 | 부채 | 손실에 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  | 재매입하기 위한 현금 유출액 |  | 금융자산 |  |  |  | 최대로 노출되는 금액 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IG40D",
+     "rate": 0.747,
+     "fails": [
+      {
+       "line": "| 20xx년 | ⑴ | ⑵ | ⑶=⑴-⑵ | ⑷ | ⑸=⑶-⑷ |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20xx년 | 인식된 | 상계되는 인식된 | 재무상태표에 표시되는 금융자산 순액 | 재무상태표에서 상계되지 않은 관련 금액 | 순액 |  |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 12월 31일 | 금융자산 총액 | 금융부채 총액 |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 인식된 | 상계되는 인식된 | 재무상태표에 표시되는 금융자산 순액 | ⑷㈎, ⑷㈏ | ⑷㈏ | 순액 |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1108": {
+   "n_para": 45,
+   "ok": 45,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5"
+   ],
+   "l2_corpus_only": [
+    "BC31"
+   ]
+  },
+  "kifrs_1108_bc": {
+   "n_para": 72,
+   "ok": 70,
+   "partial": [
+    {
+     "para": "BC62",
+     "rate": 0.968,
+     "fails": [
+      {
+       "line": "| 도입 | 문단번호 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 배경정보 | 41 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 영업부문의 정의 | 42~56 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 보고부문 | 57~80 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "**3",
+     "rate": 0.941,
+     "fails": [
+      {
+       "line": "| 2011.11.11. 개정 | 기업회계기준서 | IAS 19 Employment Benefits |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1108_ie": {
+   "n_para": 7,
+   "ok": 5,
+   "partial": [
+    {
+     "para": "IG3",
+     "rate": 0.844,
+     "fails": [
+      {
+       "line": "| 외부고객 | 3,000 | 5,000 | 9,500 | 12,000 | 5,000 | 1,000(1) | 35,500 |",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "| 부문간 | – | – | 3,000 | 1,500 | – | – | 4,500 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 보고부문 | 200 | 70 | 900 | 2,300 | 500 | 100 | 4,070 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 보고부문 | 2,000 | 5,000 | 3,000 | 12,000 | 57,000 | 2,000 | 81,000 |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "IG4",
+     "rate": 0.974,
+     "fails": [
+      {
+       "line": "| 순이자수익 | 1,000 | – | 1,000 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1109": {
+   "n_para": 629,
+   "ok": 625,
+   "partial": [
+    {
+     "para": "B4.1.4",
+     "rate": 0.818,
+     "fails": [
+      {
+       "line": "| 사례 1 | 그 밖의 다른 정보 중 특히 유동성 관점에서 금융자산의 공정가치(자산을 매도할 필요가 있는 경우 실현될 현금액)를 고려하더라도 기업의 목적은 금융자산을 보유하여 계약상 현금흐름을 수취하는 것이다. 예",
+       "chunk_hit": "5/6"
+      },
+      {
+       "line": "| 사례 2 | 이 사업모형의 목적은 계약상 현금흐름을 수취하기 위해 금융자산을 보유하는 것이다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 사업모형은 대여금과 같은 금융자산의 포트폴리오를 매입하는 것이다. 그러한 포트폴리오는 신용이 손상된 금융자산을 포함할 수도 있고 포함하지 않을 수도 있다. | 계약상 모든 현금흐름을 수취할 것으로 예상하지 않더라",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 만일 대여금에 대한 지급이 적시에 이루어지지 않을 경우 기업은 다양한 방법(예: 채무자와 서신, 전화, 그 밖의 다른 방법으로 연락을 취함)으로 계약상 현금흐름을 실현하려고 노력한다. 계약상 현금흐름을 수취하는 ",
+       "chunk_hit": "4/5"
+      }
+     ]
+    },
+    {
+     "para": "B4.1.4C",
+     "rate": 0.882,
+     "fails": [
+      {
+       "line": "| 사례 5 | 이 사업모형의 목적은 계약상 현금흐름의 수취와 금융자산의 매도 둘 다를 통해 사업모형의 목적을 이루는 것이다. 계약상 현금흐름의 수취와 금융자산의 매도 중 어느 것이 포트폴리오의 수익을 극대화하는지를",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 기업은 몇 년 내에 자본적 지출을 예상한다. 기업은 수요가 생겼을 때 해당 지출액에 투자할 수 있도록 잉여현금을 단기금융자산과 장기금융자산에 투자한다. 많은 금융자산의 계약상 존속기간이 기업의 예상투자기간을 초과",
+       "chunk_hit": "7/8"
+      },
+      {
+       "line": "| 사례 6 | 이 사업모형의 목적은 매일의 유동성 수요를 충족하기 위해 포트폴리오의 수익을 극대화하는 것이고 계약상 현금흐름의 수취와 금융자산의 매도 둘 다를 통해 이러한 목적을 이룬다. 다시 말하면, 계약상 현금",
+       "chunk_hit": "2/4"
+      },
+      {
+       "line": "| 사례 7 | 이 사업모형의 목적은 보험계약부채의 상환자금을 마련하는 것이다. 이러한 목적을 이루기 위해, 목표로 하는 자산 포트폴리오의 구성이 유지되도록 금융자산의 지급기일이 도래한 때 계약상 현금흐름을 수취하고",
+       "chunk_hit": "3/4"
+      }
+     ]
+    },
+    {
+     "para": "B4.1.13",
+     "rate": 0.819,
+     "fails": [
+      {
+       "line": "| 금융상품 A | 계약상 현금흐름이 원리금 지급만으로 구성되어 있다. 원리금 지급을 레버리지되지 않은 인플레이션지수와 연계하는 것은 화폐의 시간가치를 현행 수준으로 재설정하는 것이다. 다시 말하면, 이 금융상품의 ",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 금융상품 A는 명시된 만기일이 있는 채권이다. 원리금 지급은 이 금융상품이 발행된 통화의 인플레이션지수와 연계되어 있다. 이러한 인플레이션 연계는 레버리지되어 있지 않으며 원금은 보장된다. | 그러나 만일 이자의",
+       "chunk_hit": "6/7"
+      },
+      {
+       "line": "| 금융상품 B | 금융상품의 존속기간에 걸쳐 지급되는 이자가 화폐의 시간가치, 금융상품과 관련된 신용위험, 그 밖의 기본적인 대여 위험과 원가에 대한 대가 및 이윤을 반영한다면(문단 B4.1.7A 참조) 계약상 현",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 금융상품 B는 명시된 만기일이 있으며 채무자가 지속적으로 시장이자율을 선택할 수 있는 변동금리 금융상품이다. 예를 들어 채무자는 각 이자율 재설정일에 3개월의 기간에 대해 3개월 LIBOR로 또는 1개월의 기간에",
+       "chunk_hit": "8/9"
+      }
+     ]
+    },
+    {
+     "para": "B4.1.14",
+     "rate": 0.7,
+     "fails": [
+      {
+       "line": "| 금융상품 F | 보유자는 전환사채를 전체로 분석할 것이다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 금융상품 F는 확정수량의 발행자 지분상품으로 전환가능한 채권이다. | 계약상 현금흐름이 기본대여계약과 일관되지 아니하는 수익을 반영하기 때문에 이러한 계약상 현금흐름은 원리금 지급이 아니다(문단 B4.1.7A 참",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 금융상품 G | 계약상 현금흐름이 원리금 지급만으로 구성되어 있는 것이 아니다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 금융상품 G는 역변동금리(시장이자율과 반비례관계에 있는 이자율)를 지급하는 대여금이다. | 이자금액은 원금잔액의 화폐의 시간가치에 대한 대가가 아니다. |",
+       "chunk_hit": "2/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [
+    "BCIN.1",
+    "BCIN.10",
+    "BCIN.11",
+    "BCIN.12",
+    "BCIN.13",
+    "BCIN.14",
+    "BCIN.16",
+    "BCIN.17",
+    "BCIN.18",
+    "BCIN.19",
+    "BCIN.2",
+    "BCIN.20",
+    "BCIN.3",
+    "BCIN.4",
+    "BCIN.5",
+    "BCIN.6",
+    "BCIN.7",
+    "BCIN.8",
+    "BCIN.9",
+    "BCIN15",
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO14",
+    "DO15",
+    "DO16",
+    "DO17",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9",
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN12",
+    "IN13",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": [
+    "B3.1.2A",
+    "B3.3.6A",
+    "B4.1.10A",
+    "B4.1.12A",
+    "B4.1.16A",
+    "B4.1.20A",
+    "B4.1.2A",
+    "B4.1.2B",
+    "B4.1.2C",
+    "B4.1.3A",
+    "B4.1.3B",
+    "B4.1.4A",
+    "B4.1.4B",
+    "B4.1.4C",
+    "B4.1.7A",
+    "B4.1.7B",
+    "B4.1.8A",
+    "B4.1.9A",
+    "B4.1.9B",
+    "B4.1.9C",
+    "B4.1.9D",
+    "B4.1.9E",
+    "B5.1.2A",
+    "B5.2.2A",
+    "B5.7.1A",
+    "B5.7.2A",
+    "BC2.17A",
+    "BC2.17B",
+    "BC2.17C",
+    "BC2.17D",
+    "BC2.17E",
+    "BC2.17F",
+    "BC2.17G",
+    "BC2.17H",
+    "BC2.17I",
+    "BC2.18A",
+    "BC2.18B",
+    "BC2.18C",
+    "BC2.18D",
+    "BC2.18E",
+    "BC2.18F",
+    "BC2.18G",
+    "BC2.18H",
+    "BC2.18I",
+    "BC2.18J",
+    "BC2.18K",
+    "BC5.10A",
+    "BC5.10B",
+    "BC7.34A",
+    "BC7.34B",
+    "BC7.34C",
+    "BC7.34D",
+    "BC7.34E",
+    "BC7.34F",
+    "BC7.34G",
+    "BC7.34H",
+    "BC7.34I",
+    "BC7.34J",
+    "BC7.34K",
+    "BC7.34L",
+    "BC7.34M",
+    "BC7.9A",
+    "BC7.9B",
+    "BC7.9C",
+    "BC7.9D",
+    "BC7.9E",
+    "BC7.9F",
+    "BC7.9G",
+    "BC7.9H",
+    "BC7.9I",
+    "BC7.9J",
+    "BC7.9K",
+    "BC7.9L",
+    "BC7.9M",
+    "BC7.9N",
+    "BC7.9O",
+    "BC7.9P",
+    "BC7.9Q",
+    "BC7.9R",
+    "BC7.9S",
+    "BC7.9T"
+   ]
+  },
+  "kifrs_1109_bc": {
+   "n_para": 1753,
+   "ok": 1753,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1109_ie": {
+   "n_para": 169,
+   "ok": 163,
+   "partial": [
+    {
+     "para": "IE5",
+     "rate": 0.76,
+     "fails": [
+      {
+       "line": "| [문단 B5.7.18⑵] | 기말에 해당 상품의 계약상 현금흐름은 다음과 같이 구성된다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 다음으로 기말에 다음 ㈎와 ㈏의 합계인 할인율과 부채의 계약상 현금흐름을 사용하여 부채와 관련된 현금흐름의 현재가치를 산출한다. | 이자: 매년 12,000원⑴(2차 연도~10차 연도) |",
+       "chunk_hit": "1/3"
+      },
+      {
+       "line": "| ㈎\t기말에 관측된 기준금리 | 원금: 150,000원(10차 연도) |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| ㈏\t문단 B5.7.18⑴에 따라 결정한 금융상품에 특유한 내부수익률 요소 | 사채의 현재가치를 계산할 때 사용할 할인율은 7.75%인데, 이는 기말 시점의 LIBOR 4.75%에 해당 상품에 특유한 요소인 3%를",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "IE70",
+     "rate": 0.917,
+     "fails": [
+      {
+       "line": "|  | A | B | C | D | E | F = A + C + D – E | G | H = F – G |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE120",
+     "rate": 0.976,
+     "fails": [
+      {
+       "line": "| 내재된 | 1.1875 | 현재가치 [FC] | 0 | 27,540 | (18,528) | 1,063 | (96,158) |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "IE134",
+     "rate": 0.695,
+     "fails": [
+      {
+       "line": "| 기간 1 | t2 |  |  |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간 1 | t3 |  |  |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간 1 | t4 |  |  |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간  2 | t6 | (20,426) | (19,977) | 20,246 | 19,801 | (15,271) | (14,896) | 17,089 | 16,669 |",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "IE144",
+     "rate": 0.714,
+     "fails": [
+      {
+       "line": "| 기간 1 | t2 |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간 1 | t3 |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간 1 | t4 |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기간 2 | t6 | (11,331) | (11,082) | 11,331 | 11,082 | (9,117) | (9,067) |",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.644,
+     "fails": [
+      {
+       "line": "| 20X1년12월29일 | - | - | - |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 금융자산 | - | - | - |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X1년12월31일 | - | 2 | 2 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 수취채권 | - | - | - |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 28,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1110": {
+   "n_para": 201,
+   "ok": 201,
+   "partial": [],
+   "missing": [],
+   "n_sections": 15,
+   "l2_raw_only": [
+    "DO1",
+    "DO10",
+    "DO11",
+    "DO12",
+    "DO13",
+    "DO14",
+    "DO15",
+    "DO16",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9",
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN12",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN7A",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1110_bc": {
+   "n_para": 346,
+   "ok": 346,
+   "partial": [],
+   "missing": [],
+   "n_sections": 19,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1110_ie": {
+   "n_para": 15,
+   "ok": 15,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1111": {
+   "n_para": 106,
+   "ok": 105,
+   "partial": [
+    {
+     "para": "B27",
+     "rate": 0.941,
+     "fails": [
+      {
+       "line": "| 부채에 대한 의무 | 계약상 약정은 공동약정의 당사자들에게 모든 부채, 의무, 원가 그리고 비용이 특정한 비율(예: 약정에 대한 당사자의 소유지분율 또는 약정을 통해 수행되어 당사자들에게 직접 귀속되는 활동의 비",
+       "chunk_hit": "4/5"
+      },
+      {
+       "line": "| 부채에 대한 의무 | 계약상 약정은 공동약정의 당사자들에게 제3자가 제기한 청구에 대한 법적 책임이 있음을 정한다. | 계약상 약정은 공동약정의 채권자에게 약정의 채무나 의무를 당사자에게 상환청구할 수 있는 권리",
+       "chunk_hit": "2/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN4A",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9",
+    "IN9A"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1111_bc": {
+   "n_para": 105,
+   "ok": 105,
+   "partial": [],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1111_ie": {
+   "n_para": 73,
+   "ok": 73,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1112": {
+   "n_para": 84,
+   "ok": 84,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN12",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1112_bc": {
+   "n_para": 154,
+   "ok": 154,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1113": {
+   "n_para": 181,
+   "ok": 181,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [
+    "IN1",
+    "IN10",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": [
+    "BC178"
+   ]
+  },
+  "kifrs_1113_bc": {
+   "n_para": 253,
+   "ok": 253,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1113_ie": {
+   "n_para": 66,
+   "ok": 65,
+   "partial": [
+    {
+     "para": "IE60",
+     "rate": 0.941,
+     "fails": [
+      {
+       "line": "|  | 구분 |  | X9년 12월 31일 |  | 동일한 자산에 대한 활성시장의 공시가격 |  | 그 밖의 유의적이며 관측 가능한 투입변수 |  | 유의적이지만 관측 가능하지 않은 투입변수 |  | 총이익 (손실",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "|  |  |  |  |  | (수준 1) |  | (수준 2) |  | (수준 3) |  |  |  |  |  |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 27,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1114": {
+   "n_para": 77,
+   "ok": 77,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1114_bc": {
+   "n_para": 85,
+   "ok": 85,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1114_ie": {
+   "n_para": 5,
+   "ok": 5,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1115": {
+   "n_para": 258,
+   "ok": 257,
+   "partial": [
+    {
+     "para": "정의-(광의의)수익(Income)",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "(광의의) 수익(Income): 자산의 유입 또는 가치 증가나 부채의 감소 형태로 자본의 증가를 가져오는, 특정 회계기간에 생긴 경제적 효익의 증가로서, 지분참여자의 출연과 관련된 것은 제외",
+       "chunk_hit": "1/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [
+    "A1",
+    "A1A",
+    "A2",
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": [
+    "BC27F"
+   ]
+  },
+  "kifrs_1115_bc": {
+   "n_para": 660,
+   "ok": 659,
+   "partial": [
+    {
+     "para": "BC510",
+     "rate": 0.998,
+     "fails": [
+      {
+       "line": "A2 \tIFRS 15와 Topic 606은 (각각) IFRS와 US GAAP의 다른 기준서의 방식과 일치하도록 구성되었다. 따라서 IFRS 15와 Topic 606은 문단 번호가 같지 않다. IFRS와 US GAAP",
+       "chunk_hit": "7/9"
+      },
+      {
+       "line": "| IN8 | 606-10-05-4 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 23,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1115_ie": {
+   "n_para": 371,
+   "ok": 371,
+   "partial": [],
+   "missing": [],
+   "n_sections": 87,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1116": {
+   "n_para": 236,
+   "ok": 236,
+   "partial": [],
+   "missing": [],
+   "n_sections": 14,
+   "l2_raw_only": [
+    "DO1",
+    "DO2",
+    "DO3",
+    "DO4",
+    "DO5",
+    "DO6",
+    "DO7",
+    "DO8",
+    "DO9",
+    "IN1",
+    "IN10",
+    "IN11",
+    "IN12",
+    "IN13",
+    "IN14",
+    "IN15",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8",
+    "IN9"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1116_bc": {
+   "n_para": 353,
+   "ok": 353,
+   "partial": [],
+   "missing": [],
+   "n_sections": 27,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1116_ie": {
+   "n_para": 12,
+   "ok": 12,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1117": {
+   "n_para": 390,
+   "ok": 390,
+   "partial": [],
+   "missing": [],
+   "n_sections": 18,
+   "l2_raw_only": [
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7",
+    "IN8"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_1117_bc": {
+   "n_para": 578,
+   "ok": 578,
+   "partial": [],
+   "missing": [],
+   "n_sections": 13,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_1117_ie": {
+   "n_para": 220,
+   "ok": 220,
+   "partial": [],
+   "missing": [],
+   "n_sections": 31,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2010": {
+   "n_para": 8,
+   "ok": 8,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2010_bc": {
+   "n_para": 3,
+   "ok": 3,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2025": {
+   "n_para": 9,
+   "ok": 9,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2025_bc": {
+   "n_para": 7,
+   "ok": 7,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2029": {
+   "n_para": 12,
+   "ok": 12,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2029_bc": {
+   "n_para": 6,
+   "ok": 6,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2032": {
+   "n_para": 14,
+   "ok": 14,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2032_bc": {
+   "n_para": 11,
+   "ok": 11,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2032_ie": {
+   "n_para": 1,
+   "ok": 0,
+   "partial": [
+    {
+     "para": "IE부록1",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "| 계획 | 기업회계기준서 제1038호 문단 54에 따라 발생시점에 비용으로 인식한다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 응용프로그램과 하부구조 개발 | 기업회계기준서 제1016호의 요구사항을 적용한다. |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 도메인 등록 | 웹 사이트가 경영자가 의도하는 방식으로 운영될 수 있게 준비하는 데 직접 관련되지 않으면서 웹 사이트가 기업회계기준서 제1038호 문단 21과 문단 57(1)의 인식기준을 충족하는 경우가 아닌 한",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "| 그래픽 디자인 개발 | 웹 사이트가 경영자가 의도하는 방식으로 운영될 수 있게 준비하는 데 직접 관련되지 않으면서, 웹 사이트가 기업회계기준서 제1038호 문단 21과 문단 57(1)의 인식기준을 충족하는 경우가",
+       "chunk_hit": "2/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2101": {
+   "n_para": 15,
+   "ok": 15,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2101_bc": {
+   "n_para": 36,
+   "ok": 36,
+   "partial": [],
+   "missing": [],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2101_ie": {
+   "n_para": 18,
+   "ok": 18,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2102": {
+   "n_para": 45,
+   "ok": 45,
+   "partial": [],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2102_bc": {
+   "n_para": 28,
+   "ok": 28,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2105": {
+   "n_para": 24,
+   "ok": 24,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2105_bc": {
+   "n_para": 32,
+   "ok": 32,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2106": {
+   "n_para": 15,
+   "ok": 15,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2106_bc": {
+   "n_para": 14,
+   "ok": 14,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2107": {
+   "n_para": 10,
+   "ok": 10,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2107_bc": {
+   "n_para": 27,
+   "ok": 27,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2107_ie": {
+   "n_para": 6,
+   "ok": 4,
+   "partial": [
+    {
+     "para": "IE5",
+     "rate": 0.962,
+     "fails": [
+      {
+       "line": "|  |  | 역사적 |  | 재작성 후 금액 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  | 유형자산의 재작성된 장부금액 |  | 568 |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE6",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "| 유형자산의 가산할 일시적차이의 감소로 인한 | 31 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 20X4년의 인플레이션으로 인한 세무기준액에 대한 손실 | (65) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2110": {
+   "n_para": 17,
+   "ok": 17,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2110_bc": {
+   "n_para": 15,
+   "ok": 15,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2112": {
+   "n_para": 45,
+   "ok": 45,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2112_bc": {
+   "n_para": 80,
+   "ok": 80,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2112_ie": {
+   "n_para": 39,
+   "ok": 33,
+   "partial": [
+    {
+     "para": "IE9",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "(2) 연초 부채(표 1.6) * 6.7%",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "(1) 연초 사업허가자로부터 받게 되는 금액(표 1.6) * 6.18%",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "(2) 현금/(부채)(표 1.6) * 6.7%",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE20",
+     "rate": 0.9,
+     "fails": [
+      {
+       "line": "| 연도별 발생 의무 | 12 | 13 | 14 | 15 | 16 | 17 | 87 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE21",
+     "rate": 0.931,
+     "fails": [
+      {
+       "line": "(2) 연초 부채(표 2.6) * 6.7%",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 재포장 | - | - | (12) | (14) | (15) | (17) | (20) | (22) | - | - | (100) |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE29",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "| 1차 연도 말 계약자산에 대한 2차 연도의 이자 |  | 22 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 2차 연도 말 수취채권에 대한 3차 연도의 이자 |  | 45 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE31",
+     "rate": 0.923,
+     "fails": [
+      {
+       "line": "| 차입원가 (1차 연도와 2차 연도에 지급된 이자 × 33%) |  | 11 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "IE37",
+     "rate": 0.97,
+     "fails": [
+      {
+       "line": "(2) 연초 부채(표 3.9) * 6.7%",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2114": {
+   "n_para": 35,
+   "ok": 35,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2114_bc": {
+   "n_para": 47,
+   "ok": 47,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2114_ie": {
+   "n_para": 27,
+   "ok": 27,
+   "partial": [],
+   "missing": [],
+   "n_sections": 2,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2116": {
+   "n_para": 41,
+   "ok": 41,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2116_bc": {
+   "n_para": 49,
+   "ok": 49,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2116_ie": {
+   "n_para": 5,
+   "ok": 5,
+   "partial": [],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2117": {
+   "n_para": 24,
+   "ok": 24,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2117_bc": {
+   "n_para": 70,
+   "ok": 70,
+   "partial": [],
+   "missing": [],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2117_ie": {
+   "n_para": 4,
+   "ok": 4,
+   "partial": [],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2119": {
+   "n_para": 21,
+   "ok": 21,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2119_bc": {
+   "n_para": 37,
+   "ok": 37,
+   "partial": [],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2120": {
+   "n_para": 24,
+   "ok": 24,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2120_bc": {
+   "n_para": 25,
+   "ok": 25,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2121": {
+   "n_para": 19,
+   "ok": 19,
+   "partial": [],
+   "missing": [],
+   "n_sections": 7,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2121_bc": {
+   "n_para": 33,
+   "ok": 33,
+   "partial": [],
+   "missing": [],
+   "n_sections": 3,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2121_ie": {
+   "n_para": 1,
+   "ok": 1,
+   "partial": [],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2122": {
+   "n_para": 14,
+   "ok": 14,
+   "partial": [],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2122_bc": {
+   "n_para": 38,
+   "ok": 38,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2122_ie": {
+   "n_para": 19,
+   "ok": 19,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2123": {
+   "n_para": 24,
+   "ok": 24,
+   "partial": [],
+   "missing": [],
+   "n_sections": 10,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2123_bc": {
+   "n_para": 30,
+   "ok": 30,
+   "partial": [],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_2123_ie": {
+   "n_para": 10,
+   "ok": 9,
+   "partial": [
+    {
+     "para": "IE4",
+     "rate": 0.818,
+     "fails": [
+      {
+       "line": "| (단위: 원(*)) |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (*) 이 적용사례에서 통화금액은 ‘원’으로 표시한다. |  |  |  |  |  |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 1,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "kifrs_cf": {
+   "n_para": 324,
+   "ok": 321,
+   "partial": [
+    {
+     "para": "4.2",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "| 청구권 | 자본 | 기업의 자산에서 모든 부채를 차감한 후의 잔여지분 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 재무성과를 반영하는 경제적자원 및 청구권의 변동 | 비용 | 자본의 감소를 가져오는 자산의 감소나 부채의 증가로서, 자본청구권 보유자에 대한 분배와 관련된 것은 제외 |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| 그 밖의 경제적자원 및 청구권의 변동 | - | 자본의 증가나 감소를 초래하지 않는 자산이나 부채의 교환 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "6.42",
+     "rate": 0.519,
+     "fails": [
+      {
+       "line": "|  | 역사적 원가 | 공정가치 | 사용가치 | 현행원가 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "|  |  | (시장-참여자 가정) | (기업-특유 |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 장부금액 | 사용되지 않았거나 수취하지 않은 범위 내에서 회수 가능한 역사적 원가 (거래원가 포함), | 자산을 매도하면서 수취하게 될 가격(처분시 발생할 거래원가 차감전) | 자산의 사용과 궁극적인 처분에서 발",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 사건 | 역사적 원가 | 공정가치 | 사용가치 | 현행원가 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.941,
+     "fails": [
+      {
+       "line": "| 경제적효익을 |  | 경제적자원 내에 이미 존재하고 적어도 하나의 상황에서 그 실체를 위해 다른 모든 당사자들이 이용가능한 경제적효익을 초과하는 경제적효익을 창출할 수 있는 특성 |  | 문단 4.14 |",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "| (일반목적재무보고서의) |  | (일반목적재무보고서의)주요이용자들 참고 |  |  |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| (일반목적재무보고서의) |  | 현재 및 잠재적 투자자, 대여자 및 그 밖의 채권자 |  | 문단 1.2 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 32,
+   "l2_raw_only": [
+    "BC0.10",
+    "BC0.11",
+    "BC0.12",
+    "BC0.13",
+    "BC0.14",
+    "BC0.15",
+    "BC0.16",
+    "BC0.17",
+    "BC0.18",
+    "BC0.19",
+    "BC0.2",
+    "BC0.20",
+    "BC0.21",
+    "BC0.22",
+    "BC0.23",
+    "BC0.24",
+    "BC0.25",
+    "BC0.26",
+    "BC0.27",
+    "BC0.28",
+    "BC0.29",
+    "BC0.3",
+    "BC0.30",
+    "BC0.31",
+    "BC0.32",
+    "BC0.33",
+    "BC0.34",
+    "BC0.35",
+    "BC0.36",
+    "BC0.37",
+    "BC0.38",
+    "BC0.39",
+    "BC0.4",
+    "BC0.40",
+    "BC0.41",
+    "BC0.42",
+    "BC0.43",
+    "BC0.5",
+    "BC0.6",
+    "BC0.7",
+    "BC0.8",
+    "BC0.9",
+    "BC1.1",
+    "BC1.10",
+    "BC1.11",
+    "BC1.12",
+    "BC1.13",
+    "BC1.14",
+    "BC1.15",
+    "BC1.16",
+    "BC1.17",
+    "BC1.18",
+    "BC1.19",
+    "BC1.2",
+    "BC1.20",
+    "BC1.21",
+    "BC1.22",
+    "BC1.23",
+    "BC1.24",
+    "BC1.25",
+    "BC1.26",
+    "BC1.27",
+    "BC1.28",
+    "BC1.29",
+    "BC1.3",
+    "BC1.30",
+    "BC1.31",
+    "BC1.32",
+    "BC1.33",
+    "BC1.34",
+    "BC1.35",
+    "BC1.36",
+    "BC1.37",
+    "BC1.38",
+    "BC1.39",
+    "BC1.4",
+    "BC1.40",
+    "BC1.41",
+    "BC1.42",
+    "BC1.43",
+    "BC1.44",
+    "BC1.45",
+    "BC1.46",
+    "BC1.47",
+    "BC1.48",
+    "BC1.5",
+    "BC1.6",
+    "BC1.7",
+    "BC1.8",
+    "BC1.9",
+    "BC2.1",
+    "BC2.10",
+    "BC2.11",
+    "BC2.12",
+    "BC2.13",
+    "BC2.14",
+    "BC2.15",
+    "BC2.16",
+    "BC2.17",
+    "BC2.18",
+    "BC2.19",
+    "BC2.2",
+    "BC2.20",
+    "BC2.21",
+    "BC2.22",
+    "BC2.23",
+    "BC2.24",
+    "BC2.25",
+    "BC2.26",
+    "BC2.27",
+    "BC2.28",
+    "BC2.29",
+    "BC2.3",
+    "BC2.30",
+    "BC2.31",
+    "BC2.32",
+    "BC2.33",
+    "BC2.34",
+    "BC2.35",
+    "BC2.36",
+    "BC2.37",
+    "BC2.38",
+    "BC2.39",
+    "BC2.4",
+    "BC2.40",
+    "BC2.41",
+    "BC2.42",
+    "BC2.43",
+    "BC2.44",
+    "BC2.45",
+    "BC2.46",
+    "BC2.47",
+    "BC2.48",
+    "BC2.49",
+    "BC2.5",
+    "BC2.50",
+    "BC2.51",
+    "BC2.52",
+    "BC2.53",
+    "BC2.54",
+    "BC2.55",
+    "BC2.56",
+    "BC2.57",
+    "BC2.58",
+    "BC2.59",
+    "BC2.6",
+    "BC2.60",
+    "BC2.61",
+    "BC2.62",
+    "BC2.63",
+    "BC2.64",
+    "BC2.65",
+    "BC2.66",
+    "BC2.67",
+    "BC2.68",
+    "BC2.69",
+    "BC2.7",
+    "BC2.70",
+    "BC2.71",
+    "BC2.72",
+    "BC2.73",
+    "BC2.74",
+    "BC2.8",
+    "BC2.9",
+    "BC3.1",
+    "BC3.10",
+    "BC3.11",
+    "BC3.12",
+    "BC3.13",
+    "BC3.14",
+    "BC3.15",
+    "BC3.16",
+    "BC3.17",
+    "BC3.18",
+    "BC3.19",
+    "BC3.2",
+    "BC3.20",
+    "BC3.21",
+    "BC3.22",
+    "BC3.23",
+    "BC3.24",
+    "BC3.25",
+    "BC3.26",
+    "BC3.3",
+    "BC3.4",
+    "BC3.5",
+    "BC3.6",
+    "BC3.7",
+    "BC3.8",
+    "BC3.9",
+    "BC4.1",
+    "BC4.10",
+    "BC4.11",
+    "BC4.12",
+    "BC4.13",
+    "BC4.14",
+    "BC4.15",
+    "BC4.16",
+    "BC4.17",
+    "BC4.18",
+    "BC4.19",
+    "BC4.2",
+    "BC4.20",
+    "BC4.21",
+    "BC4.22",
+    "BC4.23",
+    "BC4.24",
+    "BC4.25",
+    "BC4.26",
+    "BC4.27",
+    "BC4.28",
+    "BC4.29",
+    "BC4.3",
+    "BC4.30",
+    "BC4.31",
+    "BC4.32",
+    "BC4.33",
+    "BC4.34",
+    "BC4.35",
+    "BC4.36",
+    "BC4.37",
+    "BC4.38",
+    "BC4.39",
+    "BC4.4",
+    "BC4.40",
+    "BC4.41",
+    "BC4.42",
+    "BC4.43",
+    "BC4.44",
+    "BC4.45",
+    "BC4.46",
+    "BC4.47",
+    "BC4.48",
+    "BC4.49",
+    "BC4.5",
+    "BC4.50",
+    "BC4.51",
+    "BC4.52",
+    "BC4.53",
+    "BC4.54",
+    "BC4.55",
+    "BC4.56",
+    "BC4.57",
+    "BC4.58",
+    "BC4.59",
+    "BC4.6",
+    "BC4.60",
+    "BC4.61",
+    "BC4.62",
+    "BC4.63",
+    "BC4.64",
+    "BC4.65",
+    "BC4.66",
+    "BC4.67",
+    "BC4.68",
+    "BC4.69",
+    "BC4.7",
+    "BC4.70",
+    "BC4.71",
+    "BC4.72",
+    "BC4.73",
+    "BC4.74",
+    "BC4.75",
+    "BC4.76",
+    "BC4.77",
+    "BC4.78",
+    "BC4.79",
+    "BC4.8",
+    "BC4.80",
+    "BC4.81",
+    "BC4.82",
+    "BC4.83",
+    "BC4.84",
+    "BC4.85",
+    "BC4.86",
+    "BC4.87",
+    "BC4.88",
+    "BC4.89",
+    "BC4.9",
+    "BC4.90",
+    "BC4.91",
+    "BC4.92",
+    "BC4.93",
+    "BC4.94",
+    "BC4.95",
+    "BC4.96",
+    "BC4.97",
+    "BC5.1",
+    "BC5.10",
+    "BC5.11",
+    "BC5.12",
+    "BC5.13",
+    "BC5.14",
+    "BC5.15",
+    "BC5.16",
+    "BC5.17",
+    "BC5.18",
+    "BC5.19",
+    "BC5.2",
+    "BC5.20",
+    "BC5.21",
+    "BC5.22",
+    "BC5.23",
+    "BC5.24",
+    "BC5.25",
+    "BC5.26",
+    "BC5.27",
+    "BC5.28",
+    "BC5.29",
+    "BC5.3",
+    "BC5.30",
+    "BC5.4",
+    "BC5.5",
+    "BC5.6",
+    "BC5.7",
+    "BC5.8",
+    "BC5.9",
+    "BC6.1",
+    "BC6.10",
+    "BC6.11",
+    "BC6.12",
+    "BC6.13",
+    "BC6.14",
+    "BC6.15",
+    "BC6.16",
+    "BC6.17",
+    "BC6.18",
+    "BC6.19",
+    "BC6.2",
+    "BC6.20",
+    "BC6.21",
+    "BC6.22",
+    "BC6.23",
+    "BC6.24",
+    "BC6.25",
+    "BC6.26",
+    "BC6.27",
+    "BC6.28",
+    "BC6.29",
+    "BC6.3",
+    "BC6.30",
+    "BC6.31",
+    "BC6.32",
+    "BC6.33",
+    "BC6.34",
+    "BC6.35",
+    "BC6.36",
+    "BC6.37",
+    "BC6.38",
+    "BC6.39",
+    "BC6.4",
+    "BC6.40",
+    "BC6.41",
+    "BC6.42",
+    "BC6.43",
+    "BC6.44",
+    "BC6.45",
+    "BC6.46",
+    "BC6.47",
+    "BC6.48",
+    "BC6.49",
+    "BC6.5",
+    "BC6.50",
+    "BC6.51",
+    "BC6.52",
+    "BC6.53",
+    "BC6.54",
+    "BC6.55",
+    "BC6.6",
+    "BC6.7",
+    "BC6.8",
+    "BC6.9",
+    "BC7.1",
+    "BC7.10",
+    "BC7.11",
+    "BC7.12",
+    "BC7.13",
+    "BC7.14",
+    "BC7.15",
+    "BC7.16",
+    "BC7.17",
+    "BC7.18",
+    "BC7.19",
+    "BC7.2",
+    "BC7.20",
+    "BC7.21",
+    "BC7.22",
+    "BC7.23",
+    "BC7.24",
+    "BC7.25",
+    "BC7.26",
+    "BC7.27",
+    "BC7.28",
+    "BC7.29",
+    "BC7.3",
+    "BC7.30",
+    "BC7.31",
+    "BC7.32",
+    "BC7.33",
+    "BC7.4",
+    "BC7.5",
+    "BC7.6",
+    "BC7.7",
+    "BC7.8",
+    "BC7.9",
+    "BC8.1",
+    "BC8.2",
+    "BC8.3",
+    "BC8.4"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_mc": {
+   "n_para": 43,
+   "ok": 43,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "BC1",
+    "BC10",
+    "BC11",
+    "BC12",
+    "BC13",
+    "BC14",
+    "BC15",
+    "BC16",
+    "BC17",
+    "BC18",
+    "BC19",
+    "BC2",
+    "BC20",
+    "BC21",
+    "BC22",
+    "BC23",
+    "BC24",
+    "BC25",
+    "BC26",
+    "BC27",
+    "BC28",
+    "BC29",
+    "BC3",
+    "BC30",
+    "BC31",
+    "BC32",
+    "BC33",
+    "BC34",
+    "BC35",
+    "BC36",
+    "BC37",
+    "BC38",
+    "BC39",
+    "BC4",
+    "BC40",
+    "BC41",
+    "BC42",
+    "BC43",
+    "BC44",
+    "BC45",
+    "BC46",
+    "BC47",
+    "BC48",
+    "BC49",
+    "BC5",
+    "BC50",
+    "BC51",
+    "BC52",
+    "BC53",
+    "BC6",
+    "BC7",
+    "BC8",
+    "BC9",
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6"
+   ],
+   "l2_corpus_only": []
+  },
+  "kifrs_ps2": {
+   "n_para": 124,
+   "ok": 124,
+   "partial": [],
+   "missing": [],
+   "n_sections": 9,
+   "l2_raw_only": [
+    "BC1",
+    "BC10",
+    "BC11",
+    "BC12",
+    "BC13",
+    "BC14",
+    "BC15",
+    "BC16",
+    "BC17",
+    "BC18",
+    "BC19",
+    "BC2",
+    "BC20",
+    "BC21",
+    "BC22",
+    "BC23",
+    "BC24",
+    "BC25",
+    "BC26",
+    "BC27",
+    "BC28",
+    "BC29",
+    "BC3",
+    "BC30",
+    "BC31",
+    "BC32",
+    "BC33",
+    "BC34",
+    "BC35",
+    "BC36",
+    "BC37",
+    "BC38",
+    "BC39",
+    "BC4",
+    "BC40",
+    "BC41",
+    "BC41A",
+    "BC41B",
+    "BC41C",
+    "BC41D",
+    "BC41E",
+    "BC41F",
+    "BC42",
+    "BC43",
+    "BC44",
+    "BC45",
+    "BC46",
+    "BC5",
+    "BC6",
+    "BC7",
+    "BC8",
+    "BC9",
+    "IN1",
+    "IN2",
+    "IN3",
+    "IN4",
+    "IN5",
+    "IN6",
+    "IN7"
+   ],
+   "l2_corpus_only": []
+  },
+  "ksa_1100": {
+   "n_para": 237,
+   "ok": 234,
+   "partial": [
+    {
+     "para": "7",
+     "rate": 0.786,
+     "fails": [
+      {
+       "line": "a.\t기록, 문서, 기타사항 등 내부회계관리제도에 대한 경영진 평가와 관련하여 경영진이 알고 있는 모든 정보에 대한 접근",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "b.\t감사인이 내부회계관리제도감사 목적으로 경영진에게 요청하는 추가적인 정보",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t감사인이 감사증거를 입수하기 위하여 필요하다고 결정한 기업 내부의 관계자들에 대한 제한없는 접근",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "65",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "66.\t감사인은 통합감사 중에 식별한 내부회계관리제도의 모든 미비점을 경영진에게 서면으로 적시에, 감사보고서 발행 이전에 커뮤니케이션하여야 하며, 이러한 커뮤니케이션이 언제 수행되었는지 혹은 언제 수행될 예정인지를 ",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "A59.\t어떤 유형의 테스트는 테스트의 성격으로 인해 다른 테스트보다 통제의 효과성에 대한 더 많은 증거를 산출한다. 감사인이 수행할 수 있는 테스트를 일반적으로 가장 적은 증거를 산출하는 테스트에서 가장 많은 증거",
+       "chunk_hit": "3/4"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 90,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_1200": {
+   "n_para": 229,
+   "ok": 226,
+   "partial": [
+    {
+     "para": "2",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "(iv)\t‘자본시장과 금융투자업에 관한 법률’  에 따른 사업보고서 제출대상법인",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "36",
+     "rate": 0.727,
+     "fails": [
+      {
+       "line": "a.\t기록, 문서, 기타사항 등 재무제표의 작성과 관련하여 경영진이 알고 있는 모든 정보에 대한 접근",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "b.\t감사인이 감사목적으로 경영진에게 요청하는 추가적인 정보",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t감사인이 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 제한없는 접근",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "97",
+     "rate": 0.846,
+     "fails": [
+      {
+       "line": "a.\t예측을 위해 생성된 기초 데이터의 신뢰성을 평가함",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "b.\t예측의 기초가 되는 가정들에 대한 적절한 근거가 있는지 여부를 결정함",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 73,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_200": {
+   "n_para": 107,
+   "ok": 106,
+   "partial": [
+    {
+     "para": "13",
+     "rate": 0.948,
+     "fails": [
+      {
+       "line": "a.\t기록, 문서, 기타사항 등 재무제표의 작성과 관련하여 경영진(적절한 경우 지배기구를 포함)이 알고 있는 모든 정보에 대한 접근",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "b.\t감사인이 경영진(적절한 경우 지배기구를 포함)에게 감사목적으로 요청하는 추가정보",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t감사인이 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 제한없는 접근",
+       "chunk_hit": "0/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 39,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_210": {
+   "n_para": 68,
+   "ok": 67,
+   "partial": [
+    {
+     "para": "6",
+     "rate": 0.727,
+     "fails": [
+      {
+       "line": "a.\t기록, 문서, 기타사항 등 재무제표의 작성과 관련하여 경영진이 알고 있는 모든 정보에 대한 접근",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "b.\t감사인이 감사목적으로 경영진에게 요청하는 추가적인 정보",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t감사인이 감사증거를 입수하기 위하여 필요하다고 판단한 기업 내부의 관계자들에 대한 제한없는 접근",
+       "chunk_hit": "0/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 40,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_220": {
+   "n_para": 63,
+   "ok": 63,
+   "partial": [],
+   "missing": [],
+   "n_sections": 41,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_230": {
+   "n_para": 42,
+   "ok": 42,
+   "partial": [],
+   "missing": [],
+   "n_sections": 23,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_240": {
+   "n_para": 139,
+   "ok": 139,
+   "partial": [],
+   "missing": [],
+   "n_sections": 83,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_250": {
+   "n_para": 67,
+   "ok": 67,
+   "partial": [],
+   "missing": [],
+   "n_sections": 33,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_260": {
+   "n_para": 84,
+   "ok": 84,
+   "partial": [],
+   "missing": [],
+   "n_sections": 45,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_265": {
+   "n_para": 42,
+   "ok": 42,
+   "partial": [],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_300": {
+   "n_para": 41,
+   "ok": 41,
+   "partial": [],
+   "missing": [],
+   "n_sections": 26,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_315": {
+   "n_para": 370,
+   "ok": 370,
+   "partial": [],
+   "missing": [],
+   "n_sections": 168,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_320": {
+   "n_para": 29,
+   "ok": 29,
+   "partial": [],
+   "missing": [],
+   "n_sections": 17,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_330": {
+   "n_para": 96,
+   "ok": 96,
+   "partial": [],
+   "missing": [],
+   "n_sections": 51,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_402": {
+   "n_para": 67,
+   "ok": 66,
+   "partial": [
+    {
+     "para": "8",
+     "rate": 0.895,
+     "fails": [
+      {
+       "line": "a.\t서비스조직의 시스템, 통제목적 및 관련 통제에 대한 기술과, 명시된 \t통제목적을 달성하기 위한 통제설계의 적합성 및 운영효과성에 대한 서비스감사인의 감사의견",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "b.\t서비스감사인의 통제테스트 및 그 결과에 대한 기술",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 31,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_450": {
+   "n_para": 46,
+   "ok": 45,
+   "partial": [
+    {
+     "para": "A2",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "이 감사기준서 문단 5는 감사인이 명백하게 사소한 것을 제외하고는 감사 중 식별된 왜곡표시를 집계하도록 요구하고 있다. “명백하게 사소하다(clearly trivial)”는 것은 “중요하지 않다(not materia",
+       "chunk_hit": "8/9"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 24,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_500": {
+   "n_para": 80,
+   "ok": 80,
+   "partial": [],
+   "missing": [],
+   "n_sections": 34,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_501": {
+   "n_para": 41,
+   "ok": 41,
+   "partial": [],
+   "missing": [],
+   "n_sections": 22,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_505": {
+   "n_para": 42,
+   "ok": 42,
+   "partial": [],
+   "missing": [],
+   "n_sections": 28,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_510": {
+   "n_para": 26,
+   "ok": 26,
+   "partial": [],
+   "missing": [],
+   "n_sections": 16,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_520": {
+   "n_para": 29,
+   "ok": 29,
+   "partial": [],
+   "missing": [],
+   "n_sections": 17,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_530": {
+   "n_para": 48,
+   "ok": 48,
+   "partial": [],
+   "missing": [],
+   "n_sections": 26,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_540": {
+   "n_para": 218,
+   "ok": 217,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.684,
+     "fails": [
+      {
+       "line": "a.\t경영진이 해당 재무보고체계의 관점에서 적합한 관련 방법, 가정 또는 데이터의 원천 및 그 변경 필요성을 식별하는 방법. 다음을 포함한다. (문단 A36-A37 참조).",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "i.\t경영진이 모델의 이용을 포함하여 사용된 방법을 선택, 설계 및 적용한 방법 (문단 A38-A39 참조)",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "ii.\t경영진이 사용된 가정을 선택(대안에 대한 고려 포함)하고 유의적 가정을 식별한 방법 (문단 A40-A43 참조)",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "iii.\t경영진이 사용된 데이터를 선택한 방법 (문단 A44 참조)",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 106,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_550": {
+   "n_para": 79,
+   "ok": 77,
+   "partial": [
+    {
+     "para": "9",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "a.\t(공정표시체계의 목적에서) 공정한 표시가 달성",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "b.\t(준수체계의 목적에서) 재무제표가 오도하지 않음",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "10",
+     "rate": 0.6,
+     "fails": [
+      {
+       "line": "a.\t직접적으로 또는 하나 이상의 중개자를 통해 간접적으로 해당 보고기업에 대한 지배력이나 유의적 영향력을 보유한 개인이나 기업",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "b.\t직접적으로 또는 하나 이상의 중개자를 통해 간접적으로 해당 보고기업이 지배력이나 유의적 영향력을 보유한 다른 기업",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "c.\t다음 중 하나의 방법을 통하여 해당 보고기업과 함께 동일 지배하에 있는 다른 기업",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "i.\t동일지배 소유권",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 51,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_560": {
+   "n_para": 38,
+   "ok": 38,
+   "partial": [],
+   "missing": [],
+   "n_sections": 27,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_570": {
+   "n_para": 66,
+   "ok": 65,
+   "partial": [
+    {
+     "para": "20",
+     "rate": 0.75,
+     "fails": [
+      {
+       "line": "계속기업으로서의 존속능력에 유의적 의문을 초래할 수 있는 사건이나 상황이 식별되었으나 입수된 감사증거를 근거로 감사인이 중요한 불확실성이 존재하지 않는다고 결론을 내리는 경우, 감사인은, 해당 재무보고체계의 요구사항",
+       "chunk_hit": "3/4"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 42,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_580": {
+   "n_para": 52,
+   "ok": 52,
+   "partial": [],
+   "missing": [],
+   "n_sections": 33,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_600": {
+   "n_para": 134,
+   "ok": 133,
+   "partial": [
+    {
+     "para": "A52",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "부문재무정보에 대한 검토는 검토업무기준이나 중간재무정보에 대한 검토기준 (*1)을 해당 상황에 맞게 변경하여 수행할 수 있을 것이다. 또한 그룹업무팀은 이러한 검토업무를 보완하기 위한 추가적인 절차도 명시할 수 있을",
+       "chunk_hit": "2/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 64,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50"
+   ]
+  },
+  "ksa_610": {
+   "n_para": 79,
+   "ok": 75,
+   "partial": [
+    {
+     "para": "5",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "우리나라의 회계감사기준에 따라 수행되는 감사업무에 대해서는 외부감사인이 감사업무를 수행할 때 직접적 보조를 제공하는 내부감사인을 활용하는 것이 금지된다. 그룹감사의 경우, 부문에 대한 감사에 있어서도 직접적 보조를 ",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "26",
+     "rate": 0.5,
+     "fails": [
+      {
+       "line": "외부감사인은 법규에 따라 내부감사인으로부터 직접적 보조를 받는 것이 금지될 수 있다.  만약 그렇다면, 문단 27-35 및 37은 적용되지 않는다(*2). (문단 A31 참조)",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "A4",
+     "rate": 0.9,
+     "fails": [
+      {
+       "line": "뿐만 아니라, 법규에서 일부 범위를 금지하거나 제한하지 않는다면, 외부감사인은 외부감사인의 지시, 감독 및 검토 하에 감사 절차를 수행하는 내부감사인을 활용할 수 있다 (이 감사기준서에서 ‘직접적 보조’로 언급됨).",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "A31",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "외부감사인이 직접적 보조를 제공하는 내부감사인을 활용하는 것을 법규에서 금지하는 국가의 경우, 해당 금지규정이 부문감사인까지 확장되는지 여부와 만약 그렇다면 부문감사인과의 커뮤니케이션에서 이를 다룰지 여부를 고려하는",
+       "chunk_hit": "2/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 28,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_620": {
+   "n_para": 63,
+   "ok": 63,
+   "partial": [],
+   "missing": [],
+   "n_sections": 36,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_700": {
+   "n_para": 144,
+   "ok": 144,
+   "partial": [],
+   "missing": [],
+   "n_sections": 65,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_701": {
+   "n_para": 83,
+   "ok": 82,
+   "partial": [
+    {
+     "para": "6",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "| 적용대상(*1) | 시행일 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 32,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "18"
+   ]
+  },
+  "ksa_705": {
+   "n_para": 64,
+   "ok": 64,
+   "partial": [],
+   "missing": [],
+   "n_sections": 36,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_706": {
+   "n_para": 37,
+   "ok": 37,
+   "partial": [],
+   "missing": [],
+   "n_sections": 24,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_710": {
+   "n_para": 37,
+   "ok": 37,
+   "partial": [],
+   "missing": [],
+   "n_sections": 24,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "ksa_720": {
+   "n_para": 94,
+   "ok": 94,
+   "partial": [],
+   "missing": [],
+   "n_sections": 38,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "A32",
+    "A33",
+    "A34",
+    "A35",
+    "A36",
+    "A37",
+    "A38",
+    "A39",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45",
+    "A46",
+    "A47",
+    "A48",
+    "A49",
+    "A50",
+    "A51",
+    "A52",
+    "A53",
+    "A54",
+    "A55",
+    "A56",
+    "A57",
+    "A58",
+    "A59"
+   ]
+  },
+  "ksa_assr-3000": {
+   "n_para": 305,
+   "ok": 302,
+   "partial": [
+    {
+     "para": "12",
+     "rate": 0.94,
+     "fails": [
+      {
+       "line": "a.\t합리적 확신업무 – 인증인 결론의 근거로서 인증인이 업무위험을 업무상황에 따라 수용가능하게 낮은 수준으로 감소시키는 인증업무. 인증인의 결론은 준거기준에 따라 기초인증대상의 측정 또는 평가의 결과에 대한 인증인",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "b.\t제한적 확신업무 - 수행된 절차와 입수된 증거에 근거하여 인증대상정보가 중요하게 왜곡표시되었다는 점이 발견되었는지 여부를 전달하는 형태로 결론을 표명하기 위한 근거로서, 인증인이 업무위험을 업무상황에서 수용 가",
+       "chunk_hit": "6/7"
+      },
+      {
+       "line": "a.\t입증업무 – 인증인 외의 당사자가 준거기준에 따라 기초인증대상을 측정하거나 평가하는 경우의 인증업무. 인증인 외의 당사자는 산출된 인증대상정보를 보통 보고서 또는 진술서에 제시한다. 그러나 경우에 따라 인증인이",
+       "chunk_hit": "4/5"
+      },
+      {
+       "line": "b.\t직접업무 – 인증인이 해당 준거기준에 따라 기초인증대상을 측정 또는 평가하고 산출된 인증대상정보를 인증보고서의 일부 또는 첨부로 제시하는 경우의 인증업무. 직접업무에서 인증인의 결론은 기초인증대상을 준거기준에 ",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "24",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "a.\t목적적합성",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "b.\t완전성",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t신뢰성",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "d.\t중립성",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "69",
+     "rate": 0.868,
+     "fails": [
+      {
+       "line": "a.\t기초인증대상과 해당 준거기준",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "b.\t인증대상정보와 해당 준거기준 또는,",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "c.\t적절한 당사자가 작성한 진술",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "a.\t변형을 야기한 사항을 설명하는 단락",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 59,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "66",
+    "67",
+    "68",
+    "69",
+    "70",
+    "71",
+    "72",
+    "73",
+    "74",
+    "75",
+    "76",
+    "77",
+    "78",
+    "79",
+    "80",
+    "81",
+    "82",
+    "83",
+    "A1",
+    "A10",
+    "A100",
+    "A101",
+    "A102",
+    "A103",
+    "A104",
+    "A105",
+    "A106",
+    "A107",
+    "A108",
+    "A109",
+    "A11",
+    "A110",
+    "A111",
+    "A112",
+    "A113",
+    "A114",
+    "A115",
+    "A116",
+    "A117",
+    "A118",
+    "A119",
+    "A12",
+    "A120",
+    "A121",
+    "A122",
+    "A123",
+    "A124",
+    "A125",
+    "A126",
+    "A127",
+    "A128",
+    "A129",
+    "A13",
+    "A130",
+    "A131",
+    "A132",
+    "A133",
+    "A134",
+    "A135",
+    "A136",
+    "A137",
+    "A138",
+    "A139",
+    "A14",
+    "A140",
+    "A141",
+    "A142",
+    "A143",
+    "A144",
+    "A145",
+    "A146",
+    "A147",
+    "A148",
+    "A149",
+    "A15",
+    "A150",
+    "A151",
+    "A152",
+    "A153",
+    "A154",
+    "A155",
+    "A156",
+    "A157",
+    "A158",
+    "A159",
+    "A16",
+    "A160",
+    "A161",
+    "A162",
+    "A163",
+    "A164",
+    "A165",
+    "A166",
+    "A167",
+    "A168",
+    "A169",
+    "A17",
+    "A170",
+    "A171",
+    "A172",
+    "A173",
+    "A174",
+    "A175",
+    "A176",
+    "A177",
+    "A178",
+    "A179",
+    "A18",
+    "A180",
+    "A181",
+    "A182",
+    "A183",
+    "A184",
+    "A185",
+    "A186",
+    "A187",
+    "A188",
+    "A189",
+    "A19",
+    "A190",
+    "A191",
+    "A192",
+    "A193",
+    "A194",
+    "A195",
+    "A196",
+    "A197",
+    "A198",
+    "A199",
+    "A2",
+    "A20",
+    "A200",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A25",
+    "A26",
+    "A27",
+    "A28",
+    "A29",
+    "A3",
+    "A30",
+    "A31",
+    "A32",
+    "A33",
+    "A34",
+    "A35",
+    "A36",
+    "A37",
+    "A38",
+    "A39",
+    "A4",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45",
+    "A46",
+    "A47",
+    "A48",
+    "A49",
+    "A5",
+    "A50",
+    "A51",
+    "A52",
+    "A53",
+    "A54",
+    "A55",
+    "A56",
+    "A57",
+    "A58",
+    "A59",
+    "A6",
+    "A60",
+    "A61",
+    "A62",
+    "A63",
+    "A64",
+    "A65",
+    "A66",
+    "A67",
+    "A68",
+    "A69",
+    "A7",
+    "A70",
+    "A71",
+    "A72",
+    "A73",
+    "A74",
+    "A75",
+    "A76",
+    "A77",
+    "A78",
+    "A79",
+    "A8",
+    "A80",
+    "A81",
+    "A82",
+    "A83",
+    "A84",
+    "A85",
+    "A86",
+    "A87",
+    "A88",
+    "A89",
+    "A9",
+    "A90",
+    "A91",
+    "A92",
+    "A93",
+    "A94",
+    "A95",
+    "A96",
+    "A97",
+    "A98",
+    "A99"
+   ]
+  },
+  "ksa_frmk-1": {
+   "n_para": 110,
+   "ok": 110,
+   "partial": [],
+   "missing": [],
+   "n_sections": 20,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "66",
+    "67",
+    "68",
+    "69",
+    "70",
+    "71",
+    "72",
+    "73",
+    "74",
+    "75",
+    "76",
+    "77",
+    "78",
+    "79",
+    "80",
+    "81",
+    "82",
+    "83",
+    "84",
+    "85",
+    "86",
+    "87",
+    "88",
+    "89",
+    "90",
+    "91",
+    "92",
+    "93",
+    "94",
+    "95",
+    "96"
+   ]
+  },
+  "ksa_isqm-1": {
+   "n_para": 141,
+   "ok": 141,
+   "partial": [],
+   "missing": [],
+   "n_sections": 70,
+   "l2_raw_only": [],
+   "l2_corpus_only": [
+    "1",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "2",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "3",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "4",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "5",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A1",
+    "A10",
+    "A11",
+    "A12",
+    "A13",
+    "A14",
+    "A15",
+    "A16",
+    "A17",
+    "A18",
+    "A19",
+    "A2",
+    "A20",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A25",
+    "A26",
+    "A27",
+    "A28",
+    "A29",
+    "A3",
+    "A30",
+    "A31",
+    "A32",
+    "A33",
+    "A34",
+    "A35",
+    "A36",
+    "A37",
+    "A38",
+    "A39",
+    "A4",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45",
+    "A46",
+    "A47",
+    "A48",
+    "A49",
+    "A5",
+    "A50",
+    "A51",
+    "A52",
+    "A53",
+    "A54",
+    "A55",
+    "A56",
+    "A57",
+    "A58",
+    "A59",
+    "A6",
+    "A60",
+    "A61",
+    "A62",
+    "A63",
+    "A64",
+    "A65",
+    "A66",
+    "A67",
+    "A68",
+    "A69",
+    "A7",
+    "A70",
+    "A71",
+    "A72",
+    "A73",
+    "A74",
+    "A75",
+    "A8",
+    "A9"
+   ]
+  },
+  "guide_2014-1": {
+   "n_para": 6,
+   "ok": 5,
+   "partial": [],
+   "missing": [
+    {
+     "para": "(무번호)",
+     "rate": 0.0,
+     "fails": [
+      {
+       "line": "- (시행일) 이 회계감사 실무지침은 2005년 12월 22일부터 시행한다.",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "n_sections": 6,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2014-2": {
+   "n_para": 8,
+   "ok": 7,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.969,
+     "fails": [
+      {
+       "line": "위 재무상태표를 포함한 제××기 재무제표는 다음과 같은 특히 중요한 일반적으로 인정된 회계처리기준(또는 한국채택국제회계기준, 일반기업회계기준)과 불일치사항으로 인하여 일반적으로 인정된 회계처리기준에 따라 작성되지 아",
+       "chunk_hit": "2/3"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2014-3": {
+   "n_para": 4,
+   "ok": 4,
+   "partial": [],
+   "missing": [],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2015-1": {
+   "n_para": 4,
+   "ok": 2,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.87,
+     "fails": [
+      {
+       "line": "이 예시는 감사인이 감사보고서가 첨부된 재무제표 책자를 인쇄하여 회사에 제공하는 경우에 감사인이 감사담당회사와 협의할 때 참고할 수 있도록 한국공인회계사회 연구부문이 마련한 것입니다(2015.1월). 이 예시는 감사",
+       "chunk_hit": "4/5"
+      },
+      {
+       "line": "(목차예시1: 감사보고서가 맨 처음에 위치)",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "(목차예시2: 재무제표가 맨 처음에 위치)",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "missing": [
+    {
+     "para": "(무번호)",
+     "rate": 0.333,
+     "fails": [
+      {
+       "line": "1. 이 지침은 감사기준서 200 \"독립된 감사인의 전반적인 목적 및 감사기준에 따른 감사의 수행\" 문단 14와 문단 A14에 따라 감사인의 재무제표 대리작성과 재무제표 작성자문을 금지하는 주식회사의 외부감사에 관한",
+       "chunk_hit": "1/6"
+      }
+     ]
+    }
+   ],
+   "n_sections": 4,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2016-1": {
+   "n_para": 11,
+   "ok": 5,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.909,
+     "fails": [
+      {
+       "line": "수주산업: 한국채택국제회계기준서 제1115호 문단 한129.1 - 한129.5, 일반기업회계기준 제16장(수익) 문단 16.64 - 16.68에 따라 발생원가 기준으로 투입법을 적용하는 계약에 대한 추가 공시 의무가",
+       "chunk_hit": "5/7"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.895,
+     "fails": [
+      {
+       "line": "4. 감사인은 감사기준서 315[각주: 감사기준서 315 \"기업과 기업환경 이해를 통한 중요한 왜곡표시위험의 식별과 평가\"]에 따라 부정이나 오류로 인한 재무제표의 중요왜곡표시위험을 식별하고 평가할 때, 투입법의 적",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "5. 감사인은 투입법에 따른 진행기준을 적용하는 수주산업 기업 재무제표의 중요왜곡표시위험을 식별하고 평가할 때 투입법 적용에 따른 회계추정치와 연관된 추정의 합리성을 평가하고 추정의 합리성이 낮은 것으로 식별된 회계",
+       "chunk_hit": "5/6"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "7. 감사기준서 330[각주: 감사기준서 330 \"평가된 위험에 대한 감사인의 대응\"]에 따르면 감사인은 감사기준서 315[각주: 감사기준서 315 \"기업과 기업환경 이해를 통한 중요한 왜곡표시위험의 식별과 평가\"]",
+       "chunk_hit": "3/4"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.974,
+     "fails": [
+      {
+       "line": "9. 감사인은 감사보고서 작성시 수주산업 핵심감사사항을 \"핵심감사사항(또는 수주산업 핵심감사사항)\" 단락에 적절한 소제목을 사용하여 각각의 수주산업 핵심감사사항을 기술하여야 한다.[각주: 감사기준서 701 \"감사보고",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "(2) 해당 사항은 재무제표 전체에 대한 감사의 관점에서 재무제표 전체에 대한 의견을 형성할 때 다루어진 사항이며, 감사인은 이 사항에 대하여 별도의 의견을 제공하는 것은 아님",
+       "chunk_hit": "2/2"
+      },
+      {
+       "line": "12. 감사인은 문단 10에서 정한 사항을 감사보고서에 포함하여야 한다. 그러나 감사인이 문단6에서 예시된 수주산업 핵심감사사항의 일부 또는 전부가 당기 재무제표 감사에서 가장 유의적인 사항이 아니라고 판단하는 경우",
+       "chunk_hit": "6/6"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.731,
+     "fails": [
+      {
+       "line": "수주산업 핵심감사사항은 「회계감사실무지침 2016-1(2018년 개정)」에 따라 감사인의 전문가적 판단과 지배기구와의 커뮤니케이션을 통해 당기 재무제표 감사에서 수주산업과 관련하여 가장 유의적인 사항을 선정한 것입니",
+       "chunk_hit": "5/5"
+      },
+      {
+       "line": "재무제표에 대한 주석 X에서 기술한 바와 같이 회사는 선박 및 해양 특수선 계약에 대해 기업회계기준서 제1115호 '고객과의 계약에서 생기는 수익'에 따라 진행율 기준으로 수익을 인식하고 있습니다. 또한 재무제표에 ",
+       "chunk_hit": "11/16"
+      },
+      {
+       "line": "(1\\*) 회사에 주석으로 기재하도록 권장하고 주석으로 기재하지 않을 경우 재무제표 주석에 대한 언급없이 감사인이 해당 내용 기술",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "(2\\*) 재무제표 주석 기재 내용 등을 언급",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.914,
+     "fails": [
+      {
+       "line": "이 감사보고서 핵심감사항목 기재사례는 감사인이 회계감사실무지침2016-1에 따라 감사보고서에 핵심감사항목을 기재할 때 참고목적으로 활용할 수 있도록 한국공인회계사회 연구부문 재무보고연구실이 제공한 것입니다(2017.",
+       "chunk_hit": "4/7"
+      },
+      {
+       "line": "수주산업 핵심감사항목은 「회계감사실무지침 2016-1」에 따라 감사인의 전문가적 판단과 지배기구와의 커뮤니케이션을 통해 당기 재무제표 감사에서 유의적인 사항을 선정한 것입니다. 해당 사항은 재무제표 전체에 대한 감사",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "……… (중략) ……… 우리는 이러한 해양플랜트에서의 공정지연이나 공정비효율 발생에 따른 총계약원가 추정의 불확실성 증가와 추정치 변동이 당기 손익(또는 미래손익)에 미치는 영향을 고려하여 회사의 총계약원가 추정의 ",
+       "chunk_hit": "2/4"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 11,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2017-1": {
+   "n_para": 12,
+   "ok": 6,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.933,
+     "fails": [
+      {
+       "line": "(b) 당기감사인이 당기 감사를 수행하는 과정에서 해당 재무보고체계에 따라 전기재무제표의 수정이 요구되는 중요한 전기오류사항[각주: 일반기업회계기준을 적용하는 경우에는 일반기업회계기준 문단 5.19에 따라 비교재무제",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "4. 회사가 재무제표를 발행한 후 후속기간에 중요한 오류를 발견하는 경우, 이러한 전기오류사항은 해당 후속기간의 재무제표에 비교표시된 재무정보를 재작성하여 수정한다.[각주: K-IFRS 제1008호 '회계정책, 회계",
+       "chunk_hit": "5/7"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.963,
+     "fails": [
+      {
+       "line": "| 구분 | 내용 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.967,
+     "fails": [
+      {
+       "line": "19. 당기감사인은 다음의 경우에는 해당 전기오류사항과 관련하여 당기감사인 – 회사(경영진 및 지배기구) - 전임감사인의 3자간 커뮤니케이션을 반드시 실시하여야 한다.",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.848,
+     "fails": [
+      {
+       "line": "비교재무제표 수정의 경우(상황1) - 전임감사인의 감사보고서 의존방지 조치",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 구분 | 기재 내용 |",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "| 기타사항문단 | (a) 전임감사인이 이전에 발행한 감사보고서에 대한 언급과 회사가 전기재무제표를 재작성하여 감사보고서를 재발행한다는 사실 (b) 재작성된 전기재무제표에 대해 필요한 추가적인 감사절차를 수행하였다는",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "| 구분 | 세부 구분 | 당기감사인의 감사보고 | 재감사시 감사보고 |",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.889,
+     "fails": [
+      {
+       "line": "33. 당기감사인은 전기오류사항에 대한 회사, 당기감사인 및 전임감사인의 최종결론과 결론도출근거, 전기재무제표를 재발행하는 경우 재감사를 누가 수행하는지 여부, 3자의 합의가 필요한 내용을 기재한 문서(예, \"전기오",
+       "chunk_hit": "2/4"
+      }
+     ]
+    }
+   ],
+   "missing": [
+    {
+     "para": "(무번호)",
+     "rate": 0.133,
+     "fails": [
+      {
+       "line": "원문의 흐름도(도해)를 텍스트로 정리한 것이다. 당기감사인 – 회사 – 전임감사인 3자 사이의 절차 흐름은 다음과 같다.",
+       "chunk_hit": "0/2"
+      },
+      {
+       "line": "- [당기감사인] 중요한 전기오류사항이 존재한다고 결론 내림 (문단 3, 9 참조)",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "- [당기감사인 → 회사] 경영진 및 지배기구와의 커뮤니케이션 수행 (문단 9, 10 참조)",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "- [당기감사인 → 회사] 전임감사인 통지요청 (문단 11 참조)",
+       "chunk_hit": "0/1"
+      }
+     ]
+    }
+   ],
+   "n_sections": 12,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2018-1": {
+   "n_para": 5,
+   "ok": 2,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.909,
+     "fails": [
+      {
+       "line": "(2) 회사가 상장규정[각주: 해당 회사의 상장 유형에 따라 유가증권상장규정, 코스닥시장상장규정을 참조]에 따라 재무비율이나 재무성과 요건을 충족하지 못하여 상장폐지되거나 상장적격성 실질 심사 대상이 되는 경우",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "6. 개인의 안전에 대한 유의적 위협에는 감사인의 법적 책임 또는 법규 및 전문가적 제재 위협은 포함되지 않는다. 따라서, 감사인이 종전에 발행한 감사보고서를 정정하여 재발행함으로써 통상적인 경우보다 전문가적 재제 ",
+       "chunk_hit": "5/6"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "7. 개인의 안전에 대한 유의적 위협이 발생할 가능성이 있다고 감사인이 판단한 근거가 감사인의 감사 의견 변형과 연관되어 있는 경우에는 감사기준서 705 문단 30에 따라 변형 문안 등을 지배기구와 커뮤니케이션할 때",
+       "chunk_hit": "2/4"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "10. 개인의 안전에 유의적 위협이 발생할 수 있다고 예상할 수 있는 징후가 발생함에 따라 업무수행이사의 이름을 기재하지 않고자 하는 경우, 그 징후 등에 대하여 문서화할 필요가 있다. 그러나 유의적 위협이 다양한 ",
+       "chunk_hit": "5/6"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 5,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2018-2": {
+   "n_para": 27,
+   "ok": 11,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "5. 이 실무지침에서 사용하는 용어의 정의는 다음과 같다.[각주: 감사기준서 260 문단 10]",
+       "chunk_hit": "0/1"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.826,
+     "fails": [
+      {
+       "line": "6. 감사인은 감사기준서 260에 따라 지배구조 내의 적합한 사람(들)을 커뮤니케이션의 상대로 결정하여야 한다.[각주: 감사기준서 260 문단 11]",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "8. 재무제표 감사에서 가장 적합한 커뮤니케이션 상대는 재무보고절차를 감시하는 역할을 수행하는 사람 또는 조직이다. 국내 상법상 주식회사의 감사 또는 감사위원회는 회사의 재무제표를 감사[각주: 상법 제447조의4]하",
+       "chunk_hit": "5/6"
+      },
+      {
+       "line": "9. 감사인은 감사기준서 315에 따라 기업의 통제환경을 이해할 때 지배기구의 경영진으로부터의 독립성 등 지배기구의 속성을 이해하여 지배기구의 참여와 관련한 통제환경의 설계 효과성을 평가하여야 한다.[각주: 감사기준",
+       "chunk_hit": "2/4"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 1.0,
+     "fails": [
+      {
+       "line": "15. 아래의 감사 단계는 이해의 편의를 위해 통상적인 감사 단계를 구분한 것이며 반드시 해당 사항을 각 단계에서 커뮤니케이션해야 하는 것은 아니다. 예를 들어, 독립성에 관한 커뮤니케이션은 감사종료 단계보다 독립성",
+       "chunk_hit": "5/6"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 1.0,
+     "fails": [
+      {
+       "line": "17. 감사인은 재무제표 감사와 관련된 감사인의 책임을 커뮤니케이션할 때 다음 사항을 포함하여야 한다.[각주: 감사기준서 260 문단 14, A9-A10]",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.925,
+     "fails": [
+      {
+       "line": "22. 계획된 감사범위와 시기의 개요를 커뮤니케이션할 때 포함될 수 있는 내용은 다음과 같다.[각주: 감사기준서 260 문단 A13]",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "23. 계획된 감사범위와 시기를 지배기구와 커뮤니케이션을 할 때 감사의 효과성을 훼손하지 않도록 주의가 필요하다. 예를 들어 감사절차의 성격이나 시기에 대하여 상세하게 커뮤니케이션하는 것은 감사절차를 지나치게 예측 ",
+       "chunk_hit": "5/5"
+      },
+      {
+       "line": "25. 감사인은 재무제표에 중요한 영향을 미칠 수 있는 법규에 대한 위반사례를 식별하는 데 도움을 줄 수 있도록 기업이 그러한 법규를 준수하고 있는지 여부를 지배기구에게 질의하여야 한다.[각주: 감사기준서 250 문",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "26. 그룹재무제표 감사를 수행하는 그룹업무팀은 감사계획 단계에서 다음 사항을 그룹의 지배기구와 커뮤니케이션해야 한다.[각주: 감사기준서 600 문단 49]",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.919,
+     "fails": [
+      {
+       "line": "30. 만약 감사인이 해당 기업의 유의적인 회계실무(accounting practice)가 해당 재무보고체계하에서 수용 가능하나 해당 기업이 처한 특정 상황에는 최적이지 않다고 본다면 지배기구에게 그 이유를 설명하여",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "31. 감사 중 직면한 유의적 어려움에는 다음 사항들이 포함될 수 있다.[각주: 감사기준서 260 문단 A21]",
+       "chunk_hit": "0/1"
+      },
+      {
+       "line": "33. 감사인이 감사 중 유의적 어려움에 직면한 경우 지배기구가 그러한 어려움을 극복하는 데 도움을 줄 수 있거나, 그러한 어려움에 의해 감사의견이 변형될 가능성이 있다면, 실행 가능한 한 조기에 지배기구와 커뮤니케",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.789,
+     "fails": [
+      {
+       "line": "35. 감사인이 다음과 같은 부정을 식별하였거나 다음과 같은 부정이 있다고 의심하는 경우에 감사인은 지배기구에게 이러한 사항을 적시에 커뮤니케이션하여야 한다.[각주: 감사기준서 240 문단 41]",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "36. 특히, 감사인은 감사 수행 중 이사의 직무수행에 관하여 부정행위 또는 법령이나 정관에 위반되는 중대한 사실을 발견하거나 회사가 회계처리 등에 관하여 회계처리기준을 위반한 사실을 발견하면 감사 또는 감사위원회에",
+       "chunk_hit": "3/4"
+      },
+      {
+       "line": "37. 감사인이 경영진 또는 지배기구의 성실성이나 정직성에 대하여 의문을 가지는 예외적인 상황에서는, 감사인은 일련의 적합한 조치를 결정하는 데 도움을 받기 위해 법적 조언을 얻는 것이 적절하다고 생각할 수 있다.[",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "38. 감사인은 지배기구의 책임이라고 판단되는 기타의 부정과 관련된 사항들에 대하여 지배기구와 커뮤니케이션하여야 한다.[각주: 감사기준서 240 문단 42] 그러한 사항의 예는 다음과 같다.[각주: 감사기준서 240",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "39. 감사인은 감사과정에서 알게 된 법규위반과 관련된 사항들이 명백히 경미한 경우를 제외하고는 이 사항을 지배기구와 커뮤니케이션하여야 한다.[각주: 감사기준서 250 문단 19]",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "40. 지배기구가 위반에 연루된 것으로 의심되면, 이사회와 같은 그 다음 상위기구에 이 사항을 커뮤니케이션하여야 한다.[각주: 감사기준서 250 문단 24]",
+       "chunk_hit": "2/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.857,
+     "fails": [
+      {
+       "line": "43. 감사인이 계속기업으로서의 존속능력에 유의적 의문을 초래할 수 있는 사건이나 상황을 식별하였다면 지배기구와 커뮤니케이션하여야 한다. 지배기구와 커뮤니케이션할 사항에는 다음이 포함되어야 한다.[각주: 감사기준서 ",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 1.0,
+     "fails": [
+      {
+       "line": "44. 그룹재무제표 감사를 수행하는 그룹감사인은 다음 사항에 대하여 그룹의 지배기구와 커뮤니케이션하여야 한다.[각주: 감사기준서 600 문단 49]",
+       "chunk_hit": "2/2"
+      },
+      {
+       "line": "45. 그룹업무팀은 부문감사인이 그룹업무팀의 주의를 환기시켰던 사항으로서 그룹업무팀이 그룹지배기구의 책임에 유의적이라고 판단한 사항을 그룹의 지배기구와 커뮤니케이션 할 수 있다.[각주: 감사기준서 600 문단 A66",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 1.0,
+     "fails": [
+      {
+       "line": "47. 상장기업의 경우, 독립성 관련 윤리적 요구사항을 준수하고 있다는 진술은 다음을 포함하여야 한다.[각주: 감사기준서 260 문단 17, A29-A32]",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.667,
+     "fails": [
+      {
+       "line": "48. 감사인은 재무제표일부터 감사보고서일 또는 감사보고서일과 가장 가까운 실행가능한 일자까지의 기간에 대하여 재무제표에 영향을 미칠 수 있는 후속사건이 발생했는지 여부에 대하여 지배기구에게 질문하여야 한다.[각주:",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "49. 또한 감사인은 감사보고서일 후 감사보고서일에 알았더라면 감사보고서를 수정할 원인이 될 수도 있었던 사실을 알게 된 경우 감사기준서 560에 따라 지배기구와 이 사항을 논의하고 적절한 조치를 취해야 한다.[각주",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.727,
+     "fails": [
+      {
+       "line": "51. 감사인은 미수정왜곡표시와 미수정왜곡표시가 개별적으로 또는 집합적으로 감사의견에 미칠 영향에 대하여 지배기구와 커뮤니케이션하여야 한다. 감사인은 커뮤니케이션을 할 때 중요한 미수정왜곡표시들을 개별적으로 식별하여",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "52. 감사인은 주변 상황을 감안하여 판단한 왜곡표시의 크기와 성격을 고려하여, 왜곡표시를 수정하지 아니한 이유와 시사점, 왜곡표시가 미래 재무제표에 미치는 잠재적 영향을 지배기구와 논의할 수 있다.[각주: 감사기준",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "53. 초도감사 시, 감사인은 당기재무제표에 중요하게 영향을 미칠 수 있는 기초잔액 왜곡표시가 존재한다고 결론을 내린 경우에 감사기준서 450에 따라 지배기구와 커뮤니케이션하여야 한다.[각주: 감사기준서 510 문단",
+       "chunk_hit": "2/3"
+      },
+      {
+       "line": "54. 감사인은 전임감사인이 적정의견을 표명한 전기재무제표에 영향을 미치는 중요한 왜곡표시가 존재한다고 결론을 내리면, 지배기구와 해당 왜곡표시를 커뮤니케이션하여야 한다.[각주: 감사기준서 710 문단 18]",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "60. 지배기구와 커뮤니케이션할 사항은 상기 사항에 국한되지 않는다. 감사인은 감사 중 발생한 유의적 사항이 감사인의 전문가적 판단에 비추어 재무보고절차의 감시와 관련성이 있는 사항이라고 판단되면 이를 지배기구와 커",
+       "chunk_hit": "4/5"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.8,
+     "fails": [
+      {
+       "line": "61. 감사위원회와의 커뮤니케이션과 관련하여, 양호한 지배원칙은 다음과 같다.[각주: 감사기준서 260 문단 A7] 양호한 지배원칙은 감사 또는 다른 지배기구와 커뮤니케이션할 때에도 동일할 것이다.",
+       "chunk_hit": "1/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.962,
+     "fails": [
+      {
+       "line": "66. 유의적 사항이 감사위원회의 위원장과 같은 지배기구의 개별 또는 일부 구성원과 논의되는 경우, 감사인은 지배기구 전원과 커뮤니케이션이 필요한지 결정하여야 한다.[각주: 감사기준서 260 문단 12] 지배기구의 ",
+       "chunk_hit": "3/4"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 27,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  },
+  "guide_2018-3": {
+   "n_para": 8,
+   "ok": 5,
+   "partial": [
+    {
+     "para": "(무번호)",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "회사가 법정 제출기한 내에 감사 전 재무제표를 제출하였더라도, 중요한 내용의 누락, 기간의 불일치 등 재무제표로서 기본적인 내용이 상당히 부실하다고 판단되는 경우 등 재무제표 작성 책임을 다했다고 볼 수 없는 경우는",
+       "chunk_hit": "2/3"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.682,
+     "fails": [
+      {
+       "line": "15. 회사가 감사 전 재무제표를 수정하여 감사인에게 제시한 경우, 감사인은 해당 조정사항이 적절한지 여부와 해당 조정사항이 회사의 내부회계관리제도상 적절한 내부통제에 의해 식별·승인되고 적절한 내부통제를 거쳐 재무",
+       "chunk_hit": "2/4"
+      },
+      {
+       "line": "16. 문단 15에서 요구하는 절차는 회사의 보고기간말 재무보고절차와 관련하여 감사인이 수행하는 다른 감사검토 절차에 포함하여 수행할 수 있다. 감사인이 보고기간말 재무보고절차와 관련하여 일반적으로 수행하는 감사검토",
+       "chunk_hit": "1/3"
+      },
+      {
+       "line": "(a) 감사기준서 315[각주: 감사기준서 315 '기업과 기업환경 이해를 통한 중요왜곡표시위험의 식별과 평가'] 및 내부회계관리제도 검토기준[각주: 내부회계관리제도 검토기준 문단 9.4]에 따라 보고기간말 재무보고",
+       "chunk_hit": "1/2"
+      },
+      {
+       "line": "(b) 감사기준서 240[각주: 감사기준서 240 '재무제표 감사에서의 부정에 관한 감사인의 책임' 문단 32.(a)]에 따라 총계정원장에 기록된 분개와 재무제표 작성시 이루어진 조정사항의 적절성을 테스트함",
+       "chunk_hit": "0/2"
+      }
+     ]
+    },
+    {
+     "para": "(무번호)",
+     "rate": 0.833,
+     "fails": [
+      {
+       "line": "(c) 회사가 감사 전 재무제표를 수정한 경우, 해당 조정사항이 적절한 내부통제를 거쳤는지 평가한 절차 및 결과. 평가 절차가 다른 감사검토 절차에 포함되어 있다면 해당 문서에 대한 참조",
+       "chunk_hit": "1/2"
+      }
+     ]
+    }
+   ],
+   "missing": [],
+   "n_sections": 8,
+   "l2_raw_only": [],
+   "l2_corpus_only": []
+  }
+ },
+ "skipped": []
+}

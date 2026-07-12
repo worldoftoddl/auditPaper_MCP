@@ -7,4 +7,4 @@ index/cids.json
 .codex/
 .agents/
 .pytest_cache/
-raw/
+raw/eval/audit_out/raw_extract/
