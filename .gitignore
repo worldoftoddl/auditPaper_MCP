@@ -7,4 +7,7 @@ index/cids.json
 .codex/
 .agents/
 .pytest_cache/
-raw/eval/audit_out/raw_extract/
+raw/
+eval/audit_out/raw_extract/
+.claude/
+reports/감사조서서식_*
