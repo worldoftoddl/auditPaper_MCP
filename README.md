@@ -1,62 +1,57 @@
-# auditPaper_assist — 감사조서 콜드 해석 파이프라인
+# auditPaper_MCP — 한국 감사·회계기준 RAG MCP 서버
 
-**어떤 조서든 던지면 에이전트가 읽고 근거 규정과 할 일을 뽑아낸다 — 자유로운 해석, 검증 가능한 인용.**
-한국 회계감사기준(ISA)·K-IFRS·실무지침 전문을 벡터 DB로 적재하고, MCP 도구 3종을 든 에이전트가
-처음 보는 감사조서를 해석해 수행 절차와 근거 문단(cid)을 산출한다. 인용된 모든 규정은 복합 ID로
-실물 대조가 가능하다.
+**한국 회계감사기준(ISA)·K-IFRS·회계감사실무지침 전문을 검색·인용하는 MCP 서버.**
+표준 원문 212파일 20,970문단을 Qdrant Cloud에 적재하고
+MCP 도구 3종으로 서빙한다. 모든 응답 문단에 복합 ID(cid, 예 `KIFRS::1115::31`)가 붙어
+인용을 원문과 실물 대조할 수 있다.
 
-## 데모 장면
+## 도구 3종
 
-실제 산출물: [`reports/해석_2100.md`](reports/해석_2100.md) — 위험평가 국면 21개 시트 서식철의
-콜드 해석(할 일 38건, 규정 인용 90회, 라우팅 recall 1.0).
+| 도구 | 역할 |
+|---|---|
+| `standards_search` | 하이브리드 RRF 검색 + 용어 정의 주입. 기본은 기준서 본문만 검색 — 부록·적용사례(`include_examples`), 결론도출근거(`include_bc`), 개념체계(`include_framework`)는 별도 설정으로 검색 |
+| `standards_get_paragraph` | cid 직조회 · 분할 문단 재조립 · 앞뒤 문맥 확장(context 0~3) |
+| `standards_define_terms` | 용어 사전 664건 3단계 매칭(완전→어간→부분) |
 
-```
-사용자   : reports/감사조서서식_2100-2700 위험평가 2025.xlsx 해석해줘
-에이전트 : (21개 시트 전수 열람) → 가설: 위험평가 국면의 표준 감사조서 서식철
-에이전트 : standards_search("산업적·규제적 요인 이해", standard_no="315") → KSA::315::A69 …
-에이전트 : standards_get_paragraph("KSA::250::17")  ← 제출 전 인용 cid 실물 재대조
-산출     : reports/해석_2100.md (①정체 ②할 일 ③근거 발췌 ④미확인) → 채점기 recall 1.0
-```
+**연결** — 로컬(stdio)은 루트 [`.mcp.json`](.mcp.json) 배선 그대로, 원격(HTTP)은
+HF Space 상시 배포. 접속법·입출력 스키마·오류는
+[`docs/사용안내_원격MCP.md`](docs/사용안내_원격MCP.md) 참조.
 
 ## 아키텍처 — 3층
 
 ```
 [1층 · 데이터]   원문 DOCX/PDF/md (auditstandard_md·ifrs_md·Conceptual_framework_md·guidelines_raw)
-                   │ scripts/normalize_corpus.py          (규약 4장 형식 통일, 상설 구조 검증)
+                   │ scripts/normalize_corpus.py
                    ▼
-                 corpus_md/ 102파일 + guidelines_md/ 9파일 = 111파일 · 10,063문단
+                 corpus_md/ 203파일(정본 102 + BC·IE 101) + guidelines_md/ 9파일
+                 = 212파일 · 20,970문단
                    │ scripts/build_index.py + Colab GPU    (bge-m3 dense + kiwipiepy/BM25 sparse)
                    ▼
-                 Qdrant Cloud: standards_20250829_bgem3 (payload에 본문 포함)
+                 Qdrant Cloud: standards_20250829_bgem3_v3
                               + *_meta (manifest·vocab·용어사전 664) — DB 단일 소스
 
-[2층 · 도구]     server/ MCP 서버 (FastMCP stdio, .env만으로 기동)
-                 standards_search(하이브리드 RRF + 정의 주입) · standards_get_paragraph(직조회·
-                 분할 재조립·문맥 확장) · standards_define_terms(용어 사전 3단계 매칭)
+[2층 · 서버]     server/ MCP 서버 (FastMCP, .env으로 기동)
+                 stdio 로컬 또는 HTTP 원격(deploy/hf_space/ · colab/)
 
-[3층 · 에이전트] Claude Code + CLAUDE.md '조서 해석 플로우'
-                 조서 전수 열람 → 정체 가설 → 근거 탐색(MCP) → 보고서 산출 → 골드셋 채점
+[3층 · 소비자]   MCP를 든 임의의 에이전트
 ```
-
-**숫자 한 줄**: 원문 111파일 → 10,063포인트 · 검증 4겹(변환 상설 검증 → 적재 점검 1~7·스모크
-S1~S9 왕복+본문 전수 → 기동 계약 검증 → 인수 테스트 A1~A10) · 콜드 해석 recall 실측
-1.0/1.0/1.0/0.25 (조서 2100·3600A·8100·4000P-1, `eval/score_*.json`).
 
 ## 저장소 지도
 
 | 폴더 | 내용 |
 |---|---|
-| `corpus_md/` | 규약 형식 통일 코퍼스 — 감사기준 39 + 회계기준 63 (적재 대상 ①) |
+| `server/` | **MCP 서버 3종 도구** (로컬 배선: 루트 `.mcp.json`) |
+| `deploy/hf_space/` `colab/` | 원격 호스팅 — HF Space Docker(상시) · Colab+터널(일시) |
+| `corpus_md/` | 규약 형식 통일 코퍼스 — 정본(감사기준 39 + 회계기준 63) + BC·IE 갈래 101(검색 옵트인) (적재 대상 ①) |
 | `guidelines_md/` | 회계감사실무지침 9건 — 수작업 변환 원본(source of truth) (적재 대상 ②) |
 | `auditstandard_md/` `ifrs_md/` `Conceptual_framework_md/` | 변환 전 원문 md (옛 스키마) |
 | `guidelines_raw/` | 실무지침 원본(DOC/DOCX/PDF) |
 | `scripts/` | `normalize_corpus.py`(변환기) · `build_index.py`(적재기) |
 | `index/` | 적재 산출물(vocab·glossary·manifest) — 재구축·감사용 기록 |
-| `server/` | MCP 서버 3종 도구 (배선: 루트 `.mcp.json`) |
-| `tests/` | 인수 테스트 A1~A10 (실 Qdrant 대상) |
-| `eval/` | 채점 전용 골드셋 + recall 채점기 + 채점 결과 |
+| `tests/` | 인수 테스트 A1~A15 (실 Qdrant 대상) |
+| `eval/` | 채점 전용 골드셋 + recall 채점기 + 채점 결과 + DB 품질 감사 도구 |
 | `reports/` | 조서 해석 보고서 (`해석_{조서번호}.md`) |
-| `docs/` | 규약 정본 · 지시서 아카이브(`workorders/`) · 결함·이탈 대장(`LEDGER.md`) |
+| `docs/` | 규약 정본 · 원격 사용 안내 · 지시서 아카이브(`workorders/`) · 결함·이탈 대장(`LEDGER.md`) |
 
 ## 재현 방법
 
